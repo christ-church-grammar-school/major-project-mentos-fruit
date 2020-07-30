@@ -1,3 +1,3 @@
 # Major Project for Mentos Fruit
 
-## Josh, Roman, Ken
+## Josh, Ken, Roman
