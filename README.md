@@ -356,33 +356,41 @@ assistant app. The program will be split up into the following components:
 **Login** Sign in will be handled with Microsoft’s single sign on system, meaning that once
 they have signed in via Microsoft on another application using this system, they will
 stay logged in on our app.
+
 **Dashboard** The dashboard will feature a screen that will display important information for the
 user, such as that day’s timetable and tasks/assessments that are due. Other
 information such as the daily bulletin or notices will also be displayed.
+
 **Diary** The diary will allow the user to input tasks/assessments that will be saved and
 synced across their devices. It will also display the upcoming tasks/assessments that
 have been added and will be displayed in a list format.
+
 **Timetable** The timetable will retrieve the user’s timetable from the school’s synergetic
 database (or via web scraping) and display it. This will continue to function in the
 unlikely event of nexus being not operational, so that students/staff can still see
 what classes they have.
+
 **Campus Map** The campus map will provide an interactive 3D map of the school, so that the user
 can locate their classrooms with ease.
+
 **School
 information**
 
 This tab will provide a page with links to documents such as the school’s code of
 conduct, school hymn, uniform expectations, etc. Each document will be opened
 and displayed as a pdf in a new tab.
+
 **Voting system** This tab will open the homepage of our voting system. This will show information on
 why and how to vote using this solution. It will also show the current votes that the
 user has yet to cast, and clicking on these will lead the user to the voting page where
 they can select candidates.
+
 **Options** The options page will display the settings that can be changed for the user. This may
 include the ability to:
 
 1. Change the theme
 2. Turn on notifications (system or email) for upcoming tasks/assessments
+
 **Login** The application should use Microsoft single sign in. If the user is logged out they will
 be greeted by the familiar Microsoft sign in website.
 
