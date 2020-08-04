@@ -1,7 +1,3 @@
-# Major Project for Mentos Fruit
-
-## Josh, Ken, Roman
-
 # Advanced Software Development
 
 ## Major Project
