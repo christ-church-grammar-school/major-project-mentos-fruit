@@ -5,7 +5,7 @@ import { getLayout } from '../components/layout'
 
 const Temp = () => {
   const { user, loading } = useFetchUser()
-  console.log(user)
+  // console.log(user)
   return (
       <div>
         -------------------------
