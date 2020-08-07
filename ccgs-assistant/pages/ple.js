@@ -5,7 +5,7 @@ import { getLayout } from '../components/layout'
 
 const Temp = () => {
   const { user, loading } = useFetchUser()
-
+  console.log(user)
   return (
       <div>
         -------------------------
@@ -15,6 +15,12 @@ const Temp = () => {
           <img src={user.picture} alt="user picture" />
           <p>nickname: {user.nickname}</p>
           <p>name: {user.name}</p>
+          ------------------------- API Values
+          <p>graduation: {user["https://aad.com/gradYear"]}</p>
+          <p>year: {user["https://aad.com/YearLevel"]}</p>
+          <p>house: {user["https://aad.com/HouseTute"]}</p>
+          <p>displayname: {user["https://aad.com/DisplayName"]}</p>
+          <p>ID: {user["https://aad.com/EmployeeID"]}</p>
         </>}</>}
       </div>
   )
