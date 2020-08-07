@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useFetchUser } from '../lib/user'
-import Layout from '../components/layout'
+import { getLayout } from '../components/layout'
 
-export default function Home() {
+const Temp = () => {
   const { user, loading } = useFetchUser()
 
   return (
-    <Layout user={user} loading={loading}>
       <div>
         -------------------------
         {loading ? <>LOADING</> : <>
@@ -18,6 +17,9 @@ export default function Home() {
           <p>name: {user.name}</p>
         </>}</>}
       </div>
-    </Layout>
   )
 }
+
+Temp.getLayout = getLayout
+
+export default Temp

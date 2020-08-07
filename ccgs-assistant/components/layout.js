@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import React, { useState, useEffect } from "react";
+import { useFetchUser } from '../lib/user'
 
-function Layout({ user, loading = false, children }) {
+function Layout({ children }) {
         const [check, setCheck] = useState(0)
-
+        const { user, loading } = useFetchUser()
 
         useEffect(() => {
             const id = setInterval(() => {
@@ -35,11 +36,11 @@ function Layout({ user, loading = false, children }) {
             </>}
             </>
             }
-
         <main><div>{children}</div></main>
-
         </>
     )
 }
 
-export default Layout
+export const getLayout = page => <Layout>{page}</Layout>;
+
+export default Layout;
