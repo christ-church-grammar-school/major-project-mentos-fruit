@@ -10,7 +10,13 @@ export default function Home() {
     <Layout user={user} loading={loading}>
       <div>
         -------------------------
-        BLAH
+        {loading ? <>LOADING</> : <>
+          {!user ? <p>User Not Signed In</p> : <>
+          <p>Client Rendered Information:</p>
+          <img src={user.picture} alt="user picture" />
+          <p>nickname: {user.nickname}</p>
+          <p>name: {user.name}</p>
+        </>}</>}
       </div>
     </Layout>
   )
