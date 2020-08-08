@@ -16,7 +16,8 @@ function Layout({ children }) {
 
     return (
         <>
-         <p>Times check execute {check}</p>
+         {//<p>Times check execute {check}</p>
+         }
             <Link href="/">
               <a>Home</a>
             </Link>
