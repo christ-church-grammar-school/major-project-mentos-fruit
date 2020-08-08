@@ -2,6 +2,8 @@ import Link from 'next/link'
 import React, { useState, useEffect } from "react";
 import { useFetchUser } from '../lib/user'
 import { Login, Logout } from './authFlow'
+import styles from "../styles/nav.module.css"
+import logo from "./logo.jpg"
 
 function Layout({ children }) {
         const [check, setCheck] = useState(0)
@@ -19,29 +21,45 @@ function Layout({ children }) {
         <>
          {//<p>Times check execute {check}</p>
          }
-            <Link href="/">
-              <a>Dashboard</a>
-            </Link>
-            <Link href="/diary">
-              <a>Diary</a>
-            </Link>
-            <Link href="/settings">
-              <a>Settings</a>
-            </Link>
-            {loading ? <>LOADING</> :
-            <>
-            {user ? <>
-                <li>
-                  <Logout>Logout</Logout>
+         <div className={styles.all}>
+          <div className={styles.sideNav}>
+              <Link href="/">
+                <a>Dashboard</a>
+              </Link><br/>
+              <Link href="/diary">
+                <a>Diary</a>
+              </Link><br/>
+              <Link href="/timetable">
+                <a>Timetable</a>
+              </Link><br/>
+              <Link href="/map">
+                <a>Campus map</a>
+              </Link><br/>
+              <Link href="/info">
+                <a>School information</a>
+              </Link><br/>
+              <Link href="/vote">
+                <a>Voting</a>
+              </Link><br/>
+              <Link href="/settings">
+                <a>Settings</a>
+              </Link><br/>
+            </div>
+              {loading ? <>LOADING</> :
+              <>
+              {user ? <>
+                  <li>
+                    <Logout>Logout</Logout>
+                  </li>
+              </>:<>
+              <li>
+                  <Login>Login</Login>
                 </li>
-            </>:<>
-            <li>
-                <Login>Login</Login>
-              </li>
-            </>}
-            </>
-            }
-        <main><div>{children}</div></main>
+              </>}
+              </>
+              }
+          <main><div>{children}</div></main>
+          </div>
         </>
     )
 }

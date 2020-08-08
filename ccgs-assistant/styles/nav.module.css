@@ -1,0 +1,25 @@
+.all {
+    display: inline-flex;
+}
+.sideNav {
+    width: 30vw;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+.sideNav a {
+    font-size: 3vw;
+    line-height: 8vh;
+    padding-left: 1.7vw;
+    color: #00217a;
+}
+
+@media screen and (min-width: 1000px) {
+    .sideNav {
+        width: 300px;
+    }
+    .sideNav a {
+        font-size: 30px;
+        padding-left: 17px;
+    }
+}
