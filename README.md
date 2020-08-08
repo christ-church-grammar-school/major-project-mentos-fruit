@@ -1,8 +1,6 @@
 ## Major Project: CCGS Assistant
 
----
-
-####Repo Structure
+#### Repo Structure
 - **NextJS Webapp**. Located under ```/ccgs-assistant```. Contains nearly all code relevant to the application. [Setup Instructions](https://github.com/christ-church-grammar-school/major-project-mentos-fruit/tree/master/ccgs-assistant).
 - **Auth0**. Located under ```/auth0```. Webhooks have been setup so that any push to the ```/auth0``` directory will update on auth0 servers. Currently rules have been set up to update user profiles with information from the Microsoft Graph API. 
 - **Design Resources**. Located under ```/Design Resources```. Contains all planning and UI design.
@@ -15,15 +13,20 @@
 <summary><b>Devlopment Team</b></summary>
 
 ```Joshua Chen - Scrum Master``` :ram:
+
 ```Roman Green - Crunch Time Manager``` :video_game:
+
 ```Kenneth Lo - Design Lead``` :penguin:
 
 </details>
 <br>
 
 **App Category:** Productivity
+
 **Target Audience:** CCGS staff and students
+
 **Device(s):** Webapp – any device with a web browser (i.e. chromium based browser, safari or equivalent)
+
 **Brief Overview:** The code powering the CCGS-Assistant application.
 
 <details>
@@ -432,5 +435,3 @@ These were some exploratory designs that the team had put together, in order to 
 
 
 </details>
-
----
