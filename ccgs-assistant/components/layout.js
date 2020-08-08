@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React, { useState, useEffect } from "react";
 import { useFetchUser } from '../lib/user'
+import { Login, Logout } from './authFlow'
 
 function Layout({ children }) {
         const [check, setCheck] = useState(0)
@@ -31,11 +32,11 @@ function Layout({ children }) {
             <>
             {user ? <>
                 <li>
-                  <a href="/api/logout">Logout</a>
+                  <Logout>Logout</Logout>
                 </li>
             </>:<>
             <li>
-                <a href="/api/login">Login</a>
+                <Login>Login</Login>
               </li>
             </>}
             </>

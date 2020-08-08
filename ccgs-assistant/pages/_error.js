@@ -5,8 +5,8 @@ function ErrorPage({ statusCode }) {
 }
   
 ErrorPage.getInitialProps = ({ res, err }) => {
-const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-return { statusCode }
+    const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+    return { statusCode }
 }
 
 // Removes nav bar at error page
