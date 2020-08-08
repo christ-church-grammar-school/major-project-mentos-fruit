@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useFetchUser } from '../lib/user'
 import { Login, Logout } from './authFlow'
 import styles from "../styles/nav.module.css"
-import logo from "./logo.jpg"
+import logo from "./logoFull.jpg"
 import na from "./NA.png"
 
 function Layout({ children }) {
@@ -27,11 +27,6 @@ function Layout({ children }) {
             <div className={styles.logo}>
               <div className={styles.imageContainer}>
                 <img src={logo} className={styles.image}/>
-              </div>
-              <div className={styles.textContainer}>
-                <h1 className={styles.upper}>CCGS</h1>
-                <br/>
-                <h1 className={styles.lower}>Assistant</h1>
               </div>
             </div>
             <div className={styles.links}>
@@ -62,12 +57,17 @@ function Layout({ children }) {
                 <img src={user ? user.picture : na} className={styles.profileImage}/>
               </div>
               <div className={styles.profileTextArea}>
+              <p className={styles.profileText}>{user ? user["https://aad.com/DisplayName"] : <>User currently not signed in</>}</p>
                 {loading ? <>LOADING</> :
                 <>
                 {user ? <>
-                  <Logout>Logout</Logout>
+                  <Logout>
+                    Logout
+                  </Logout>
                 </>:<>
-                  <Login>Login</Login>
+                  <Login>
+                    Login
+                  </Login>
                 </>}
                 </>
                 }
