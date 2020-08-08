@@ -1,9 +1,22 @@
+@font-face {
+  font-family: 'Bahnschrift Regular';
+  font-style: normal;
+  src: local('Bahnschrift Regular'), url('BAHNSCHRIFT.woff') format('woff');
+}
+@font-face {
+  font-family: 'Bahnschrift Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Bahnschrift Light'), url('BAHNSCHRIFT.woff') format('woff');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: "Bahnschrift Regular", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 30px;
 }
 
 a {
