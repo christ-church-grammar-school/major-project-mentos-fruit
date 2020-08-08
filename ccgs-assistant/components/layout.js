@@ -22,6 +22,13 @@ function Layout({ children }) {
          }
          <div className={styles.all}>
           <div className={styles.sideNav}>
+            <div className={styles.logo}>
+              <img src={logo} className={styles.image}/>
+              <h1 className={styles.upper}>CCGS</h1>
+              <br/>
+              <h1 className={styles.lower}>Assistant</h1>
+            </div>
+            <div>
               <Link href="/">
                 <a>Dashboard</a>
               </Link><br/>
@@ -44,6 +51,7 @@ function Layout({ children }) {
                 <a>Settings</a>
               </Link><br/>
             </div>
+          </div>
               {loading ? <>LOADING</> :
               <>
               {user ? <>
