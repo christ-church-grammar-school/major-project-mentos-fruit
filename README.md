@@ -12,9 +12,9 @@
 <details open>
 <summary><b>Devlopment Team</b></summary>
 
-```Joshua Chen - Scrum Master``` :ram:
+```Joshua Chen - Vibe Manager``` :ram:
 
-```Roman Green - Crunch Time Manager``` :video_game:
+```Roman Green - Full Stack Crunch Time Manager``` :video_game:
 
 ```Kenneth Lo - Design Lead``` :penguin:
 </details>
