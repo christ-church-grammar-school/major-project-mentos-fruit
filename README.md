@@ -17,9 +17,7 @@
 ```Roman Green - Crunch Time Manager``` :video_game:
 
 ```Kenneth Lo - Design Lead``` :penguin:
-
 </details>
-<br>
 
 **App Category:** Productivity
 
