@@ -4,6 +4,7 @@ import { useFetchUser } from '../lib/user'
 import { Login, Logout } from './authFlow'
 import styles from "../styles/nav.module.css"
 import logo from "./logo.jpg"
+import na from "./NA.png"
 
 function Layout({ children }) {
         const [check, setCheck] = useState(0)
@@ -24,48 +25,56 @@ function Layout({ children }) {
          <div className={styles.all}>
           <div className={styles.sideNav}>
             <div className={styles.logo}>
-              <img src={logo} className={styles.image}/>
-              <h1 className={styles.upper}>CCGS</h1>
-              <br/>
-              <h1 className={styles.lower}>Assistant</h1>
+              <div className={styles.imageContainer}>
+                <img src={logo} className={styles.image}/>
+              </div>
+              <div className={styles.textContainer}>
+                <h1 className={styles.upper}>CCGS</h1>
+                <br/>
+                <h1 className={styles.lower}>Assistant</h1>
+              </div>
             </div>
-            <div>
+            <div className={styles.links}>
               <Link href="/">
                 <a>Dashboard</a>
-              </Link><br/>
+              </Link>
               <Link href="/diary">
                 <a>Diary</a>
-              </Link><br/>
+              </Link>
               <Link href="/timetable">
                 <a>Timetable</a>
-              </Link><br/>
+              </Link>
               <Link href="/map">
                 <a>Campus map</a>
-              </Link><br/>
+              </Link>
               <Link href="/info">
                 <a>School information</a>
-              </Link><br/>
+              </Link>
               <Link href="/vote">
                 <a>Voting</a>
-              </Link><br/>
+              </Link>
               <Link href="/settings">
                 <a>Settings</a>
-              </Link><br/>
+              </Link>
+            </div>
+            <div className={styles.profileArea}>
+              <div className={styles.profileImgArea}>
+                <img src={user ? user.picture : na} className={styles.profileImage}/>
+              </div>
+              <div className={styles.profileTextArea}>
+                {loading ? <>LOADING</> :
+                <>
+                {user ? <>
+                  <Logout>Logout</Logout>
+                </>:<>
+                  <Login>Login</Login>
+                </>}
+                </>
+                }
+              </div>
             </div>
           </div>
-              {loading ? <>LOADING</> :
-              <>
-              {user ? <>
-                  <li>
-                    <Logout>Logout</Logout>
-                  </li>
-              </>:<>
-              <li>
-                  <Login>Login</Login>
-                </li>
-              </>}
-              </>
-              }
+              
           <main><div>{children}</div></main>
           </div>
         </>

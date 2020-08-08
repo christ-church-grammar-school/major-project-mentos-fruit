@@ -24,6 +24,10 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  font-weight: normal;
+}
+
 * {
   box-sizing: border-box;
 }
