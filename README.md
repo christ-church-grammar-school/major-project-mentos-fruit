@@ -1,146 +1,101 @@
-# Advanced Software Development
+## Major Project: CCGS Assistant
 
-## Major Project
+---
 
-## Project Title: CCGS Assistant
+####Repo Structure
+- **NextJS Webapp**. Located under ```/ccgs-assistant```. Contains nearly all code relevant to the application. [Setup Instructions](https://github.com/christ-church-grammar-school/major-project-mentos-fruit/tree/master/ccgs-assistant).
+- **Auth0**. Located under ```/auth0```. Webhooks have been setup so that any push to the ```/auth0``` directory will update on auth0 servers. Currently rules have been set up to update user profiles with information from the Microsoft Graph API. 
+- **Design Resources**. Located under ```/Design Resources```. Contains all planning and UI design.
 
-#### General Info
+---
 
-```
-Developer Names: Joshua Chen
-Roman Green
-Kenneth Lo
-App Category: Productivity
-```
-**Target Audience:** (^) CCGS staff and students
-**Device(s):** Webapp – any device with a web browser (i.e. chromium based browser, safari or
-equivalent)
+#### General Info - The Mentos Fruit Team
 
-#### Project Summary
+<details open>
+<summary><b>Devlopment Team</b></summary>
 
-```
-Project Description: The main objective of this app is to provide and easy-to-use voting system,
-specific to Christ Church Grammar School, that implements preferential voting.
-This would allow voters, including both students and staff, to automatically vote
-for the groups they are part of, including school, house, and boarding prefects.
-```
-```
-As a secondary objective, the app will also serve as a student/teacher app, which
-allows students/teachers to easily set homework/assessment reminders, view
-their timetable and add events to a calendar. During the voting period of the year,
-an extra button will be temporarily available, allowing users to vote for prefects.
-The voting section will also be available as a separate web app , allowing
-students and staff to vote on either app.
-```
-```
-The voting-only app is prioritised over the remaining aspects of the
-student/teacher app , as the current paper voting system is inefficient and
-outdated. Timetables, calendars and reminder apps exist; however, our app aims
-to combine this into a single app, specific to CCGS (e.g. automatically shows the
-user’s timetable on Nexus). Note that the features of the student/teacher app
-will therefore be classified as desirable, as this app will only be implemented
-once the voting-only app is completed.
-Research and
-Development Required:
-```
-```
-ReactJS, preferential voting system, databases
-```
-#### Team Responsibilities
+```Joshua Chen - Scrum Master``` :ram:
+```Roman Green - Crunch Time Manager``` :video_game:
+```Kenneth Lo - Design Lead``` :penguin:
 
-```
-Team Member Responsibilities
-Joshua Chen Scrum Master
-```
-Roman Green Development Lead
+</details>
+<br>
 
-Kenneth Lo Design Lead
+**App Category:** Productivity
+**Target Audience:** CCGS staff and students
+**Device(s):** Webapp – any device with a web browser (i.e. chromium based browser, safari or equivalent)
+**Brief Overview:** The code powering the CCGS-Assistant application.
+
+<details>
+<summary><b>Project Summary</b></summary>
 
 
-## Project Outline
+The main objective of this app is to provide   and easy-to-use voting system, specific to Christ Church Grammar School, that implements preferential voting. This would allow voters, including both students and staff, to automatically vote for the groups they are part of, including school, house, and boarding prefects.
 
-### Project Scope
+As a secondary objective, the app will also serve as a student/teacher app, which allows students/teachers to easily set homework/assessment reminders, view their timetable and add events to a calendar. During the voting period of the year, an extra button will be temporarily available, allowing users to vote for prefects. The voting section will also be available as a separate web app , allowing students and staff to vote on either app.
+
+The voting-only app is prioritised over the remaining aspects of the student/teacher app , as the current paper voting system is inefficient and outdated. Timetables, calendars and reminder apps exist; however, our app aims to combine this into a single app, specific to CCGS (e.g. automatically shows the user’s timetable on Nexus). Note that the features of the student/teacher app will therefore be classified as desirable, as this app will only be implemented once the voting-only app is completed.
+
+Research and  Development Required:
+
+    ReactJS, preferential voting system, databases
+
+</details>
+
+---
+
+#### Project Outline
+
+<details>
+<summary><b>Project Scope</b></summary>
 
 The main problems our app combats are:
-o The lack of an efficient, electronic, automatic voting system within the school
-o The lack of an electronic journal system, allowing students and teachers to record
-homework/tests/events/marking
+* The lack of an efficient, electronic, automatic voting system within the school.
+* The lack of an electronic journal system, allowing students and teachers to record.
 
-Our app will provide these services to **CCGS staff and students** , integrating both features into a single handy
-app. Furthermore, the voting system will also be available as a separate web app, for easier access.
+Our app will provide these services to **CCGS staff and students** , integrating both features into a single handy webapp. Furthermore, the voting system will also be available as a separate web app, for easier access.
 
-### Research
+</details>
+
+<details>
+<summary><b>Research</b></summary>
 
 Our group conducted an interview with Mr Taylor, the ICT services co-ordinator. Notably, he mentioned that:
 
-- The current problem with using a service such as Microsoft Forms is that the voter is able to put in a
-    preference for one candidate more than once.
-       o I.e. Preference 1, 2, 3 = _Candidate A_
-- Currently, the school does not use an in-house solution
-    o Pays another company
-- It is a preferential voting system, meaning that the person with the most amount of votes may not
-    necessarily win
+- The current problem with using a service such as Microsoft Forms is that the voter is able to put in a preference for one candidate more than once; I.e. Preference 1, 2, 3 = _Candidate A_.
+- Currently, the school does not use an in-house solution.
+    - Alternatives seem expensive.
+- It is a preferential voting system, meaning that the person with the most amount of votes may not necessarily win.
 
-Our group also conducted an interview with Ms Stanton-Cook, who is in charge of the voting system at CCGS.
-Through this interview, we were given a list of aspects which our app needed to take into account. This
-includes:
+We also interviewed Stanton-Cook, who facilitates voting at CCGS. Through this interview, we were given a list of aspects which our app needed to take into account. This includes:
 
-- Our app should allow users to vote for their school, house and boarding prefects, depending on their
-    house and whether they are a boarding prefect.
+- Our app should allow users to vote for their school, house and boarding prefects, depending on their house and whether they are a boarding prefect.
 - All students have an equal voting power. Teachers have a voting power three times that of students.
-- Student votes should be separated for each year group, and between students and staff. This is
-    because in the past, some year groups have made a collaborative decision to vote for an unpopular
-    candidate, and thus, this may not be reflective of strong candidates. Year 7s voting for Year 11s also
-    provide useful information given that some of the Year 11s were Peer Support Leaders in their
-    respective houses.
+- Student votes should be separated for each year group, and between students and staff. This is because:
+    - In the past, some year groups have made a collaborative decision to vote for an unpopular candidate, and thus, this may not be reflective of strong candidates. 
+    - Year 7s voting for Year 11s also provide useful information given that some of the Year 11s were Peer Support Leaders in their respective houses.
 - Data should exported to a XLSX or CSV file to double-check candidates as above.
-- When voting, a user should be able to see each candidate’s name, image and short biography. This is
-    important as some students/staff may recognise peoples’ faces but not names.
+- When voting, a user should be able to see each candidate’s name, image and short biography. This is important as some students/staff may recognise peoples’ faces but not names.
 - Candidates should be presented to each user randomly to avoid bias from ‘donkey votes’.
-- Student data (e.g. year group, house, whether they are a boarding student) can be obtained from a
-    database created by Mr Masetti, but not directly obtained from Synergetic databases
+- Student data (e.g. year group, house, whether they are a boarding student) can be obtained from a database created by Mr Masetti, but not directly obtained from Synergetic databases.
 
 Our group also conducted an interview with Mr Arthur. This includes:
 
 - Using the OAuth2 token flow for authentication.
 
+</details>
 
-### General Description
+<details>
+<summary><b>Use Cases</b></summary>
 
-```
-When opening the voting app, the user will first be presented with a login screen, where they enter their
-email and password. They will then be redirected to the main screen, which shows the votes that the user has
-yet to cast. When the user has voted for a particular group (school, house or boarding), this will disappear
-from the main screen. The voting page will consist of all candidates presented randomly down the screen,
-```
-#### and the user has the ability to select up to six candidates in order.
+Clearly, the voting section will be used for determining school, house, and boarding prefects. However, the app may also be able to be tweaked to work for club committees, given that they also use a preferential voting system. Students/staff would need to be part of a club on Nexus for this to work.
 
-```
-The main student/teacher app will contain a dashboard showing the timetable, with tabs leading to each of
-the other components (diary, calendar, timetable, campus map, school information, voting system, settings).
-These tabs will be available on the sidebar. Selecting a tab will change the information on the screen. See the
-mock-ups for more details.
-```
-```
-For the majority of the year, the voting section will be greyed out. During the voting period, the voting tab
-will become available: this voting tab will be the same as the separate voting app.
-```
-```
-The description for each of these components will be available in the Detailed Description section.
-```
-### Use Cases
+The student/teacher app will be used on a daily basis, primarily to check the timetable, set homework / tests / deadlines / event reminders. Teachers can also use this app to remind them tasks such as marking tests, planning lessons and attending meetings.
 
-```
-Clearly, the voting section will be used for determining school, house, and boarding prefects. However, the app
-may also be able to be tweaked to work for club committees, given that they also use a preferential voting system.
-Students/staff would need to be part of a club on Nexus for this to work.
-```
-```
-The student/teacher app will be used on a daily basis, primarily to check the timetable, set homework / tests /
-deadlines / event reminders. Teachers can also use this app to remind them tasks such as marking tests, planning
-lessons and attending meetings.
-```
-### Key Features
+</details>
+
+<details>
+<summary><b>Surplus Detail</b></summary>
 
 **Functional Requirements**
 
@@ -476,3 +431,6 @@ Original Mock-ups (In no particular order) (old)
 These were some exploratory designs that the team had put together, in order to experiment with colours and scale.
 
 
+</details>
+
+---
