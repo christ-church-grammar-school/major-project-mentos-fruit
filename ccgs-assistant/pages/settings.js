@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useFetchUser } from '../lib/user'
 import { getLayout } from '../components/layout'
 
-const Temp = () => {
+function Temp() {
   const { user, loading } = useFetchUser()
   // console.log(user)
   return (

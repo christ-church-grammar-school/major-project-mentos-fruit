@@ -19,10 +19,13 @@ function Layout({ children }) {
          {//<p>Times check execute {check}</p>
          }
             <Link href="/">
-              <a>Home</a>
+              <a>Dashboard</a>
             </Link>
-            <Link href="/ple">
-              <a>PLE</a>
+            <Link href="/diary">
+              <a>Diary</a>
+            </Link>
+            <Link href="/settings">
+              <a>Settings</a>
             </Link>
             {loading ? <>LOADING</> :
             <>
