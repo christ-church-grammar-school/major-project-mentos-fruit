@@ -45,7 +45,7 @@ Research and  Development Required:
 
 ---
 
-#### Project Outline
+### Project Outline
 
 <details>
 <summary><b>Project Scope</b></summary>
