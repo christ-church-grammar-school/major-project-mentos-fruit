@@ -12,11 +12,11 @@
 <details open>
 <summary><b>Devlopment Team</b></summary>
 
-```Joshua Chen - Scrum Master``` :ram:
+```Joshua Chen - Scrum Master``` :penguin:
 
 ```Roman Green - Doing everything``` :video_game:
 
-```Kenneth Lo - Design Lead``` :penguin:
+```Kenneth Lo - Design Lead``` :ram:
 </details>
 
 **App Category:** Productivity
