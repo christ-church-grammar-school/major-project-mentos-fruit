@@ -16,7 +16,7 @@
 
 ```Roman Green - Doing everything``` :video_game:
 
-```Kenneth Lo - Design Lead``` :ram:
+```Kenneth Lo - Design Lead``` :penguin:
 </details>
 
 **App Category:** Productivity
