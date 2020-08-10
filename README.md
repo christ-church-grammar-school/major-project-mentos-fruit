@@ -10,7 +10,7 @@
 #### General Info - The Mentos Fruit Team
 
 <details open>
-<summary><b>Devlopment Team</b></summary>
+<summary><b>Development Team</b></summary>
 
 ```Joshua Chen - Scrum Master``` :penguin:
 
