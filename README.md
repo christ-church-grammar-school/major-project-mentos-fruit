@@ -14,7 +14,7 @@
 
 ```Joshua Chen - Scrum Master``` :penguin:
 
-```Roman Green - Doing everything``` :video_game:
+```Roman Green - Development Lead``` :video_game:
 
 ```Kenneth Lo - Design Lead``` :penguin:
 </details>
