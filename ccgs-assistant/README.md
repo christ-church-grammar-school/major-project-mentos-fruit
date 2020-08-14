@@ -25,11 +25,15 @@ Please replace the ```.env.example``` with a ```.env.local``` file containing yo
 
 #### Running Project
 
+Install dependencies
+
+```bash
+yarn
+```
+
 Now run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
