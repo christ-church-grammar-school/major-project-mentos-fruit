@@ -19,7 +19,7 @@ Also update Auth0 rules with files present under ```major-project-mentos-fruit/a
 
 #### Runtime Configuration
 
-Please replace the ```.env.dummy``` with a ```.env.local``` file containing your auth0 values.
+Please replace the ```.env.example``` with a ```.env.local``` file containing your auth0 values.
 
 ### Nextjs
 
