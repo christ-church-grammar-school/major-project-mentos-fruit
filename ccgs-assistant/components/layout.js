@@ -24,9 +24,9 @@ function Layout({ children }) {
          }
          <div className={styles.all}>
           <div className={styles.sideNav}>
-
-            <img src={logo} className={styles.image}/>
-
+            <div className={styles.imageContainer}>
+              <img src={logo} className={styles.image}/>
+            </div>
             <Link href="/">
               <a>Dashboard</a>
             </Link>
