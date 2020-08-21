@@ -6,7 +6,7 @@ import styles from "../styles/nav.module.css"
 import logo from "./logoFull.jpg"
 import na from "./NA.png"
 import { useRouter } from 'next/router'
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimation, AnimatePresence } from "framer-motion"
 
 function Layout({ children }) {
         const router = useRouter()
@@ -21,6 +21,15 @@ function Layout({ children }) {
         {url: "/info", display: "School Information"},
         {url: "/vote", display: "Voting"},
         {url: "/settings", display: "Settings"}]
+        const imgDir = {
+          "/": "icons8-dashboard-100.svg",
+          "/diary": "icons8-today-100.svg",
+          "/timetable": "icons8-calendar.svg",
+          "/map": "icons8-map-100.svg",
+          "/info": "icons8-info-100.svg",
+          "/vote": "icons8-elections-100.svg",
+          "/settings": "icons8-slider-100.svg",
+        }
 
         // useEffect(() => {
         //     function callback() {
@@ -37,6 +46,7 @@ function Layout({ children }) {
           function callback() {
             controls.start({
               y: document.getElementById(router.pathname).offsetTop,
+              opacity: 1,
               transition: { duration: 0 },
             })
           }
@@ -45,12 +55,14 @@ function Layout({ children }) {
           if (firstLoad === true) {
             controls.start({
               y: document.getElementById(router.pathname).offsetTop,
+              opacity: 1,
               transition: { duration: 0 },
             })
             setFirstLoad(false)
           } else {
             controls.start({
               y: document.getElementById(router.pathname).offsetTop,
+              opacity: 1,
               transition: { duration: 0.7, type: "tween", ease: "anticipate"},
             })
           }
@@ -70,11 +82,20 @@ function Layout({ children }) {
               <img src={logo} className={styles.image}/>
             </div>
 
-            <motion.div animate={controls} className={styles.select} id="select"></motion.div>
+            <motion.div animate={controls} className={styles.select} id="select">
+              <AnimatePresence>
+              <motion.img className={styles.navIcon} src={imgDir[router.pathname]} key={imgDir[router.pathname]}
+                initial={{ x: 0, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 0, opacity: 0 }}
+                transition={{delay: 0.1}}
+              />
+              </AnimatePresence>
+            </motion.div>
             {links.map((el) => 
               <Link href={el.url} key={el.url}>
-              <a id={el.url}>{el.display}</a>
-            </Link>
+                <a id={el.url} className={router.pathname === el.url ? styles.selected : styles.unSelected}>{el.display}</a>
+              </Link>
             )}
 
             

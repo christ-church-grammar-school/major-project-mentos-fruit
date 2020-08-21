@@ -9,13 +9,23 @@
     flex-direction: column;
     justify-content: space-between;
     margin-right: 2vw;
+    overflow: hidden;
 }
 
-.sideNav a {
+.sideNav .unSelected {
     color: #00217a;
     font-size: 22px;
     padding-left: 20px;
     z-index: 10;
+    transition: 1s color;
+}
+
+.sideNav .selected {
+    color: white;
+    font-size: 22px;
+    padding-left: 20px;
+    z-index: 10;
+    transition: 1s color;
 }
 
 .imageContainer {
@@ -73,12 +83,23 @@
     width: 24vw;
     border-radius: 20px;
     margin-left: 0.5vw;
-    height: 50px;
+    height: 60px;
     position: absolute;
-    background-color: red;
-    transition: 0s transform;
     z-index: 1;
-    margin-top: -13px;
+    margin-top: -18px;
+    opacity: 0;
+    background: linear-gradient(90deg, #008FFE 0%, #8CFFFD 100%);
+}
+
+.navIcon {
+    height: 50px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-top: 5px;
+    position: absolute;
+    right: 0;
 }
 
 /*
