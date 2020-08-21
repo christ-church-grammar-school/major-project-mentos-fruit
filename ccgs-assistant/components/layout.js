@@ -78,7 +78,7 @@ function Layout({ children }) {
                 initial={{ scale: 0.4, opacity: 0 }}
                 animate={{ scale: 1, x: 0, opacity: 1 }}
                 exit={{ x: 0, opacity: 0 }}
-                transition={{delay: 0.5}}
+                transition={{delay: 0.3}}
               />
               </AnimatePresence>
             </motion.div>
