@@ -7,6 +7,7 @@ import logo from "./logoFull.jpg"
 import na from "./NA.png"
 import { useRouter } from 'next/router'
 import { motion, useAnimation, AnimatePresence } from "framer-motion"
+import Head from 'next/head'
 
 function Layout({ children }) {
         const router = useRouter()
@@ -31,17 +32,6 @@ function Layout({ children }) {
           "/settings": "icons8-slider-100.svg",
         }
 
-        // useEffect(() => {
-        //     function callback() {
-        //       setOffset({transform: document.getElementById(router.pathname).offsetTop})
-        //     }
-        //     window.addEventListener("resize", callback)
-
-        //     setOffset({transform: document.getElementById(router.pathname).offsetTop})
-
-        //     return () => window.removeEventListener("resize", callback);
-        // }, [router])
-
         useEffect(() => {
           function callback() {
             controls.start({
@@ -51,7 +41,6 @@ function Layout({ children }) {
             })
           }
           window.addEventListener("resize", callback)
-
           if (firstLoad === true) {
             controls.start({
               y: document.getElementById(router.pathname).offsetTop,
@@ -59,23 +48,24 @@ function Layout({ children }) {
               transition: { duration: 0 },
             })
             setFirstLoad(false)
-          } else {
-            controls.start({
-              y: document.getElementById(router.pathname).offsetTop,
-              opacity: 1,
-              transition: { duration: 0.7, type: "tween", ease: "anticipate"},
-            })
-          }
-          
+          } 
           return () => window.removeEventListener("resize", callback);
       }, [router])
 
+      function handleNav(evt) {
+        controls.start({
+              y: document.getElementById(evt.target.id).offsetTop, //This seems counter-intuitive. Im lazy.
+              opacity: 1,
+              transition: { duration: 0.7, type: "tween", ease: "anticipate"},
+            })
+      }
 
     return (
         <>
-         {//<p>Times check execute {check}</p>
-         //console.log(offset)
-         }
+        <Head>
+          <link rel="icon" href={imgDir[router.pathname]} type="image/x-icon"/>
+          <title>CCGS Assistant</title>
+        </Head>
          <div className={styles.all}>
           <div className={styles.sideNav}>
             <div className={styles.imageContainer}>
@@ -94,35 +84,9 @@ function Layout({ children }) {
             </motion.div>
             {links.map((el) => 
               <Link href={el.url} key={el.url}>
-                <a id={el.url} className={router.pathname === el.url ? styles.selected : styles.unSelected}>{el.display}</a>
+                <a onClick={handleNav} id={el.url} className={router.pathname === el.url ? styles.selected : styles.unSelected}>{el.display}</a>
               </Link>
             )}
-
-            
-
-            
-            {/* <Link href="/">
-              <a>Dashboard</a>
-            </Link>
-            <Link href="/diary">
-              <a>Diary</a>
-            </Link>
-            <Link href="/timetable">
-              <a>Timetable</a>
-            </Link>
-            <Link href="/map">
-              <a>Campus map</a>
-            </Link>
-            <Link href="/info">
-              <a>School information</a>
-            </Link>
-            <Link href="/vote">
-              <a>Voting</a>
-            </Link>
-            <Link href="/settings">
-              <a>Settings</a>
-            </Link> */}
-            
 
             <div className={styles.profileArea}>
 
@@ -145,7 +109,6 @@ function Layout({ children }) {
                 }
               </div>
             </div>
-
 
           </div>
               
