@@ -1,33 +1,86 @@
 import Link from 'next/link'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { useFetchUser } from '../lib/user'
 import { Login, Logout } from './authFlow'
 import styles from "../styles/nav.module.css"
 import logo from "./logoFull.jpg"
 import na from "./NA.png"
+import { useRouter } from 'next/router'
+import { motion, useAnimation } from "framer-motion"
 
 function Layout({ children }) {
-        const [check, setCheck] = useState(0)
+        const router = useRouter()
+        const [firstLoad, setFirstLoad] = useState(true)
         const { user, loading } = useFetchUser()
+        const controls = useAnimation()
+        
+        const links = [{url:"/", display: "Dashboard"}, 
+        {url: "/diary", display: "Diary"},
+        {url: "/timetable", display: "Timetable"},
+        {url: "/map", display: "Campus Map"},
+        {url: "/info", display: "School Information"},
+        {url: "/vote", display: "Voting"},
+        {url: "/settings", display: "Settings"}]
+
+        // useEffect(() => {
+        //     function callback() {
+        //       setOffset({transform: document.getElementById(router.pathname).offsetTop})
+        //     }
+        //     window.addEventListener("resize", callback)
+
+        //     setOffset({transform: document.getElementById(router.pathname).offsetTop})
+
+        //     return () => window.removeEventListener("resize", callback);
+        // }, [router])
 
         useEffect(() => {
-            const id = setInterval(() => {
-                setCheck(check + 1)
-            }, 100);
-            return () => clearInterval(id);
-        }, [check])
+          function callback() {
+            controls.start({
+              y: document.getElementById(router.pathname).offsetTop,
+              transition: { duration: 0 },
+            })
+          }
+          window.addEventListener("resize", callback)
+
+          if (firstLoad === true) {
+            controls.start({
+              y: document.getElementById(router.pathname).offsetTop,
+              transition: { duration: 0 },
+            })
+            setFirstLoad(false)
+          } else {
+            controls.start({
+              y: document.getElementById(router.pathname).offsetTop,
+              transition: { duration: 0.7, type: "tween", ease: "anticipate"},
+            })
+          }
+          
+          return () => window.removeEventListener("resize", callback);
+      }, [router])
 
 
     return (
         <>
          {//<p>Times check execute {check}</p>
+         //console.log(offset)
          }
          <div className={styles.all}>
           <div className={styles.sideNav}>
             <div className={styles.imageContainer}>
               <img src={logo} className={styles.image}/>
             </div>
-            <Link href="/">
+
+            <motion.div animate={controls} className={styles.select} id="select"></motion.div>
+            {links.map((el) => 
+              <Link href={el.url} key={el.url}>
+              <a id={el.url}>{el.display}</a>
+            </Link>
+            )}
+
+            
+
+            
+            {/* <Link href="/">
               <a>Dashboard</a>
             </Link>
             <Link href="/diary">
@@ -47,7 +100,8 @@ function Layout({ children }) {
             </Link>
             <Link href="/settings">
               <a>Settings</a>
-            </Link>
+            </Link> */}
+            
 
             <div className={styles.profileArea}>
 

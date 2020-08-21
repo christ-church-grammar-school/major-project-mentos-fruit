@@ -15,12 +15,14 @@
     color: #00217a;
     font-size: 22px;
     padding-left: 20px;
+    z-index: 10;
 }
 
 .imageContainer {
     height: 25vh;
     min-height: 140px;
     width: 100%;
+    z-index: 5;
 }
 
 .image {
@@ -65,6 +67,18 @@
     .profileImage {
         border-radius: 15px;
     }
+}
+
+.select {
+    width: 24vw;
+    border-radius: 20px;
+    margin-left: 0.5vw;
+    height: 50px;
+    position: absolute;
+    background-color: red;
+    transition: 0s transform;
+    z-index: 1;
+    margin-top: -13px;
 }
 
 /*
