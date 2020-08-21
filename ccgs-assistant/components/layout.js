@@ -85,10 +85,10 @@ function Layout({ children }) {
             <motion.div animate={controls} className={styles.select} id="select">
               <AnimatePresence>
               <motion.img className={styles.navIcon} src={imgDir[router.pathname]} key={imgDir[router.pathname]}
-                initial={{ x: 0, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                initial={{ scale: 0.4, opacity: 0 }}
+                animate={{ scale: 1, x: 0, opacity: 1 }}
                 exit={{ x: 0, opacity: 0 }}
-                transition={{delay: 0.1}}
+                transition={{delay: 0.5}}
               />
               </AnimatePresence>
             </motion.div>
