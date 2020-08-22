@@ -59,6 +59,8 @@ function Layout({ children }) {
               transition: { duration: 0.7, type: "tween", ease: "anticipate"},
             })
       }
+      
+      
 
     return (
         <>
@@ -68,7 +70,9 @@ function Layout({ children }) {
         </Head>
          <div className={styles.all}>
           <div className={styles.sideNav}>
-            <img src={logo} className={styles.image}/>
+            <div className={styles.imageContainer}>
+              <img src={logo} className={styles.image}/>
+            </div>
 
             <motion.div animate={controls} className={styles.select} id="select">
               <AnimatePresence>
@@ -110,7 +114,7 @@ function Layout({ children }) {
 
           </div>
               
-          <main className={styles.mainC}><div>{children}</div></main>
+          <motion.main className={styles.mainC}><div>{children}</div></motion.main>
           </div>
         </>
     )
