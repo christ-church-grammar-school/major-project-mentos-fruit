@@ -68,9 +68,7 @@ function Layout({ children }) {
         </Head>
          <div className={styles.all}>
           <div className={styles.sideNav}>
-            <div className={styles.imageContainer}>
-              <img src={logo} className={styles.image}/>
-            </div>
+            <img src={logo} className={styles.image}/>
 
             <motion.div animate={controls} className={styles.select} id="select">
               <AnimatePresence>
