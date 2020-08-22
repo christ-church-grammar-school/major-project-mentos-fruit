@@ -12,6 +12,7 @@ import Head from 'next/head'
 function Layout({ children }) {
         const router = useRouter()
         const [firstLoad, setFirstLoad] = useState(true)
+        const [focus, setFocus] = useState(router.pathname)
         const { user, loading } = useFetchUser()
         const controls = useAnimation()
         
@@ -30,6 +31,14 @@ function Layout({ children }) {
           "/info": "icons8-info-100.svg",
           "/vote": "icons8-elections-100.svg",
           "/settings": "icons8-slider-100.svg",
+        }
+
+        function handleLoad() {
+          controls.start({
+            y: document.getElementById(router.pathname).offsetTop,
+            opacity: 1,
+            transition: { duration: 0 },
+          })
         }
 
         useEffect(() => {
@@ -58,6 +67,7 @@ function Layout({ children }) {
               opacity: 1,
               transition: { duration: 0.7, type: "tween", ease: "anticipate"},
             })
+        setFocus(evt.target.id)
       }
 
     return (
@@ -68,8 +78,7 @@ function Layout({ children }) {
         </Head>
          <div className={styles.all}>
           <div className={styles.sideNav}>
-            <img src={logo} className={styles.image}/>
-
+            <img src={logo} className={styles.image} onLoad={handleLoad}/>
             <motion.div animate={controls} className={styles.select} id="select">
               <AnimatePresence>
               <motion.img className={styles.navIcon} src={imgDir[router.pathname]} key={imgDir[router.pathname]}
@@ -82,7 +91,7 @@ function Layout({ children }) {
             </motion.div>
             {links.map((el) => 
               <Link href={el.url} key={el.url}>
-                <a onClick={handleNav} id={el.url} className={router.pathname === el.url ? styles.selected : styles.unSelected}>{el.display}</a>
+                <a onClick={handleNav} id={el.url} className={focus === el.url ? styles.selected : styles.unSelected}>{el.display}</a>
               </Link>
             )}
 
