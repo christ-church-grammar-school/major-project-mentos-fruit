@@ -1,6 +1,15 @@
 import '../styles/globals.css'
 import App from 'next/app'
 import Layout from '../components/layout'
+import "nprogress/nprogress.css"
+import dynamic from 'next/dynamic'
+
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false },
+);
 
 class MyApp extends App {
   render() {
@@ -8,7 +17,7 @@ class MyApp extends App {
 
     const getLayout = Component.getLayout || (page => <Layout children={page} />)
 
-    return getLayout(<Component {...pageProps} />)
+    return <><TopProgressBar />{getLayout(<Component {...pageProps} />)}</>
     
   }
 }
