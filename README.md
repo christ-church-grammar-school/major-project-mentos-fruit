@@ -12,7 +12,7 @@
 <details open>
 <summary><b>Development Team</b></summary>
 
-```Joshua Chen - Scrum Master``` :penguin:
+```Joshua Chen - Scrum Master``` :ram:
 
 ```Roman Green - Development Lead``` :video_game:
 
