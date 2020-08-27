@@ -30,13 +30,6 @@
     transition: 0.8s color;
 }
 
-.imageContainer {
-    height: 20vh;
-    min-height: 140px;
-    width: 100%;
-    z-index: 5;
-}
-
 .image {
     max-height: 100%;
     max-width: 100%;
