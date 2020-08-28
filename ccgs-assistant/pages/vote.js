@@ -20,7 +20,7 @@ function Voting() {
     
     return (
         <div>
-            <p>Wow its a voting. sugoi desune!</p>
+            <img src="PAGES/Vote.png" className="placeholder"/>
             <button onClick={sendVotes}>Call API</button>
         </div>
     )

@@ -8,7 +8,7 @@ function Home() {
 
   return (
       <div>
-        <img src="PAGES/Dashboard.png" className="placeholder"></img>"
+        <img src="PAGES/Dashboard.png" className="placeholder"/>
       </div>
   )
 }
