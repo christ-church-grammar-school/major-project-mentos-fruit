@@ -69,8 +69,6 @@ function Layout({ children }) {
             })
         setFocus(evt.target.id)
       }
-      
-      
 
     return (
         <>
@@ -106,15 +104,23 @@ function Layout({ children }) {
 
               <div className={styles.profileTextArea}>
               <p className={styles.profileText}>{user ? user["https://aad.com/DisplayName"] : <>User </>}</p>
-                {loading ? <>LOADING</> :
+              {loading ? <>LOADING</> :
                 <>
                 {user ? <>
                   <Logout>
-                    <button className={styles.sioButton}>Logout</button>
+                    <motion.button className={styles.sioButton} 
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}>
+                      Sign out
+                    </motion.button>
                   </Logout>
                 </>:<>
                   <Login>
-                    <button>Login</button>
+                    <motion.button className={styles.sioButton}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}>
+                      Sign in
+                    </motion.button>
                   </Login>
                 </>}
                 </>

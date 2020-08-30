@@ -3,7 +3,7 @@ import { getLayout } from '../components/layout'
 function Map() {
     return (
         <div>
-            <p>Wow its a campus map. sugoi desune!</p>
+            <img src="/PAGES/map.png" className="placeholder"/>
         </div>
     )
 }
