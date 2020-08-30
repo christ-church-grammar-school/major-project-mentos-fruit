@@ -3,7 +3,7 @@ import { getLayout } from '../components/layout'
 function Timetable() {
     return (
         <div>
-            <p>Wow its a timetable. sugoi desune!</p>
+            <img src="PAGES/TT.png" className="placeholder"/>
         </div>
     )
 }
