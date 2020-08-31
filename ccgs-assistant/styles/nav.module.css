@@ -4,19 +4,21 @@
     overflow-x: hidden;
 }
 .sideNav {
-    width: 25vw;
+    width: 34vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 2vw;
+    margin-right: 4vw;
     overflow: hidden;
     min-width: 280px;
     max-width: 340px;
+    position: fixed;
 }
 
 .mainC {
-    width: 70vw;
+    width: 100vw;
+    padding-left: 38vw;
 }
 
 .sideNav .unSelected {
@@ -41,13 +43,6 @@
     padding: 30px;
     object-fit: contain;
 }
-
-/*
-.image {
-    object-fit: contain;
-    width: 100%;
-    padding: 20px;
-}*/
 
 .profileArea {
     background: linear-gradient(302deg, rgba(0,163,255,1) 0%, rgba(0,70,153,1) 100%);
@@ -126,6 +121,24 @@
     }
     .sioButton {
         font-size: 18px;
+    }
+    .sideNav {
+        margin-right: 40px;
+    }
+    .mainC {
+        padding-left: 380px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainC {
+        padding-left: 300px;
+    }
+    .profileText {
+        font-size: 20px;
+    }
+    .sioButton {
+        font-size: 15px;
     }
 }
 
