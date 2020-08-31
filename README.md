@@ -437,7 +437,7 @@ These were some exploratory designs that the team had put together, in order to 
 <details>
 <summary><b>Ducks</b></summary>
 
-**<p align="center">Thanks for reading! Here's a free rubber duck for your travels:</p>**
+**<p align="center">Thanks for reading! Here's a free rubber ducky for your travels:</p>**
 
 ![Duck](https://www.thoughtfulcode.com/wp-content/uploads/2019/01/rubber-duck-debugging-and-psychology-sunglassed-rubber-duck-1272x848.jpg)
 
