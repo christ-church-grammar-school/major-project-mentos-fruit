@@ -26,13 +26,13 @@ function Info() {
                         <th className={[styles.tableHead, styles.right].join(' ')}>Date</th>
                     </tr>
                     {links.map((el) => 
-                        <><tr>
+                        <tr key={el[1]}>
                         <td><motion.button className={styles.docLink}
                         whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => window.open(el[1] + 'pdf/', "_blank")}
                         >{el[0]}</motion.button></td>
                         <td className={styles.type}>Category type</td>
                         <td className={styles.type}>changed on</td>
-                        </tr></>
+                        </tr>
                     )}
                 </thead>
             </div>
