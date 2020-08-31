@@ -1,0 +1,10 @@
+.docLinks {
+    width: 100%;
+    display: inline-table;
+    margin: 0;
+}
+
+.docLink {
+    width: 80%;
+    margin: 0;
+}

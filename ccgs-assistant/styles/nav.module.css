@@ -1,6 +1,7 @@
 .all {
     display: inline-flex;
     width: 100vw;
+    overflow-x: hidden;
 }
 .sideNav {
     width: 25vw;
@@ -15,7 +16,7 @@
 }
 
 .mainC {
-    width: 75vw;
+    width: 70vw;
 }
 
 .sideNav .unSelected {

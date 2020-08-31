@@ -128,7 +128,7 @@ function Layout({ children }) {
 
           </div>
               
-          <motion.main className={styles.mainC}><div>{children}</div></motion.main>
+          <motion.main className={styles.mainC}><>{children}</></motion.main>
           </div>
         </>
     )
