@@ -5,7 +5,7 @@
 
 .docLinks {
     width: 100%;
-    display: inline-table;
+    display: table;
     margin: 0;
 }
 
@@ -37,8 +37,9 @@
 }
 
 .tableLinks {
-    max-width: 95%;
-    display: block;
+    width: 95%;
+    display: inline-table;
+    max-width: 1500px;
 }
 
 .tableHead {
@@ -47,7 +48,7 @@
     background: #f3f6ff;
     padding: 1vw;
     text-align: left;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 1);
 }
 
 .left {

@@ -17,7 +17,7 @@ function Info() {
                     <><a href={el[1] + 'pdf/'} target="blank"><motion.button whileHover={{ scale: 1.05 }}whileTap={{ scale: 0.95 }} className={styles.docLink}>{el[0]}</motion.button></a><br/></>
                 )}
             </div>*/}
-            <div className={styles.docLinks}>
+            <table className={styles.docLinks}>
                 <thead className={styles.tableLinks}>
                     <tr>
                         <th className={[styles.tableHead, styles.left].join(' ')}>Document</th>
@@ -30,11 +30,11 @@ function Info() {
                         whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => window.open(el[3] + 'pdf/', "_blank")}
                         >{el[0]}</motion.button></td>
                         <td className={styles.type}>{el[1]}</td>
-                        <td className={styles.type}>{el[2]</td>
+                        <td className={styles.type}>{el[2]}</td>
                         </tr>
                     )}
                 </thead>
-            </div>
+            </table>
         </>
     )
 }
