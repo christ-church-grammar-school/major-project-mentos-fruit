@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch'
 
 // Function is isomorphic however unnecessary..
 async function sendVotes() {
-    try {const resp = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/recordVote`,{
+    try {const resp = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/recordVote`,{
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
