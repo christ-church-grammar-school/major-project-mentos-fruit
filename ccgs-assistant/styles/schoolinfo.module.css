@@ -29,6 +29,7 @@
 .text {
     margin-top: 0px;
     font-size: 2.5vw;
+    width: 95%;
 }
 
 .row {
