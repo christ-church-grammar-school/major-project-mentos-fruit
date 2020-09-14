@@ -21,6 +21,7 @@ function Temp() {
           <p>house: {user["https://aad.com/HouseTute"]}</p>
           <p>displayname: {user["https://aad.com/DisplayName"]}</p>
           <p>ID: {user["https://aad.com/EmployeeID"]}</p>
+          <p>boarding: {user["https://aad.com/Boarding"]}</p>
         </>}</>}
       </div>
   )
