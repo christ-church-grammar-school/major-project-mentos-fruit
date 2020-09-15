@@ -4,6 +4,7 @@
     overflow-x: hidden;
 }
 .sideNav {
+    user-select: none;
     width: 34vw;
     height: 100vh;
     display: flex;
