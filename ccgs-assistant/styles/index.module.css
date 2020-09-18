@@ -8,7 +8,7 @@
 .tableHead {
     font-size: 2vw;
     font-weight: normal;
-    background: #f3f6ff;
+    background: transparent;
     padding: 1vw;
     text-align: left;
     color: #00217a;
@@ -27,16 +27,46 @@
     width: 95%;
     display: inline-table;
     max-width: 1500px;
+    background: #f3f6ff;
+    border-radius: 1vw;
 }
 .theadtime {
     margin: 0.5vw 0 0 0;
     font-size: 1.5vw;
 }
+.class {
+    font-size: 2vw;
+    margin: 0;
+}
+.tableClass {
+    font-weight: normal;
+    background: grey;
+    padding: 1vw;
+    text-align: left;
+    color: #000000;
+    max-width: 14.285%;
+}
+.ttsub {
+    font-size: 1.5vw;
+    margin: 0;
+}
 
 @media screen and (min-width: 1000px) {
+    .ttsub {
+        font-size: 15px;
+    }
+    .tableClass {
+        padding: 10px;
+    }
+    .class {
+        font-size: 20px;
+    }
     .theadtime {
         margin: 5px 0 0 0;
         font-size: 15px;
+    }
+    .tableLinks {
+        border-radius: 10px;
     }
     .today {
         font-size: 25px;

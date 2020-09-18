@@ -21,6 +21,18 @@ function Home() {
     {label: "CCGS Website", subtitle: "The school's official website", icon: "/", url: "https://ccgs.wa.edu.au"}
   ]
 
+  var userTimetable = [
+    [
+      {class: "Tutorial", teacher: "Mr Nederpelt", room: "LibPrior"},
+      {class: "English 1", teacher: "Mr Yeates", room: "M5"},
+      {class: "Japanese 1", teacher: "Mr Shain", room: "R5"},
+      {class: "Civics and Citienship 1", teacher: "Mr Phillips", room: "M8"},
+      {class: "Maths 1", teacher: "Dr Sisson", room: "S15"},
+      {class: "Advanced Software Development 1", teacher: "Mr Nolan", room: "L16"},
+      {class: "Physics 1", teacher: "Ms Owen", room: "NP3"} 
+    ]
+  ]
+
   var state = undefined
 
   if (18 > d >= 12) {
@@ -42,15 +54,25 @@ function Home() {
             <table className={styles.docLinks}>
               <thead className={styles.tableLinks}>
                   <tr>
-                    {periods.map((el, index, arr) => {
+                    {periods.map((el, index, arr) => /*{
                       if (index === 0) {
                         return <th className={[styles.tableHead, styles.left].join(' ')}>{el.label}<br/><p className={styles.theadtime}>{el.time}</p></th>
                       } else if (index === arr.length-1) {
                         return <th className={[styles.tableHead, styles.right].join(' ')}>{el.label}<br/><p className={styles.theadtime}>{el.time}</p></th>
                       } else {
                         return <th className={styles.tableHead}>{el.label}<br/><p className={styles.theadtime}>{el.time}</p></th>
-                      }
-                    })}
+                      }}*/
+                      <th className={styles.tableHead}>{el.label}<br/><p className={styles.theadtime}>{el.time}</p></th>
+                    )}
+                  </tr>
+                  <tr>
+                    {userTimetable[0].map((el) => 
+                      <td className={styles.tableClass}>
+                        <h1 className={styles.class}>{el.class}</h1>
+                        <p className={styles.ttsub}>{el.teacher}</p>
+                        <p className={styles.ttsub}>{el.room}</p>
+                      </td>
+                    )}
                   </tr>
               </thead>
             </table>
