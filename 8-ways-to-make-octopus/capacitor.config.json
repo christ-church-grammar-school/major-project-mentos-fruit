@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "8-ways-to-make-octopus",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
