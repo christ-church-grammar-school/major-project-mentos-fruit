@@ -49,12 +49,12 @@ const Tab1: React.FC = () => {
     if (!zoom && cardVariants.min.height === "unset") {
         console.log("set to",cardHeight);
         setcardVariants({
-            max: { ...commonMax, y: -(topOffset-headerHeight), height: String(window.innerHeight - headerHeight - navBarHeight)+"px" },
+            max: { ...commonMax, y: -(topOffset-headerHeight), height: String(window.innerHeight - headerHeight - navBarHeight + 10)+"px" },
             min: { ...commonMin, height: String(cardHeight)+"px"},
         });
     } else {
         setcardVariants({
-            max: { ...commonMax, y: -(topOffset-headerHeight), height: String(window.innerHeight - headerHeight - navBarHeight)+"px" },
+            max: { ...commonMax, y: -(topOffset-headerHeight), height: String(window.innerHeight - headerHeight - navBarHeight + 10)+"px" },
             min: { ...commonMin, height: cardVariants.min.height},
         });
     }
