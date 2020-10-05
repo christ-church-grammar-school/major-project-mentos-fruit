@@ -149,9 +149,7 @@ const Tab1: React.FC = () => {
                         you think about what you did
                         <br></br>
                         Then make the octopus
-                        <ul>
-                            <li>gekki</li>
-                        </ul>
+                        
                         </p>
                     </motion.div>}
                 </AnimatePresence>
