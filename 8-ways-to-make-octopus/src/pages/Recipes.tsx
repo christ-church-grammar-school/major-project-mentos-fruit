@@ -3,22 +3,50 @@ import { IonSearchbar, IonButton, IonContent, IonHeader, IonPage, IonTitle, IonT
 import ExploreContainer from '../components/ExploreContainer';
 import { motion, useViewportScroll, useTransform, useMotionValue, AnimatePresence } from "framer-motion";
 import './Recipes.css';
-import { scanOutline } from 'ionicons/icons';
+import { receipt, scanOutline } from 'ionicons/icons';
 
 const Tab1: React.FC = () => {
   const [scale, setScale] = useState(40);
   const [zoom, setZoom] = useState(false);
   const [zoomN, setZoomN] = useState(10);
   const [complete, setComplete] = useState(false);
+  const Rec1: React.FC = () => {
+    return(
+    <>
+    <IonCardContent mode="ios">
+      <strong>Cooking tips:</strong>
+     I think that the boiling window for your fresh octopus will be 
+    anywhere from 15 minutes to 5 minutes for an octopus of similar size to ours which was a bit over one foot long. 
+    15 minutes is what was recommended by our fish vendor and will probably give you a well cooked but still tender octopus. 
+    5 minutes is how long we actually cooked and this gave us octopus cooked more on the rare side: the outer layer cooked crunchy but sashimi soft for the inner bits. 
+    It really depends on your preference! 
+    Of course please adjust the cooking time if your octopus is smaller or larger.
+    <br/>
+    <br/>
+      Ingredients:<br/>1 octopus, very fresh
+    <ol>
+      <li>Separate the head from the tentacles if your fish guy hasn't done it yet. Remove the eyes, teeth, cartilage spine and whatever else that is in the octopus head.</li>
+      <li>Rinse your octopus in running water for a minute. DO NOT cut up the octopus now. Cook first and slice it up later.</li>
+      <li>In a large pot, heat enough water to cover the octopus by an inch or so. When the water boils add the octopus.</li>
+      <li>When the water reboils, cover and cook 5-15 minutes according to your preference.  (See cooking tips above.)</li>
+      <li>Remove from water immediately and let cool completely.  Slice tentacles at an angle into 1/4" thick slices and the head meat into neat strips with a good sharp sashimi knife (if you have one.)</li>
+      <li>Arrange nicely on plate and serve with a dip of your best soy sauce with a dash of wasabi!</li>
+    </ol>
+    <br/>
+    <br/>
+    Retrieved from <a href="http://www.thehongkongcookery.com/2015/01/boiled-fresh-octopus.html">The Hong Kong Cookery</a>
+    </IonCardContent>
+    </>
+  )}
   
-  const recipes = [{title: "Name 1"},
-  {title: "Name 2"},
-  {title: "Name 3"},
-  {title: "Name 4"},
-  {title: "Name 5"},
-  {title: "Name 6"},
-  {title: "Name 7"},
-  {title: "Name 8"}];
+  const recipes = [{title: "Boiled Fresh Octopus Recipe  白灼新鮮八爪魚", description: <Rec1/>},
+  {title: "Name 2", description: "<p>Blah</p>"},
+  {title: "Name 3", description: "<p>Blah</p>"},
+  {title: "Name 4", description: "<p>Blah</p>"},
+  {title: "Name 5", description: "<p>Blah</p>"},
+  {title: "Name 6", description: "<p>Blah</p>"},
+  {title: "Name 7", description: "<p>Blah</p>"},
+  {title: "Name 8", description: "<p>Blah</p>"}];
   const modifier = 1.5;
   const max = 40;
   const step = 20;
@@ -130,7 +158,7 @@ const Tab1: React.FC = () => {
                 <IonCardTitle mode="ios">{recipe.title}</IonCardTitle>
                 </IonCardHeader>
                 <IonCardContent mode="ios">
-                Description
+                The {index+1}th delicious recipe on offer
                 </IonCardContent>
                 <AnimatePresence>
                     
@@ -139,13 +167,7 @@ const Tab1: React.FC = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     style={{margin: 0}}>
-                        <p>
-                        First 
-                        you think about what you did
-                        <br></br>
-                        Then make the octopus
-                        
-                        </p>
+                      {recipe.description}
                     </motion.div>}
                 </AnimatePresence>
             </IonCard>
