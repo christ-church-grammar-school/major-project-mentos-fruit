@@ -1,0 +1,7 @@
+.text {
+    transform: scale(1);
+    margin-left: 20px;
+    font-size: 14px !important;
+    margin-right: 20px;
+    user-select: auto !important;
+}
