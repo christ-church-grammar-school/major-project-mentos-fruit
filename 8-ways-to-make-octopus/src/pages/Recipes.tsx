@@ -45,7 +45,6 @@ const Tab1: React.FC = () => {
     const topOffset = e.currentTarget.getBoundingClientRect().top;
     const cardHeight = e.currentTarget.getBoundingClientRect().height;
     const headerHeight = headerElement.current.getBoundingClientRect().height;
-    
     if (!zoom && cardVariants.min.height === "unset") {
         console.log("set to",cardHeight);
         setcardVariants({
@@ -58,7 +57,6 @@ const Tab1: React.FC = () => {
             min: { ...commonMin, height: cardVariants.min.height},
         });
     }
-
     if (zoom && e.currentTarget.firstElementChild.scrollTop !== 0) {
         const time = 500;
         scrollToY(0,time,e.currentTarget.firstElementChild);
@@ -70,9 +68,6 @@ const Tab1: React.FC = () => {
         setZoomN(index);
         setZoom(!zoom);
     }
-    
-    console.log(String(window.innerHeight - headerHeight ));    
-    console.log(cardHeight);
   }
 
   function onComplete() {
