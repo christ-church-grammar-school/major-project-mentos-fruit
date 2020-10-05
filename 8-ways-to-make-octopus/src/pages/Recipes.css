@@ -1,9 +1,19 @@
-.Header {
+.headerOpaque {
+    z-index: 10;
+    padding-bottom: 7px;
+    padding-top: 5px;
+    backdrop-filter: blur(5px);
+    background-color: #ffffff;
+    transition: 1s background-color;
+}
+
+.headerTranslucent {
     z-index: 10;
     backdrop-filter: blur(5px);
     padding-bottom: 7px;
     padding-top: 5px;
     background-color: #ffffff99;
+    transition: 1s background-color;
 }
 
 .Header::after {
@@ -19,18 +29,73 @@ p {
     --overflow: hidden;
 }
 
-.innerScroll {
+.innerScrollAllow {
     width: 100%;
     height: 100%;
     overflow: scroll;
-    
+    overflow-x: hidden;
 }
 
-.innerScroll::-webkit-scrollbar {
+.innerScrollDisallow {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
+}
+
+.innerScrollAllow::-webkit-scrollbar {
     width: 0;
 }
 
 .centerAlign {
     margin: 0 auto;
     max-width: 800px;
+}
+
+.animationContainer {
+    margin: 0px;
+    width: fit-content;
+    border-radius: 8px;
+    margin: 24px 16px;
+    position: relative;
+}
+
+.ionCards {
+    border-radius: inherit;
+    margin: 0px;
+    height: 100%;
+}
+
+.ionCardsScroll {
+    border-radius: inherit;
+    margin: 0px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+/* This seems stupid */
+ion-card-subtitle {
+    font-size: 20px !important;
+    transform: scale(0.8);
+    margin-left: -35px;
+}
+
+ion-card-title {
+    font-size: 40px !important;
+    transform: scale(0.8);
+    margin-left: -35px;
+}
+
+ion-card-content {
+    font-size: 20px !important;
+    transform: scale(0.8);
+    margin-left: -35px;
+}
+
+p {
+    font-size: 20px !important;
+    transform: scale(0.8);
+    text-align: left;
+    margin-left: -15px;
 }
