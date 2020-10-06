@@ -1,6 +1,6 @@
 ## Major Project: Seafood
 
-Project what if I told you there is an app on the market that solves all your problems like not having 8 different chinese octopus recipes.
+What's better than octopus recipe? Answer for you: 8 Different recipes for octopus.
 
 #### Repo Structure
 - **The Ionic App**. Located under ```/src```. Contains nearly all code relevant to the application.
