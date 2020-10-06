@@ -1,6 +1,6 @@
 ## Major Project: Seafood
 
-What's better than octopus recipe? Answer for you: 8 Different recipes for octopus.
+Question for you: What's better than octopus recipe? Answer for you: 8 Different recipes for octopus.
 
 #### Repo Structure
 - **The Ionic App**. Located under ```/src```. Contains nearly all code relevant to the application.
