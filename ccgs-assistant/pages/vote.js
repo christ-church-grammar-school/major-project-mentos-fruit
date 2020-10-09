@@ -3,15 +3,16 @@ import fetch from 'isomorphic-unfetch'
 import { useFetchUser } from '../lib/user'
 import styles from "../styles/vote.module.css"
 import { motion, useAnimation, AnimatePresence } from "framer-motion"
+import { useState } from 'react'
 
 // Function is isomorphic however unnecessary..
-async function sendVotes() {
+async function sendVotes(param) {
     try {const resp = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/recordVote`,{
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({ type: "test" }),});
+        body: JSON.stringify(param),});
     console.log(`RESPONSE ${resp.status} ${resp.statusText}`)
     } catch {
         console.log("POST Failed")
@@ -21,10 +22,12 @@ async function sendVotes() {
 
 function Voting() {
     const { user, loading } = useFetchUser()
+    const [value, setValue] = useState('')
+
     return (
         <>
         {loading ? <>LOADING</> : <>
-            {!user ? <p>User Not Signed In. Please sign in at the bottom right.</p> : <>
+            {!user ? <p>User Not Signed In. Please sign in at the bottom left.</p> : <>
                 <div className={styles.mainV}>
                 <h1 className={styles.heading}>Voting</h1>
                 <p className={styles.subtitle}>Welcome to CCGS voting. Please see below for information on how and why to vote.</p>
@@ -54,7 +57,13 @@ function Voting() {
                     </div>
                 </>
                 <div className={styles.buttonArea}>
-                    <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage} onClick={sendVotes}>Call API</motion.button>
+                    <input onChange={() => setValue(event.target.value)}></input>
+                    <motion.button whileHover={{ scale: 1.2 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    className={styles.optionToPage} 
+                    onClick={() => sendVotes({id: user["https://aad.com/EmployeeID"], year: user["https://aad.com/YearLevel"], vote: value})}>
+                        Call API
+                    </motion.button>
                 </div>
             </div>
           </>}</>}
