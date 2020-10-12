@@ -42,7 +42,7 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/recipes" component={Recipes} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/recipes" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="recipes" href="/recipes">
@@ -51,7 +51,7 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
             <IonIcon icon={informationCircle} />
-            <IonLabel>Jian Yang</IonLabel>
+            <IonLabel>About Us</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
