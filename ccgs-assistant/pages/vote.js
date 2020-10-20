@@ -54,7 +54,6 @@ function Voting() {
                     </div>
                 </>
                 <div className={styles.buttonArea}>
-                    <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage} onClick={sendVotes}>Call API</motion.button>
                     <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage}>House Prefect</motion.button>
                 </div>
             </div>
