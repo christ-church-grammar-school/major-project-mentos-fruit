@@ -6,7 +6,7 @@ function Diary() {
     return (
         <>
         {loading ? <>LOADING</> : <>
-          {!user ? <p>User Not Signed In. Please sign in at the bottom right.</p> : <>
+          {!user ? <p>User Not Signed In. Please sign in at the bottom left.</p> : <>
             <div>
                 <img src="PAGES/Diary.png" className="placeholder"/>
             </div>

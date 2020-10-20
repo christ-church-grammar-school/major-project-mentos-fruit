@@ -24,7 +24,7 @@ function Voting() {
     return (
         <>
         {loading ? <>LOADING</> : <>
-            {!user ? <p>User Not Signed In. Please sign in at the bottom right.</p> : <>
+            {!user ? <p>User Not Signed In. Please sign in at the bottom left.</p> : <>
                 <div className={styles.mainV}>
                 <h1 className={styles.heading}>Voting</h1>
                 <p className={styles.subtitle}>Welcome to CCGS voting. Please see below for information on how and why to vote.</p>
@@ -55,6 +55,7 @@ function Voting() {
                 </>
                 <div className={styles.buttonArea}>
                     <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage} onClick={sendVotes}>Call API</motion.button>
+                    <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage}>House Prefect</motion.button>
                 </div>
             </div>
           </>}</>}
