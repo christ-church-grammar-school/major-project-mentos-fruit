@@ -10,7 +10,7 @@ function Temp() {
       <div>
         -------------------------
         {loading ? <>LOADING</> : <>
-          {!user ? <p>User Not Signed In</p> : <>
+          {!user ? <p>User Not Signed In. Sign in at the bottom left.</p> : <>
           <p>Client Rendered Information:</p>
           <img src={user.picture} alt="user picture" />
           <p>nickname: {user.nickname}</p>

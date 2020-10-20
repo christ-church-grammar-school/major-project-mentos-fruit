@@ -64,6 +64,7 @@ function Voting() {
                     onClick={() => sendVotes({id: user["https://aad.com/EmployeeID"], name: user.name, year: user["https://aad.com/YearLevel"], vote: value})}>
                         Call API
                     </motion.button>
+                    <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.optionToPage}>House Prefect</motion.button>
                 </div>
             </div>
           </>}</>}
