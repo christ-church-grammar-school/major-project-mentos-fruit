@@ -27,7 +27,7 @@ app.post('/api/authenticate', async function(req, res) {
     console.log("User Login Request: " + user)
     
     /* Initiate the Puppeteer browser */
-    const browser = await puppeteer.launch({headless: true}); // default is true
+    var browser = await puppeteer.launch({headless: true}); // default is true
     const page = await browser.newPage();
     var timeoutLength = 2000;
     await page.goto(URL, { waitUntil: 'networkidle0' });
@@ -53,7 +53,7 @@ app.post('/api/authenticate', async function(req, res) {
         res.status(401).json({
             error: 'Incorrect username or password'
         });
-        browser.close();
+        await browser.close();
         return;
     }
     await page.click('input[id=idBtn_Back]');
@@ -66,7 +66,7 @@ app.post('/api/authenticate', async function(req, res) {
     // SOMEONE ELSE CAN PROCESS OUTPUT DATA
 
     // SUCCESSFUL LOGIN
-    var userObj = userDB.get('users').find({username: user}).value()
+    var userObj = userDB.get('users').find({id: user}).value()
 
     if (userObj !== undefined) { // EXISTS
         userDB.get('users').find({id: user}).assign({timetable: output.timetable}).write(); // UPDATE TIMETABLE
@@ -82,7 +82,7 @@ app.post('/api/authenticate', async function(req, res) {
 
     console.log('process complete')
 
-    browser.close();
+    await browser.close();
     return;
 });
 
