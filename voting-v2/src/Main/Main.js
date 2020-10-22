@@ -1,7 +1,18 @@
 import React from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import Home from "../Dashboard/dashboard.js"
+import "../Global Styles/globals.css"
 
 function Main(props) {
-  return <h1>Hello</h1>;
+  return (
+    <div>
+      <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      </Switch>
+    </div>
+  );
 }
 
 export default Main;

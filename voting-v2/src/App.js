@@ -31,13 +31,13 @@ class App extends React.Component {
     <div className="App">
       
       <Router>
-       <p> thing is loaded. </p>
       <AnimatePresence>
-        {!this.state.loggedIn ? (this.state.loggedIn === false &&
+        {/*!this.state.loggedIn ? (this.state.loggedIn === false &&
         <Route key="child" path="/"><Login handler={this.handler}/></Route>
         ):
         <Main/> 
-        }
+        */}
+        <Main/> 
         </AnimatePresence>
       </Router> 
     </div>
