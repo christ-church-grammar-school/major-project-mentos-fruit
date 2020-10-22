@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styles from "./nav.module.css"
 import logo from "./logoFull.jpg"
 import { motion, useAnimation, AnimatePresence } from "framer-motion"
 import { useLocation, NavLink } from "react-router-dom"
 import na from "./na.png"
+import {logout} from '../Auth'
+import UserContext from '../UserContext'
 
 function Nav(props) {
     const router = useLocation()
     const [firstLoad, setFirstLoad] = useState(true)
     const [focus, setFocus] = useState(router.pathname)
     const controls = useAnimation()
+    const { user, setUser } = useContext(UserContext)
     
     const links = [{url:"/", display: "Dashboard"}, 
     {url: "/diary", display: "Diary"},
@@ -57,13 +60,26 @@ function Nav(props) {
     }, [router])
 
     function handleNav(evt) {
-    controls.start({
-            y: document.getElementById(evt.target.id).offsetTop, //This seems counter-intuitive. Im lazy.
-            opacity: 1,
-            transition: { duration: 0.7, type: "tween", ease: "anticipate"},
-        })
-    setFocus(evt.target.id)
+        controls.start({
+                y: document.getElementById(evt.target.id).offsetTop, //This seems counter-intuitive. Im lazy.
+                opacity: 1,
+                transition: { duration: 0.7, type: "tween", ease: "anticipate"},
+            })
+        setFocus(evt.target.id)
     }
+
+    function logoutUpdate() {
+        console.log("tuing")
+        logout().then(ok => {
+            console.log("logoutp")
+            if (ok) {
+                console.log("logout")
+                setUser({loggedIn: false})
+            }
+        })
+    }
+
+    
 
     return (
         <>
@@ -99,7 +115,8 @@ function Nav(props) {
                 <p className={styles.profileText}>{/*user ? user["https://aad.com/DisplayName"] : */<>User </>}</p>
                 <motion.button className={styles.sioButton} 
                 whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}>
+                whileTap={{ scale: 0.9 }}
+                onClick={logoutUpdate}>
                     Sign out
                 </motion.button>
                 </div>

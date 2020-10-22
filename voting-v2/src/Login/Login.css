@@ -26,13 +26,13 @@ p {
 }
 
 input {
-    background-color: black;
+    background-color: white;
     font-family: 'Raleway', sans-serif;
     padding: 15px;
     border-radius: 30px;
-    color: white;
+    color: black;
     border: none;
-    width: calc( 100% - 30px);
+    width: 100%;
 }
 
 .background {
@@ -49,9 +49,9 @@ input {
     border-radius: 30px;
     width: 100%;
     border: none;
-    background-color: black;
+    background-color: white;
     font-family: 'Raleway', sans-serif;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
@@ -157,4 +157,7 @@ textarea:focus, input:focus{
 }
 .waveAnimation .waveBottom {
     animation: move_wave 15s linear infinite;
+}
+p {
+    font-size: 20px;
 }
