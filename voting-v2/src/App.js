@@ -4,45 +4,55 @@ import {getAuth} from './Auth';
 import Login from './Login/Login';
 import Main from './Main/Main';
 import { AnimatePresence, motion } from "framer-motion"
+import UserContext from './UserContext'
+
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state={loggedIn:undefined}
-    this.handler = this.handler.bind(this)
+    this.state={auth:{loggedIn: true}}
+    this.handler = this.handler.bind(this);
   }
 
   componentDidMount() {
-    getAuth().then((res)=>{
-      this.setState({loggedIn: res})
+    getAuth().then((res)=> {
+      console.log(res)
+      this.setState({auth:res});
     });
   }
 
   handler() {
-    this.setState({
-      loggedIn: true
-    })
+    getAuth().then((res)=>{
+      this.setState({auth:res});
+    });
+  }
+
+  setUser = (user) => {
+    this.setState((prevState) => ({ auth: user }))
   }
 
   render () {
-
-  return (
-    
-    <div>
-      
-      <Router>
-      <AnimatePresence>
-        {/*!this.state.loggedIn ? (this.state.loggedIn === false &&
-        <Route key="child" path="/"><Login handler={this.handler}/></Route>
-        ):
-        <Main/> 
-        */}
-        <Main/> 
-        </AnimatePresence>
-      </Router> 
-    </div>
-  );}}
-
+    const { user } = this.state.auth
+    const { setUser } = this
+    return (
+      <div>
+        <Router>
+          <AnimatePresence>
+          <UserContext.Provider
+            value={{
+              user,
+              setUser,
+            }}>
+            {this.state.auth.loggedIn ?
+            <Main/>:
+            <Login handler={this.handler}/>}
+            </UserContext.Provider>
+          </AnimatePresence>
+        </Router> 
+      </div>
+    );
+  }
+ }
 
 
 export default App;
