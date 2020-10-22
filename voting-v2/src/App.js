@@ -28,7 +28,7 @@ class App extends React.Component {
 
   return (
     
-    <div className="App">
+    <div>
       
       <Router>
       <AnimatePresence>
