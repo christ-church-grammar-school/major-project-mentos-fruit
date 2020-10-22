@@ -31,6 +31,7 @@
     max-width: 1500px;
     background: #f3f6ff;
     border-radius: 1vw;
+    table-layout: fixed !important;
 }
 .theadtime {
     margin: 0.5vw 0 0 0;
@@ -39,7 +40,7 @@
     font-family: inherit;
 }
 .class {
-    font-size: 2vw;
+    font-size: 1.321vw;
     margin: 0;
 }
 .tableClass {
@@ -51,22 +52,31 @@
     max-width: 14.285%;
 }
 .ttsub {
-    font-size: 1.5vw;
+    font-size: 1vw;
     margin: 0;
     font-family: inherit;
     color: inherit;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1400px) {
     .ttsub {
-        font-size: 15px;
+        font-size: 14px;
     }
+    .class {
+        font-size: 18.5px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    /* .ttsub {
+        font-size: 14px;
+    } */
     .tableClass {
         padding: 10px;
     }
-    .class {
-        font-size: 20px;
-    }
+    /* .class {
+        font-size: 18.5px;
+    } */
     .theadtime {
         margin: 5px 0 0 0;
         font-size: 15px;

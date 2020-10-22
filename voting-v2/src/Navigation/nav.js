@@ -5,7 +5,7 @@ import { motion, useAnimation, AnimatePresence } from "framer-motion"
 import { useLocation, NavLink } from "react-router-dom"
 import na from "./na.png"
 
-function Layout() {
+function Nav(props) {
     const router = useLocation()
     const [firstLoad, setFirstLoad] = useState(true)
     const [focus, setFocus] = useState(router.pathname)
@@ -69,7 +69,7 @@ function Layout() {
         <>
         {/* <link rel="icon" href={imgDir[router.pathname]} type="image/x-icon"/>
         <title>CCGS Assistant</title> */}
-            <div className={styles.sideNav}>
+        <div className={`${styles.sideNav} ${props.class}`}>
             <img src={logo} className={styles.image} onLoad={handleLoad}/>
 
             <motion.div animate={controls} className={styles.select} id="select">
@@ -105,13 +105,39 @@ function Layout() {
                 </div>
             </div>
 
-            </div>
+        </div>
                 
             {/* <motion.main className={styles.mainC}><>{children}</></motion.main> */}
         </>
     )
 }
 
-// export const getLayout = page => <Layout>{page}</Layout>;
+function MobileNav() {
+    const [toggle, setToggle] = useState(false);
 
-export default Layout;
+    const transition = {
+        type: "tween",
+        duration: 0.3
+    }
+
+    const variants = {
+        open: { x: 0 },
+        closed: { x: "-100%" },
+    }
+
+    return (
+        <div className={styles.mobNav}>
+        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.toggle} onClick={() => setToggle(!toggle)}>
+            {toggle == true ? <i className="icon ion-ios-close"/> : <i className="icon ion-ios-menu"/>}
+        </motion.button>
+        <motion.div transition={transition} variants={variants} animate={toggle == true ? "open" : "closed"}>
+            <Nav class={styles.extra} />
+        </motion.div>
+        </div>
+    )
+}
+
+export {
+    Nav,
+    MobileNav
+};
