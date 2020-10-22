@@ -33,6 +33,12 @@ h1 {
   box-sizing: border-box;
 }
 
+.main {
+  z-index: 1 !important;
+  position: absolute;
+  padding-left: 37vw;
+}
+
 .placeholder {
   width: 100%;
   max-width: 1200px;
@@ -40,4 +46,10 @@ h1 {
 
 button {
   cursor: pointer;
+}
+
+@media screen and (min-width: 1000px) {
+  .main {
+    padding-left: 370px;
+  }
 }
