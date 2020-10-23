@@ -16,7 +16,6 @@ class App extends React.Component {
 
   componentDidMount() {
     getAuth().then((res)=> {
-      console.log(res)
       this.setState({auth:res});
     });
   }
@@ -28,11 +27,11 @@ class App extends React.Component {
   }
 
   setUser = (user) => {
-    this.setState((prevState) => ({ auth: user }))
+    this.setState({ auth: user })
   }
 
   render () {
-    const { user } = this.state.auth
+    const user = this.state.auth
     const { setUser } = this
     return (
       <div>

@@ -80,8 +80,9 @@ function Nav(props) {
     }
 
     
-
+    console.log(user)
     return (
+        
         <>
         {/* <link rel="icon" href={imgDir[router.pathname]} type="image/x-icon"/>
         <title>CCGS Assistant</title> */}
@@ -109,7 +110,8 @@ function Nav(props) {
 
             <div className={styles.profileArea}>
 
-                <img src={/*user ? user.picture : */na} className={styles.profileImage}/>
+                {/* <img src={/*user ? user.picture : na} className={styles.profileImage}/> */}
+                <img src={user.image ? user.image : na} className={styles.profileImage}/>
 
                 <div className={styles.profileTextArea}>
                 <p className={styles.profileText}>{/*user ? user["https://aad.com/DisplayName"] : */<>User </>}</p>
