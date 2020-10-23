@@ -98,7 +98,7 @@ class Login extends React.Component {
                     <p>Password</p>
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.passInput = input; }} onKeyPress={this.checkSubmit} autoComplete="off" type="password" placeholder="Enter Password" id="password" value={this.state.password} onChange={this.handleChange} required/>
                     <br/>
-                    <motion.button disabled={!this.state.isEnabled} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}{this.state.isEnabled && 
+                    <motion.button disabled={!this.state.isEnabled} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}{!this.state.isEnabled && 
                     <div className="loader">
                         <svg className="circular" viewBox="25 25 50 50">
                         <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
