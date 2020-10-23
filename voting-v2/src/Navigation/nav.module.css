@@ -29,7 +29,8 @@
     border: none;
     border-radius: 50%;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    margin: 85vh 0vw 0vw 90vw;
+    bottom: 3vw;
+    right: 3vw;
 }
 
 .mainC {
