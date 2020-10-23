@@ -134,7 +134,8 @@ function MobileNav() {
 
     const transition = {
         type: "tween",
-        duration: 0.3
+        duration: 0.5,
+        ease: "anticipate"
     }
 
     const variants = {
@@ -145,7 +146,7 @@ function MobileNav() {
     return (
         <div className={styles.mobNav}>
         <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.toggle} onClick={() => setToggle(!toggle)}>
-            {toggle == true ? <i className="icon ion-ios-close"/> : <i className="icon ion-ios-menu"/>}
+            {toggle == true ? <><i className="icon ion-ios-close"/></> : <><i className="icon ion-ios-menu"/></>}
         </motion.button>
         <motion.div transition={transition} variants={variants} animate={toggle == true ? "open" : "closed"}>
             <Nav class={styles.extra} />

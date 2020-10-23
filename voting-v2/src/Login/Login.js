@@ -90,10 +90,10 @@ class Login extends React.Component {
                     <div className="mobileSupport">
                     <p id="title">CCGS Assistant</p>
 
-                    <p>Username</p>
+                    <p className="up">Username</p>
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.nameInput = input; }} onKeyPress={this.checkName} autoComplete="off" type="text" placeholder="Enter Username" id="user" value={this.state.username} onChange={this.handleChange} required/>
 
-                    <p>Password</p>
+                    <p className="up">Password</p>
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.passInput = input; }} onKeyPress={this.checkSubmit} autoComplete="off" type="password" placeholder="Enter Password" id="password" value={this.state.password} onChange={this.handleChange} required/>
                     <br/>
                     <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}</motion.button>

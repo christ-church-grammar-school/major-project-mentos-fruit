@@ -12,6 +12,7 @@
     z-index: 10 !important;
     position: absolute;
     background-color: white;
+    font-weight: 400;
 }
 
 .extra {
@@ -58,6 +59,8 @@
     max-width: 100%;
     padding: 30px;
     object-fit: contain;
+    min-height: 150px;
+    object-position: left;
 }
 
 .profileArea {
@@ -85,17 +88,18 @@
 }
 
 .select {
-    width: 22vw;
+    /* width: 22vw; */
+    width: 94%;
     border-radius: 20px;
     margin-left: 10px;
     height: 60px;
     position: absolute;
     z-index: 1;
-    margin-top: -10px;
+    margin-top: -7px;
     opacity: 0;
     background: linear-gradient(90deg, #008FFE 0%, #8CFFFD 100%);
-    min-width: 270px;
-    max-width: 310px;
+    /* min-width: 270px;
+    max-width: 310px; */
     margin-right: 2vw;
 }
 

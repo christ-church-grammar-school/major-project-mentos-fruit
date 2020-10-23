@@ -9,11 +9,11 @@
 }
 .tableHead {
     font-size: 2vw;
-    font-weight: normal;
     background: transparent;
     padding: 1vw;
     text-align: left;
     color: #00217a;
+    font-weight: inherit;
 }
 .left {
     border-radius: 1vw 0vw 0vw 1vw;
@@ -42,14 +42,16 @@
 .class {
     font-size: 1.321vw;
     margin: 0;
+    font-weight: inherit;
 }
 .tableClass {
-    font-weight: normal;
-    background: grey;
+    font-weight: inherit;
+    background: white;
     padding: 1vw;
     text-align: left;
     color: #000000;
     max-width: 14.285%;
+    border-radius: 1vw;
 }
 .ttsub {
     font-size: 1vw;
@@ -73,6 +75,7 @@
     } */
     .tableClass {
         padding: 10px;
+        border-radius: 10px;
     }
     /* .class {
         font-size: 18.5px;

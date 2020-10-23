@@ -17,6 +17,10 @@ p {
     color: white;
 }
 
+.up {
+    color: white;
+}
+
 #title {
     text-align: center;
     font-family: 'Raleway', sans-serif;
@@ -27,7 +31,7 @@ p {
 
 input {
     background-color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: inherit;
     padding: 15px;
     border-radius: 30px;
     color: black;
