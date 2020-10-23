@@ -37,17 +37,18 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <AnimatePresence>
+          
           <UserContext.Provider
             value={{
               user,
               setUser,
             }}>
+              <AnimatePresence>
             {this.state.auth.loggedIn ?
-            <Main/>:
-            <Login handler={this.handler}/>}
+            <Main key="Main"/>:
+            <Login handler={this.handler} key="Login"/>}
+            </AnimatePresence>
             </UserContext.Provider>
-          </AnimatePresence>
         </Router> 
       </div>
     );

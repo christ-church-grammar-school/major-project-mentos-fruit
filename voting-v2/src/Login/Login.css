@@ -9,7 +9,6 @@
     transform: translate(-50%, -50%);
     z-index: 20;
     opacity: 1;
-    
 }
 
 p {
@@ -59,6 +58,10 @@ input {
     cursor: pointer;
 }
 
+#login:disabled:hover {
+    cursor: default;
+}
+
 *:focus {
     outline: none;
 }
@@ -84,7 +87,7 @@ input {
 }
 
 .redOutline {
-    box-shadow: 0 0 10px #f00;
+    box-shadow: 0 0 10px #ffffff;
 }
 
 textarea:focus, input:focus{
@@ -164,4 +167,85 @@ textarea:focus, input:focus{
 }
 p {
     font-size: 20px;
+}
+
+.whiteBackground {
+    background-color: white;
+    color: white;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Loader https://codepen.io/jczimm/pen/vEBpoL/ */
+
+.loader {
+    position: relative;
+    margin: 0 auto;
+    width: 50px;
+}
+.loader:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.circular {
+-webkit-animation: rotate 2s linear infinite;
+        animation: rotate 2s linear infinite;
+-webkit-transform-origin: center center;
+        transform-origin: center center;
+}
+
+.path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+            animation: dash 1.5s ease-in-out infinite;
+    stroke: white;
+    stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
 }
