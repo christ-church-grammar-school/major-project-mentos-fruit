@@ -79,8 +79,6 @@ function Nav(props) {
         })
     }
 
-    
-    console.log(user)
     return (
         
         <>
@@ -114,7 +112,7 @@ function Nav(props) {
                 <img src={user.image ? user.image : na} className={styles.profileImage}/>
 
                 <div className={styles.profileTextArea}>
-                <p className={styles.profileText}>{/*user ? user["https://aad.com/DisplayName"] : */<>User </>}</p>
+                <p className={styles.profileText}>{user.loggedIn ? <>dumass shit</> : <>User </>}</p>
                 <motion.button className={styles.sioButton} 
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}

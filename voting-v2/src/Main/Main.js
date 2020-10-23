@@ -7,6 +7,7 @@ import Diary from "../Diary/diary.js"
 import Map from "../Map/map.js"
 import Timetable from "../Timetable/timetable.js"
 import Info from "../Information/info.js"
+import VotingHome from "../Voting/VotingHome"
 
 class Main extends React.Component {
   constructor(props) {
@@ -46,6 +47,9 @@ class Main extends React.Component {
           </Route>
           <Route path="/info">
             <Info />
+          </Route>
+          <Route path="/vote">
+            <VotingHome />
           </Route>
         </Switch>
       </div>
