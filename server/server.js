@@ -46,7 +46,7 @@ app.post('/api/authenticate', async function(req, res) {
     } else {
 
         /* Initiate the Puppeteer browser */
-        var browser = await puppeteer.launch({headless: false}); // default is true
+        var browser = await puppeteer.launch({headless: true}); // default is true
         const page = await browser.newPage();
         var timeoutLength = 2000;
         var redirectTimeoutLength = 50000;
@@ -139,8 +139,6 @@ app.post('/api/authenticate', async function(req, res) {
                     dataURL = canvas.toDataURL();
                     return dataURL
             });
-            
-            await new Promise(resolve => setTimeout(resolve, 1000));
 
             output.data = await page.evaluate(() => {
                 var data = {};
