@@ -8,7 +8,7 @@ import waveBot from './images/wave-bot.png';
 class Login extends React.Component {
     constructor(props){
         super(props);
-        this.state = {user: '',password: '',message: 'Login'};
+        this.state = {user: '',password: '',message: 'Login', isEnabled: true};
 
         this.login=this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -21,6 +21,7 @@ class Login extends React.Component {
     }
 
     login(){
+        this.setState({isEnabled: false, message: 'Authenticating'});
         fetch('/api/authenticate', {
             method: 'POST',
             body: JSON.stringify({user: this.state.user, password: this.state.password}),
@@ -39,6 +40,7 @@ class Login extends React.Component {
                 console.log(err);
                 err[1].then((res) => {
                     this.setState({message: res.error})
+                    this.setState({isEnabled: true});
                 })
           });
     }
@@ -96,7 +98,13 @@ class Login extends React.Component {
                     <p>Password</p>
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.passInput = input; }} onKeyPress={this.checkSubmit} autoComplete="off" type="password" placeholder="Enter Password" id="password" value={this.state.password} onChange={this.handleChange} required/>
                     <br/>
-                    <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}</motion.button>
+                    <motion.button disabled={!this.state.isEnabled} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}{this.state.isEnabled && 
+                    <div className="loader">
+                        <svg className="circular" viewBox="25 25 50 50">
+                        <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                        </svg>
+                    </div>
+                    }</motion.button>
                     </div>
                 </motion.div>
                 <motion.div className="waveWrapper waveAnimation"
