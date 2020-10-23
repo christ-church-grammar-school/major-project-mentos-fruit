@@ -1,13 +1,12 @@
 .sideNav {
     user-select: none;
-    width: 34vw;
+    width: 36vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 4vw;
     /* overflow: hidden; */
-    min-width: 280px;
+    min-width: 290px;
     max-width: 340px;
     position: fixed;
     z-index: 10 !important;
@@ -97,6 +96,7 @@
     background: linear-gradient(90deg, #008FFE 0%, #8CFFFD 100%);
     min-width: 270px;
     max-width: 310px;
+    margin-right: 2vw;
 }
 
 .navIcon {
