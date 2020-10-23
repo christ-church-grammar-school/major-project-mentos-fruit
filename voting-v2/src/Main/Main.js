@@ -5,6 +5,7 @@ import "../Global Styles/globals.css"
 import { Nav, MobileNav } from "../Navigation/nav.js"
 import Diary from "../Diary/diary.js"
 import Map from "../Map/map.js"
+import Timetable from "../Timetable/timetable.js"
 
 class Main extends React.Component {
   constructor(props) {
@@ -38,6 +39,9 @@ class Main extends React.Component {
           </Route>
           <Route path="/map">
             <Map />
+          </Route>
+          <Route path="/timetable">
+            <Timetable />
           </Route>
         </Switch>
       </div>
