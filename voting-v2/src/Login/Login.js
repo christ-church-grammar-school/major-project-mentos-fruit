@@ -73,15 +73,28 @@ class Login extends React.Component {
             exit: {y: "calc(-50% - 100vh)", x: "-50%"},
         }
 
+        const form2 = {  
+            initial: {opacity: 1},
+            animate: {opacity: 1},
+            exit: {opacity: 0},
+        }
+
         const transition = {
-            duration: 0.8,
+            duration: 0.6,
             ease: [0, 0.1, 0.3, 1]
         }
 
-
+        const transition2 = {
+            delay: 0.2
+        }
 
         return(
-            <div>
+            <motion.div className="whiteBackground"
+            variants={form2}
+            transition={transition2}
+            animate={"animate"}
+            initial={"initial"}
+            exit={"exit"}>
                 
                 <motion.div className="container"
                 variants={form}
@@ -89,6 +102,7 @@ class Login extends React.Component {
                 animate={"animate"}
                 initial={"initial"}
                 exit={"exit"}>
+                    
                     <div className="mobileSupport">
                     <p id="title">CCGS Assistant</p>
 
@@ -96,15 +110,22 @@ class Login extends React.Component {
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.nameInput = input; }} onKeyPress={this.checkName} autoComplete="off" type="text" placeholder="Enter Username" id="user" value={this.state.username} onChange={this.handleChange} required/>
 
                     <p>Password</p>
-                    <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.passInput = input; }} onKeyPress={this.checkSubmit} autoComplete="off" type="password" placeholder="Enter Password" id="password" value={this.state.password} onChange={this.handleChange} required/>
+                    <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`}
+                    ref={(input) => { this.passInput = input; }} onKeyPress={this.checkSubmit} autoComplete="off"
+                    type="password" placeholder="Enter Password" id="password" value={this.state.password}
+                    onChange={this.handleChange} required/>
                     <br/>
-                    <motion.button disabled={!this.state.isEnabled} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} id="login" onClick={this.login}>{this.state.message}{!this.state.isEnabled && 
-                    <div className="loader">
+                    <motion.button disabled={!this.state.isEnabled} whileHover={this.state.isEnabled ? { scale: 1.08 } : { scale: 1 }} whileTap={this.state.isEnabled && { scale: 0.93 }}
+                    id="login" onClick={this.login}>
+                        {this.state.message}
+                    </motion.button>
+
+                    <motion.div className="loader" animate={{opacity: !this.state.isEnabled ? 1 : 0}}>
                         <svg className="circular" viewBox="25 25 50 50">
-                        <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                        <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
                         </svg>
-                    </div>
-                    }</motion.button>
+                    </motion.div>
+
                     </div>
                 </motion.div>
                 <motion.div className="waveWrapper waveAnimation"
@@ -122,7 +143,7 @@ class Login extends React.Component {
                         <div className="wave waveBottom" style={{backgroundImage: "url(" +  waveBot + ")"}}></div>
                     </div>
                 </motion.div>
-                </div>
+            </motion.div>
         );
         }
     }
