@@ -68,7 +68,7 @@ class Login extends React.Component {
           }
 
         const form = {  
-            initial: {y: "-50%", x: "-50%"},
+            initial: {y: "calc(-50% - 100vh)", x: "-50%"},
             animate: {y: "-50%", x: "-50%"},
             exit: {y: "calc(-50% - 100vh)", x: "-50%"},
         }

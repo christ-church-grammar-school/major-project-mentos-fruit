@@ -3,6 +3,7 @@
 # dependencies
 */node_modules
 */db.json
+*/imagedb.json
 */*/node_modules
 
 yarn.lock

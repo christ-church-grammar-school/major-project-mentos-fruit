@@ -2,6 +2,7 @@ const express = require('express');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const userDB = low(new FileSync('./db.json'));
+const imageDB = low(new FileSync('./imagedb.json'));
 const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -14,6 +15,7 @@ const TIMETABLE = "https://nexus.ccgs.wa.edu.au/timetable";
 const path = require('path')
 
 userDB.defaults({users: []}).write();
+imageDB.defaults({users: []}).write();
 
 app.use(bodyParser());
 app.use(cookieParser());
@@ -26,7 +28,7 @@ app.post('/api/authenticate', async function(req, res) {
     var { user, password } = req.body;
     console.log("User Login Request: " + user)
     var userObj = userDB.get('users').find({id: user}).value()
-
+    
     if (userObj !== undefined) { // DOES EXIST  
         bcrypt.compare(password,userObj.hash, function(err, result) { // Plaintext password vs hashed
             if (result === false) { // Incorrect Password
@@ -77,11 +79,8 @@ app.post('/api/authenticate', async function(req, res) {
             // Confirmed to not exist
             bcrypt.hash(password,10,function(err, hashedPassword) {
                 userDB.get('users').push({ id: user, name: "pending", hash: hashedPassword, timetable: "pending"}).write();
+                imageDB.get('users').push({ id: user }).write();
             });
-
-            const payload = { user: user };
-            var token = jwt.sign(payload, process.env.SECRET, {expiresIn: process.env.TOKENEXPIRY});
-            res.cookie('token', token, { httpOnly: true }).sendStatus(200);
 
             await page.click('input[id=idBtn_Back]');
             await page.waitForNavigation({'waitUntil': 'networkidle0', timeout: redirectTimeoutLength}).catch((err) => {
@@ -110,21 +109,56 @@ app.post('/api/authenticate', async function(req, res) {
                 })
                 return arr
             });
-            output.image = await page.evaluate(() => {
-                function getBase64Image(img) {
-                    var canvas = document.createElement("canvas");
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    var ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0);
-                    var dataURL = canvas.toDataURL("image/png");
-                    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-                }
-                return getBase64Image(document.querySelector("#profile-drop > img"));
+
+            var link = await page.evaluate(() => {
+                return document.querySelector("#profile-options > li:nth-child(2) > a").href;
             });
 
-            userDB.get('users').find({id: user}).assign({name: output.name,timetable: output.timetable, image: output.image}).write(); // UPDATE TIMETABLE
+            await page.goto(link, { waitUntil: 'networkidle0' });
+
+            output.image = await page.evaluate( async () => {
+                loadImage = async img => {
+                    return new Promise((resolve, reject) => {
+                        img.onload = async () => {
+                            resolve(true);
+                        };
+                    });
+                };
+                
+                  var img = new Image();
+                  img.crossOrigin = 'Anonymous';
+                    img.src = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-2.columns.no-pad > img").src;
+                    await loadImage(img)
+                  
+                    var canvas = document.createElement('CANVAS');
+                    var ctx = canvas.getContext('2d');
+                    var dataURL;
+                    canvas.height = img.naturalHeight;
+                    canvas.width = img.naturalWidth;
+                    ctx.drawImage(img, 0, 0);
+                    dataURL = canvas.toDataURL();
+                    return dataURL
+            });
+
+            output.data = await page.evaluate(() => {
+                var data = {};
+                data.studentID = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(4)").innerText;
+                data.dateOfBirth = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(6)").innerText;
+                data.yearLevel = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(8)").innerText;
+                data.tutor = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(10) > a").innerText;
+                data.house = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(12)").innerText;
+                data.tutorGroup = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(14)").innerText;
+                data.studentType = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(18)").innerText;
+                return data;
+            });
+
+            userDB.get('users').find({id: user}).assign({name: output.name,timetable: output.timetable, data: output.data}).write(); // UPDATE TIMETABLE
+            imageDB.get('users').find({id: user}).assign({image: output.image}).write(); 
             console.log('process complete', user)
+
+            const payload = { user: user };
+            var token = jwt.sign(payload, process.env.SECRET, {expiresIn: process.env.TOKENEXPIRY});
+            res.cookie('token', token, { httpOnly: true }).sendStatus(200);
 
             await browser.close();
             return;
@@ -133,7 +167,14 @@ app.post('/api/authenticate', async function(req, res) {
 });
 
 app.get('/api/checkToken', withAuth, function(req, res) {
-    res.json({loggedIn: true})
+    try {
+        var userObj = userDB.get('users').find({id: req.user}).value()
+        var imageObj = imageDB.get('users').find({id: req.user}).value()
+        res.json({loggedIn: true, ...userObj, image : imageObj.image})
+    } catch {
+        res.sendStatus(404)
+        return
+    }
 });
 
 app.get('/api/logout', function(req, res){
