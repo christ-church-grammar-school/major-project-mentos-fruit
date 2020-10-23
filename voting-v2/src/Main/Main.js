@@ -6,6 +6,7 @@ import { Nav, MobileNav } from "../Navigation/nav.js"
 import Diary from "../Diary/diary.js"
 import Map from "../Map/map.js"
 import Timetable from "../Timetable/timetable.js"
+import Info from "../Information/info.js"
 
 class Main extends React.Component {
   constructor(props) {
@@ -42,6 +43,9 @@ class Main extends React.Component {
           </Route>
           <Route path="/timetable">
             <Timetable />
+          </Route>
+          <Route path="/info">
+            <Info />
           </Route>
         </Switch>
       </div>
