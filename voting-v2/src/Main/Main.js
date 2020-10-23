@@ -4,6 +4,7 @@ import Home from "../Dashboard/dashboard.js"
 import "../Global Styles/globals.css"
 import { Nav, MobileNav } from "../Navigation/nav.js"
 import Diary from "../Diary/diary.js"
+import Map from "../Map/map.js"
 
 class Main extends React.Component {
   constructor(props) {
@@ -34,6 +35,9 @@ class Main extends React.Component {
           </Route>
           <Route path="/diary">
             <Diary />
+          </Route>
+          <Route path="/map">
+            <Map />
           </Route>
         </Switch>
       </div>

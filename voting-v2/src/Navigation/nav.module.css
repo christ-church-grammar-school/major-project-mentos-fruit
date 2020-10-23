@@ -10,9 +10,9 @@
     max-width: 340px;
     position: fixed;
     z-index: 10 !important;
-    position: absolute;
     background-color: white;
     font-weight: 500;
+    top: 0;
 }
 
 .extra {
