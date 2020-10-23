@@ -9,15 +9,33 @@
   font-weight: 300;
   src: local('Bahnschrift Light'), url('BAHNSCHRIFT.woff') format('woff');
 }
+/* @font-face {
+  font-family: 'Din Pro Regular';
+  font-style: normal;
+  src: local('Din Pro Regular'), url('DINPro.woff') format('woff');
+}
+@font-face {
+  font-family: 'Din Pro Medium';
+  font-style: normal;
+  src: local('Din Pro Medium'), url('DINPro-Medium.woff') format('woff');
+} */
+
+@import url("./DINPro/style.css");
+@import url("./DINPro/style-medium.css");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Bahnschrift Regular", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: "Din Pro", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 30px;
-  overflow-x: hidden;
+  font-weight: 500;
+  overflow-x: visible;
+}
+
+p {
+  color: black;
 }
 
 a {
@@ -34,9 +52,9 @@ h1 {
 }
 
 .main {
-  z-index: 1 !important;
+  z-index: 0 !important;
   position: absolute;
-  padding-left: 37vw;
+  padding-left: 3vw;
 }
 
 .placeholder {

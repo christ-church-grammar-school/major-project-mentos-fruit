@@ -2,21 +2,45 @@ import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import Home from "../Dashboard/dashboard.js"
 import "../Global Styles/globals.css"
-import Nav from "../Navigation/nav.js"
+import { Nav, MobileNav } from "../Navigation/nav.js"
+import Diary from "../Diary/diary.js"
 
-function Main(props) {
-  return (
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { windowWidth: window.innerWidth };
+  }
+
+  handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+    // console.log(this.state.windowWidth)
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.handleResize);
+  } 
+
+  render() {
+    return (
     <>
       <div className="main">
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-        </Switch>   
+          <Route path="/diary">
+            <Diary />
+          </Route>
+        </Switch>
       </div>
-      <Nav />
+      {(this.state.windowWidth < 1000) ? <MobileNav /> : <Nav />}
     </>
   );
+  }
 }
 
 export default Main;
