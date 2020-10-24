@@ -9,7 +9,7 @@ class Map extends React.Component {
                 <h1 className="mapH">
                     Map - CCGS Claremont Campus
                 </h1>
-                <img src="/map.png" className="map" />
+                <img src="/map.png" alt="Map - CCGS Claremont Campus" className="map"/>
                 {/* <iframe src="https://www.ccgs.wa.edu.au/interactive-map" className="map" src=""/> */}
             </div>
             </>

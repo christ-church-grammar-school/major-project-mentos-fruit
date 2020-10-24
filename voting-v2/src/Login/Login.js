@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import waveTop from './images/wave-top.png';
 import waveMid from './images/wave-mid.png';
 import waveBot from './images/wave-bot.png';

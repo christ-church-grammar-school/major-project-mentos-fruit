@@ -81,7 +81,7 @@ function Nav(props) {
 
     function getName() {
         var name
-        if (user.name != undefined) {
+        if (user.name !== undefined) {
             name = user.name
             name = name.slice(13)
             name = name.split(',')
@@ -96,7 +96,7 @@ function Nav(props) {
         {/* <link rel="icon" href={imgDir[router.pathname]} type="image/x-icon"/>
         <title>CCGS Assistant</title> */}
         <div className={`${styles.sideNav} ${props.class}`}>
-            <img src={logo} className={styles.image} onLoad={handleLoad}/>
+            <img src={logo} alt="" className={styles.image} onLoad={handleLoad}/>
 
             <motion.div animate={controls} className={styles.select} id="select">
                 <AnimatePresence>
@@ -120,7 +120,7 @@ function Nav(props) {
             <div className={styles.profileArea}>
 
                 {/* <img src={/*user ? user.picture : na} className={styles.profileImage}/> */}
-                <img src={user.image ? user.image : na} className={styles.profileImage}/>
+                <img src={user.image ? user.image : na} alt={getName()} className={styles.profileImage}/>
 
                 <div className={styles.profileTextArea}>
                 <p className={styles.profileText}>{user.loggedIn ? <>{getName()}</> : <>User </>}</p>
@@ -151,15 +151,15 @@ function MobileNav() {
 
     const variants = {
         open: { x: 0, y: window.pageYOffset },
-        closed: { x: "-100%", y: window.pageYOffset },
+        closed: { x: "-100vw", y: window.pageYOffset },
     }
 
     return (
         <div className={styles.mobNav}>
         <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.toggle} onClick={() => setToggle(!toggle)}>
-            {toggle == true ? <><i className="icon ion-ios-close"/></> : <><i className="icon ion-ios-menu"/></>}
+            {toggle === true ? <><i className="icon ion-ios-close"/></> : <><i className="icon ion-ios-menu"/></>}
         </motion.button>
-        <motion.div initial="closed" className={styles.MobileNav} transition={transition} variants={variants} animate={toggle == true ? "open" : "closed"}>
+        <motion.div initial="closed" className={styles.MobileNav} transition={transition} variants={variants} animate={toggle === true ? "open" : "closed"}>
             <Nav class={styles.extra} />
         </motion.div>
         </div>

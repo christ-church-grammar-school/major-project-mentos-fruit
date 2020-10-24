@@ -13,10 +13,10 @@ function Home() {
       {label: "Period 5", time: "8.30pm-8.50am"},
       {label: "Period 6", time: "8.30am-8.50am"}
     ]
-    const extLinks = [
-      {label: "Nexus", subtitle: "CCGS Online Resources", icon: "/", url: "https://nexus.ccgs.wa.edu.au"},
-      {label: "CCGS Website", subtitle: "The school's official website", icon: "/", url: "https://ccgs.wa.edu.au"}
-    ]
+    // const extLinks = [
+    //   {label: "Nexus", subtitle: "CCGS Online Resources", icon: "/", url: "https://nexus.ccgs.wa.edu.au"},
+    //   {label: "CCGS Website", subtitle: "The school's official website", icon: "/", url: "https://ccgs.wa.edu.au"}
+    // ]
   
     var userTimetable = [
       [
@@ -32,9 +32,9 @@ function Home() {
   
     var state = undefined
   
-    if (18 > d >= 12) {
+    if (18 > d > 12) {
       state = "afternoon"
-    } else if (d >= 18) {
+    } else if (d > 18) {
       state = "evening"
     } else {
       state = "morning"
@@ -44,7 +44,7 @@ function Home() {
         <>
         <div className="all">
               <h1 className="status">Good {state}, Hello.</h1>
-              {(d.getDay != 0 || d.getDay != 6) ? <>
+              {(d.getDay !== 0 || d.getDay !== 6) ? <>
               <p className="today">Today: </p>
               <table className="docLinks">
                 <thead className="tableLinks">

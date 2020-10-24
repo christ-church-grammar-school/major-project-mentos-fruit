@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from "../Dashboard/dashboard.js"
 import "../Global Styles/globals.css"
 import { Nav, MobileNav } from "../Navigation/nav.js"

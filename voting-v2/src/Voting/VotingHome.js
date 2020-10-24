@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion, useAnimation, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import "./VotingHome.css"
 
 function VotingHome() {
