@@ -1,0 +1,49 @@
+.DiarySide {
+    width: 100%;
+    /* height: 100vh; */
+}
+.DiaryAll {
+    display: inline;
+    width: 100%;
+}
+.DiaryHead {
+    font-size: 5vh;
+}
+.DiaryContainer {
+    width: 94vw;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    padding: 10px;
+}
+.DiaryItem {
+    margin: 5% 5%;
+    padding: 20px;
+    width: 90%;
+    font-family: inherit;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+    .DiarySide {
+        width: 50%;
+    }
+    .DiaryHead {
+        font-size: 50px;
+    }
+    .DiaryAll {
+        display: inline-flex;
+    }
+    .DiaryContainer {
+        width: 90%;
+        height: 77vh;
+        border-radius: 20px;
+        padding: 0px;
+    }
+    .DiaryItem {
+        margin: 5% 5% 0%;
+    }
+}

@@ -123,12 +123,15 @@ function Nav(props) {
 
                 <div className={styles.profileTextArea}>
                 <p className={styles.profileText}>{user.loggedIn ? <>{getName()}</> : <>Person </>}</p>
-                <motion.button className={styles.sioButton} 
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={logoutUpdate}>
-                    Sign out
-                </motion.button>
+                
+                <NavLink to="/">
+                    <motion.button className={styles.sioButton} 
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={logoutUpdate}>
+                        Sign out
+                    </motion.button>
+                </NavLink>
                 </div>
             </div>
 

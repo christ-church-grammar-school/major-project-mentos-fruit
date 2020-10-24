@@ -22,6 +22,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
+    window.scrollTo(0, 0)
   }
 
   componentWillUnmount() {
