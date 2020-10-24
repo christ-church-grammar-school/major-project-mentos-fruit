@@ -31,7 +31,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 30px;
   font-weight: 500;
-  overflow-x: visible;
+  overflow: visible;
 }
 
 p {
@@ -64,6 +64,7 @@ h1 {
 
 button {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:focus {
