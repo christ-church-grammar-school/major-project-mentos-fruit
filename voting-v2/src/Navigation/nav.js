@@ -79,6 +79,17 @@ function Nav(props) {
         })
     }
 
+    function getName() {
+        var name
+        if (user.name != undefined) {
+            name = user.name
+            name = name.slice(13)
+            name = name.split(',')
+            console.log(name[0])
+            return <>{name[0]}</>
+        }
+    }
+
     return (
         
         <>
@@ -112,7 +123,7 @@ function Nav(props) {
                 <img src={user.image ? user.image : na} className={styles.profileImage}/>
 
                 <div className={styles.profileTextArea}>
-                <p className={styles.profileText}>{user.loggedIn ? <>dumass shit</> : <>User </>}</p>
+                <p className={styles.profileText}>{user.loggedIn ? <>{getName()}</> : <>User </>}</p>
                 <motion.button className={styles.sioButton} 
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
@@ -139,8 +150,8 @@ function MobileNav() {
     }
 
     const variants = {
-        open: { x: 0 },
-        closed: { x: "-100%" },
+        open: { x: 0, y: window.pageYOffset },
+        closed: { x: "-100%", y: window.pageYOffset },
     }
 
     return (
@@ -148,12 +159,14 @@ function MobileNav() {
         <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className={styles.toggle} onClick={() => setToggle(!toggle)}>
             {toggle == true ? <><i className="icon ion-ios-close"/></> : <><i className="icon ion-ios-menu"/></>}
         </motion.button>
-        <motion.div transition={transition} variants={variants} animate={toggle == true ? "open" : "closed"}>
+        <motion.div initial="closed" className={styles.MobileNav} transition={transition} variants={variants} animate={toggle == true ? "open" : "closed"}>
             <Nav class={styles.extra} />
         </motion.div>
         </div>
     )
 }
+
+// onScroll={() => document.getElementById('mob').style.y = window.pageYOffset}
 
 export {
     Nav,
