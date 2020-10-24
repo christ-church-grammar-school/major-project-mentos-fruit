@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react"
 import styles from "./nav.module.css"
 import logo from "./logoFull.jpg"
-import { motion, useAnimation, AnimatePresence } from "framer-motion"
+import { motion, useAnimation, AnimatePresence, useViewportScroll, useTransform } from "framer-motion"
 import { useLocation, NavLink } from "react-router-dom"
 import na from "./na.png"
 import {logout} from '../Auth'
 import UserContext from '../UserContext'
+import { useScroll } from './scroll.js'
 
 function Nav(props) {
     const router = useLocation()
@@ -15,7 +16,7 @@ function Nav(props) {
     const { user, setUser } = useContext(UserContext)
     
     const links = [{url:"/", display: "Dashboard"}, 
-    {url: "/diary", display: "Diary"},
+    // {url: "/diary", display: "Diary"},
     {url: "/timetable", display: "Timetable"},
     {url: "/map", display: "Campus Map"},
     {url: "/info", display: "School Information"},
@@ -144,6 +145,7 @@ function Nav(props) {
 
 function MobileNav() {
     const [toggle, setToggle] = useState(false);
+    const scroll = useViewportScroll()
 
     const transition = {
         type: "tween",
@@ -152,8 +154,8 @@ function MobileNav() {
     }
 
     const variants = {
-        open: { x: 0, y: window.pageYOffset },
-        closed: { x: "-100vw", y: window.pageYOffset },
+        open: { x: 0 },
+        closed: { x: "-100vw" },
     }
 
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -166,7 +168,7 @@ function MobileNav() {
             <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className={styles.toggle} onClick={() => setToggle(!toggle)}>
                 {toggle === true ? <><i className="icon ion-ios-close"/></> : <><i className="icon ion-ios-menu"/></>}
             </motion.button>
-            <motion.div id="mob" initial="closed" className={styles.MobileNav} transition={transition} variants={variants} animate={toggle === true ? "open" : "closed"}>
+            <motion.div style={{ y: scroll.scrollY }} id="mob" initial="closed" className={styles.MobileNav} transition={transition} variants={variants} animate={toggle === true ? "open" : "closed"}>
                 <Nav class={styles.extra} />
             </motion.div>
         </div>
