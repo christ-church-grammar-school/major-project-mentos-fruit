@@ -82,42 +82,41 @@ function execute(sql, param) {
   })
 }
 
-function exists(id) {
-  // Checks whether a row exists matching a query
-  /*var found = false
-  DB.each(sql, function(err, row) {
+function update(sql1, param1, sql2, param2, sql3, param3) {
+  // Update fields of preexisting row if it exists
+  // Otherwise create a new row
+  // sql1 & param1- check whether a row exists
+  // sql2 & param2- updates fields
+  // sql3 & param3- inserts new row
+  DB.get(sql1, param1, function(err, row) {
     if (err) {
       console.log(err)
     }
     if (row) {
-      console.log(`Row found`)
-      found = true
-      console.log(`Found:: ${found}`)
-    }
-  })
-  console.log(`Found: ${found}`)
-  return found;*/
-  return DB.get(`SELECT EXISTS(SELECT 1 FROM VOTER WHERE STUDENT_ID="${id}")`, function(err, row) {
-    if (err) {
-      console.log(err)
+      // Row found; update data
+      execute(sql2, param2);
+    } else {
+      // Row not found; insert new row
+      execute(sql3, param3);
     }
   })
 }
 
 function addData(id, name, year, vote) {
   // Add/update user's data to tables
-  if (exists(id)) {
-    // User's data already in table
-    // Update data
-    execute(`UPDATE VOTER
+
+  // Update VOTER table
+  update(
+    `SELECT * FROM VOTER WHERE STUDENT_ID=?`,
+    [id], 
+    `UPDATE VOTER
     SET NAME=?, YEAR=?
-    WHERE STUDENT_ID=?`, [name, year])
-    console.log("repeated")
-  } else {
-    // Add user's data to table
-    console.log("new "+exists(`SELECT VOTER_ID FROM VOTER WHERE STUDENT_ID="${id}"`));
-    execute(`INSERT INTO VOTER(STUDENT_ID, NAME, YEAR) VALUES (?, ?, ?)`, [id, name, year])
-  }
+    WHERE STUDENT_ID=?`,
+    [name, year, id],
+    `INSERT INTO VOTER(STUDENT_ID, NAME, YEAR) VALUES (?, ?, ?)`,
+    [id, name, year]
+  )
+  
 }
 
 export default async function me(req, res) {
