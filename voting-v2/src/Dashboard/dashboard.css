@@ -52,6 +52,7 @@
     color: #000000;
     max-width: 14.285%;
     border-radius: 1vw;
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
 }
 .ttsub {
     font-size: 1.5vh;
@@ -61,6 +62,7 @@
 }
 .dashLowerArea {
     margin-top: 5vw;
+    margin-bottom: 10vh;
 }
 .UsefulLink {
     width: 100%;
@@ -104,10 +106,10 @@
 /* Desktop Interface */
 @media screen and (min-width: 1400px) {
     .ttsub {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .class {
-        font-size: 18.5px;
+        font-size: 18.5px !important;
     }
 }
 

@@ -6,7 +6,6 @@ import { useLocation, NavLink } from "react-router-dom"
 import na from "./na.png"
 import {logout} from '../Auth'
 import UserContext from '../UserContext'
-import { useScroll } from './scroll.js'
 
 function Nav(props) {
     const router = useLocation()
@@ -21,7 +20,7 @@ function Nav(props) {
     {url: "/map", display: "Campus Map"},
     {url: "/info", display: "School Information"},
     {url: "/vote", display: "Voting"},
-    {url: "/settings", display: "Settings"}]
+    {url: "/profile", display: "Profile"}]
     const imgDir = {
         "/": "icons/icons8-dashboard-100.svg",
         "/diary": "icons/icons8-today-100.svg",
@@ -29,7 +28,7 @@ function Nav(props) {
         "/map": "icons/icons8-map-100.svg",
         "/info": "icons/icons8-info-100.svg",
         "/vote": "icons/icons8-elections-100.svg",
-        "/settings": "icons/icons8-slider-100.svg",
+        "/profile": "icons/icons8-customer-100.png",
     }
 
     function handleLoad() {
@@ -42,20 +41,20 @@ function Nav(props) {
 
     useEffect(() => {
         function callback() {
-        controls.start({
-            y: document.getElementById(router.pathname).offsetTop,
-            opacity: 1,
-            transition: { duration: 0 },
-        })
+            controls.start({
+                y: document.getElementById(router.pathname).offsetTop,
+                opacity: 1,
+                transition: { duration: 0 },
+            })
         }
         window.addEventListener("resize", callback)
         if (firstLoad === true) {
-        controls.start({
-            y: document.getElementById(router.pathname).offsetTop,
-            opacity: 1,
-            transition: { duration: 0 },
-        })
-        setFirstLoad(false)
+            controls.start({
+                y: document.getElementById(router.pathname).offsetTop,
+                opacity: 1,
+                transition: { duration: 0 },
+            })
+            setFirstLoad(false)
         } 
         return () => window.removeEventListener("resize", callback);
     }, [router])

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from "../Dashboard/dashboard.js"
+import { Home } from "../Dashboard/dashboard.js"
 import "../Global Styles/globals.css"
 import { Nav, MobileNav } from "../Navigation/nav.js"
 import Diary from "../Diary/diary.js"
 import Map from "../Map/map.js"
-import Timetable from "../Timetable/timetable.js"
+import { Timetable } from "../Timetable/timetable.js"
 import Info from "../Information/info.js"
 import VotingHome from "../Voting/VotingHome"
+import { Profile } from "../Profile/profile"
 
 class Main extends React.Component {
   constructor(props) {
@@ -41,9 +42,9 @@ class Main extends React.Component {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/diary">
+          {/* <Route path="/diary">
             <Diary />
-          </Route>
+          </Route> */}
           <Route path="/map">
             <Map />
           </Route>
@@ -55,6 +56,9 @@ class Main extends React.Component {
           </Route>
           <Route path="/vote">
             <VotingHome />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </div>
