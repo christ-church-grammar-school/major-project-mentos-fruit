@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import styles from "./nav.module.css"
 import logo from "./logoFull.jpg"
-import { motion, useAnimation, AnimatePresence, useViewportScroll, useTransform } from "framer-motion"
+import { motion, useAnimation, AnimatePresence, useViewportScroll } from "framer-motion"
 import { useLocation, NavLink } from "react-router-dom"
 import na from "./na.png"
 import {logout} from '../Auth'
