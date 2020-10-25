@@ -31,49 +31,40 @@ function Nav(props) {
         "/profile": "icons/icons8-customer-100.png",
     }
 
-    function handleLoad() {
-        controls.start({
-        y: document.getElementById(router.pathname).offsetTop,
-        opacity: 1,
-        transition: { duration: 0 },
-        })
-    }
 
-    useEffect(() => {
-        function callback() {
+    function handleLoad() {
+        if (user.loggedIn) {
             controls.start({
                 y: document.getElementById(router.pathname).offsetTop,
                 opacity: 1,
                 transition: { duration: 0 },
             })
         }
-        window.addEventListener("resize", callback)
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleLoad)
         if (firstLoad === true) {
-            controls.start({
-                y: document.getElementById(router.pathname).offsetTop,
-                opacity: 1,
-                transition: { duration: 0 },
-            })
+            handleLoad()
             setFirstLoad(false)
         } 
-        return () => window.removeEventListener("resize", callback);
-    }, [router])
+        return () => window.removeEventListener("resize", handleLoad);
+    }, [router, user])
 
     function handleNav(evt) {
-        controls.start({
+        if (user.loggedIn) {
+            controls.start({
                 y: document.getElementById(evt.target.id).offsetTop, //This seems counter-intuitive. Im lazy.
                 opacity: 1,
                 transition: { duration: 0.7, type: "tween", ease: "anticipate"},
             })
-        setFocus(evt.target.id)
+            setFocus(evt.target.id)
+        }
     }
 
     function logoutUpdate() {
-        console.log("tuing")
         logout().then(ok => {
-            console.log("logoutp")
             if (ok) {
-                console.log("logout")
                 setUser({loggedIn: false})
             }
         })
@@ -88,13 +79,13 @@ function Nav(props) {
             return <>{name[0]}</>
         }
     }
-
+    
     return (
         
         <>
         {/* <link rel="icon" href={imgDir[router.pathname]} type="image/x-icon"/>
         <title>CCGS Assistant</title> */}
-        <div className={`${styles.sideNav} ${props.class}`}>
+        {user.loggedIn && <div className={`${styles.sideNav} ${props.class}`}>
             <img src={logo} alt="" className={styles.image} onLoad={handleLoad}/>
 
             <motion.div animate={controls} className={styles.select} id="select">
@@ -135,8 +126,7 @@ function Nav(props) {
                 </div>
             </div>
 
-        </div>
-                
+        </div>}
             {/* <motion.main className={styles.mainC}><>{children}</></motion.main> */}
         </>
     )
