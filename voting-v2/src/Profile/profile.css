@@ -4,33 +4,36 @@
     border-radius: 20px;
 }
 .profile {
-    display: inline-flex;
-    width: 100%;
+    display: inline;
 }
 .profileInfo {
-    padding: 20px;
+    padding: 2.5vh;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    margin: 0px 40px;
+    margin: 2vh 3vw 0 0;
     border-radius: 15px;
-    width: 100%;
 }
 .profileInfoText {
     font-family: inherit;
     font-weight: 400;
     margin: 0;
 }
+.profile {
+    width: auto;
+}
 strong {
     font-weight: 500;
 }
 
-/* mobile handling */
-@media screen and (max-width: 1000px) {
+/* desktop handly */
+@media screen and (min-width: 1000px) {
     .profile {
-        display: inline;
+        display: inline-flex;
+        width: 100%;
     }
     .profileInfo {
-        padding: 2.5vh;
+        padding: 20px;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-        margin: 2vh 3vw 0 0;
+        margin: 0px 40px;
+        width: 100%;
     }
 }

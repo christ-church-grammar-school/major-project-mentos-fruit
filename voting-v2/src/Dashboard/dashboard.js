@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "./dashboard.css"
-import UserContext from '../UserContext'
+import { UserData } from '../Profile/profile'
 import { motion } from 'framer-motion'
 import { MobileTimetable } from "../Timetable/timetable.js"
 
 function Home() {
-  const { user, setUser } = useContext(UserContext)
+  const user = UserData()
   const periods = [
     {label: "Tutorial", time: "8.30am-8.50am"},
     {label: "Period 1", time: "8.55am-9.45am"},
@@ -39,6 +39,34 @@ function Home() {
     {class: "Physics 1", teacher: "Ms Owen", room: "NP3"} 
   ]
 
+  console.log(user.timetable)
+
+  var userTodayA = []
+  var userTodayB = []
+
+  const d = new Date()
+  const day = d.getDay()
+
+  if(day > 0 && day < 6) {
+    if(user.timetable !== undefined) {
+      for(var i=0; i<7; i++) {
+        userTodayA[i] = {
+          class: user.timetable[i][day-1][0],
+          code: user.timetable[i][day-1][1],
+          info: user.timetable[i][day-1][2]
+        }
+        userTodayB[i] = {
+          class: user.timetable[i][day+4][0],
+          code: user.timetable[i][day+4][1],
+          info: user.timetable[i][day+4][2]
+        }
+      }
+    }
+  }
+
+  // console.log(userTodayA)
+  // console.log(userTodayB)
+
   // for (var j = 0; j < userTimetableToday.length; j++) {
   //   userTimetableToday[j].colour = colours[j]
   // }
@@ -49,7 +77,7 @@ function Home() {
     mobTodayTimetable[i] = {period: periods[i], class: userTimetableToday[i]}
   }
 
-  const d = new Date()
+  //d.getDay()
 
   const state = () => {
     const h = d.getHours()
@@ -58,30 +86,17 @@ function Home() {
     else return "morning"
   }
 
-  function getName() {
-    var name
-    if (user.name !== undefined) {
-        name = user.name
-        name = name.slice(13)
-        name = name.split(',')
-        return <>{name[0]}</>
-    }
-  }
-
+  //window width
   const size = useWindowSize()
 
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState();
-  
     useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
       }
-
       window.addEventListener("resize", handleResize);
-
       handleResize()
-      
       return () => window.removeEventListener("resize", handleResize);
     }, []); 
   
@@ -89,9 +104,9 @@ function Home() {
   }
 
   function todayTimetable() {
-    // if (d.getDay() !== 0 || d.getDay() !== 6) {
-    //   return <p className="dashSub">No classes today.</p>
-    // } else {
+    if (day === 0 || day === 6) {
+      return <p className="dashSub">No classes today.</p>
+    } else {
       return <>
       <p className="dashSub">Today: </p>
       {(size < 1000) ? <MobileTimetable timetable={mobTodayTimetable} /> : 
@@ -103,11 +118,20 @@ function Home() {
               )}
             </tr>
             <tr>
-              {userTimetableToday.map((el) => 
-                <td style={{backgroundColor: el.colour}} key={el.class} className="tableClass">
+              {userTodayA.map((el) => 
+                <td key={el.class} className="tableClass">
                   <h1 className="class">{el.class}</h1>
-                  <p className="ttsub">{el.teacher}</p>
-                  <p className="ttsub">{el.room}</p>
+                  <p className="ttsub">{el.code}</p>
+                  <p className="ttsub">{el.info}</p>
+                </td>
+              )}
+            </tr>
+            <tr>
+              {userTodayB.map((el) => 
+                <td key={el.class} className="tableClass">
+                  <h1 className="class">{el.class}</h1>
+                  <p className="ttsub">{el.code}</p>
+                  <p className="ttsub">{el.info}</p>
                 </td>
               )}
             </tr>
@@ -115,13 +139,13 @@ function Home() {
       </table>
       }
       </>
-    // }
+    }
   }
 
   return (
       <>
       <div className="all">
-        <h1 className="status">Good {state()}, <strong style={{fontWeight: 500}}>{getName()}</strong>.</h1>
+        <h1 className="status">Good {state()}, <strong style={{fontWeight: 500}}>{user.name}</strong>.</h1>
         {todayTimetable()}
         <div>
           <div className="dashLowerArea">

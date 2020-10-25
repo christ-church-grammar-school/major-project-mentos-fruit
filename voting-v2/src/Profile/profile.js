@@ -77,5 +77,6 @@ function UserData() {
 }
 
 export {
-    Profile
+    Profile,
+    UserData
 }
