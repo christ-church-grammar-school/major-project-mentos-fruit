@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Home } from "../Dashboard/dashboard.js"
 import "../Global Styles/globals.css"
 import { Nav, MobileNav } from "../Navigation/nav.js"
-import Diary from "../Diary/diary.js"
+// import Diary from "../Diary/diary.js"
 import Map from "../Map/map.js"
 import { Timetable } from "../Timetable/timetable.js"
 import Info from "../Information/info.js"

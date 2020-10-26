@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { MobileTimetable } from "../Timetable/timetable.js"
 
 function Home() {
+  const [weekA, setWeekA] = useState(true)
+
   const user = UserData()
   const periods = [
     {label: "Tutorial", time: "8.30am-8.50am"},
@@ -64,20 +66,11 @@ function Home() {
     }
   }
 
-  // console.log(userTodayA)
-  // console.log(userTodayB)
-
-  // for (var j = 0; j < userTimetableToday.length; j++) {
-  //   userTimetableToday[j].colour = colours[j]
-  // }
-
   var mobTodayTimetable = [];
 
   for(var i = 0; i < periods.length; i++) {
     mobTodayTimetable[i] = {period: periods[i], class: userTimetableToday[i]}
   }
-
-  //d.getDay()
 
   const state = () => {
     const h = d.getHours()
@@ -103,12 +96,30 @@ function Home() {
     return windowWidth;
   }
 
+  function getDay() {
+    if(day === 1) return "Monday"
+    else if(day === 2) return "Tuesday"
+    else if(day === 3) return "Wednesday"
+    else if(day === 4) return "Thursday"
+    else if(day === 5) return "Friday"
+    else return ""
+  }
+
   function todayTimetable() {
     if (day === 0 || day === 6) {
       return <p className="dashSub">No classes today.</p>
     } else {
       return <>
-      <p className="dashSub">Today: </p>
+      <p className="dashSub">Today - {getDay()} [ Week: <motion.button className="weekbutton" 
+      whileHover={{scale: 1.2}} 
+      whileTap={{scale: 0.9}} 
+      onClick={() => setWeekA(true)}
+      style={weekA ? {color: "#98fb98"} : {}}>A</motion.button> 
+      |<motion.button className="weekbutton" 
+      whileHover={{scale: 1.2}} 
+      whileTap={{scale: 0.9}} 
+      onClick={() => setWeekA(false)}
+      style={!weekA ? {color: "#98fb98"} : {}}>B</motion.button>]</p>
       {(size < 1000) ? <MobileTimetable timetable={mobTodayTimetable} /> : 
       <table className="dashttLinks">
         <thead className="tableLinks">
@@ -118,16 +129,15 @@ function Home() {
               )}
             </tr>
             <tr>
-              {userTodayA.map((el) => 
+              {weekA ? 
+              userTodayA.map((el) => 
                 <td key={el.class} className="tableClass">
                   <h1 className="class">{el.class}</h1>
                   <p className="ttsub">{el.code}</p>
                   <p className="ttsub">{el.info}</p>
                 </td>
-              )}
-            </tr>
-            <tr>
-              {userTodayB.map((el) => 
+              ) :
+              userTodayB.map((el) => 
                 <td key={el.class} className="tableClass">
                   <h1 className="class">{el.class}</h1>
                   <p className="ttsub">{el.code}</p>

@@ -90,6 +90,13 @@
     margin: 5px 0px;
     color: rgba(0, 0, 0, 0.8);
 }
+.weekbutton {
+    background: transparent;
+    font-family: inherit;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+}
 
 /* mobile interface */
 @media screen and (max-width: 1000px) {
