@@ -10,12 +10,12 @@ import Info from "../Information/info.js"
 import VotingHome from "../Voting/VotingHome"
 import { Profile } from "../Profile/profile"
 import UserContext from '../UserContext'
+import { AnimatePresence, motion } from 'framer-motion';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = { windowWidth: window.innerWidth };
-    
   }
 
   static contextType = UserContext;
@@ -38,20 +38,29 @@ class Main extends React.Component {
   render() {
     const { user } = this.context;
     console.log(user)
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    
     let vw = window.innerWidth * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vw', `${vw}px`);
+
+    const pages = [
+      {path: "/", component: <Home />},
+      {path: "/map", component: <Map />},
+      {path: "/timetable", component: <Timetable windowWidth={this.state.windowWidth} />},
+      {path: "/info", component: <Info />},
+      {path: "/vote", component: <VotingHome />},
+      {path: "/profile", component: <Profile />}
+    ]
+
     return (
     <>
       <div className="main">
-        {user.loggedIn && <Switch>
-          <Route exact path="/">
+        {user.loggedIn && 
+          <>{/* <Route exact path="/">
             <Home />
           </Route>
-          {/* <Route path="/diary">
+          <Route path="/diary">
             <Diary />
-          </Route> */}
+          </Route>
           <Route path="/map">
             <Map />
           </Route>
@@ -66,8 +75,21 @@ class Main extends React.Component {
           </Route>
           <Route path="/profile">
             <Profile />
-          </Route>
-        </Switch>}
+          </Route> */}
+
+          {/* More simplified */}
+          <AnimatePresence initial={false}>
+            <Switch>
+            {pages.map((el) => 
+              <Route key={el.path} exact path={el.path}>
+                <motion.div >
+                  {el.component}
+                </motion.div>
+              </Route>
+            )}
+            </Switch>
+          </AnimatePresence>
+        </>}
       </div>
       {(this.state.windowWidth < 1000) ? <MobileNav /> : <Nav />}
     </>
