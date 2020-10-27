@@ -76,11 +76,7 @@ app.post('/api/authenticate', async function(req, res) {
         } else {
             console.log('credentials correct');
         
-            // Confirmed to not exist
-            bcrypt.hash(password,10,function(err, hashedPassword) {
-                userDB.get('users').push({ id: user, name: "pending", hash: hashedPassword, timetable: "pending"}).write();
-                imageDB.get('users').push({ id: user }).write();
-            });
+            
 
             await page.click('input[id=idBtn_Back]');
             await page.waitForNavigation({'waitUntil': 'networkidle0', timeout: redirectTimeoutLength}).catch((err) => {
@@ -88,7 +84,24 @@ app.post('/api/authenticate', async function(req, res) {
             })
             await page.goto(TIMETABLE, { waitUntil: 'networkidle0' });
             var output = {name: "", timetable: ""};
-            output.name = await page.evaluate(() => document.querySelector("#content > div:nth-child(5) > div:nth-child(1) > h1").innerHTML);
+            try {
+                output.name = await page.evaluate(() => document.querySelector("#content > div:nth-child(5) > div:nth-child(1) > h1").innerHTML)
+            } catch {
+                console.log("Account creation is not enabled on weekends");
+                res.status(401).json({
+                    error: 'Account creation is not enabled on weekends.'
+                });
+                return;
+            }
+            
+
+
+            // Confirmed to not exist
+            bcrypt.hash(password,10,function(err, hashedPassword) {
+                userDB.get('users').push({ id: user, name: "pending", hash: hashedPassword, timetable: "pending"}).write();
+                imageDB.get('users').push({ id: user }).write();
+            });
+
             output.timetable = await page.evaluate(() => {
                 var rows = document.querySelectorAll("#content > div:nth-child(5) > div:nth-child(2) > div > table > tbody > tr")
                 var arr = []

@@ -30,7 +30,7 @@ p {
 
 input {
     background-color: white;
-    font-family: inherit;
+    font-family: monospace;
     padding: 15px;
     border-radius: 30px;
     color: black;

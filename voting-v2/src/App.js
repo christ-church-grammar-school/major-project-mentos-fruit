@@ -1,9 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {getAuth} from './Auth';
 import Login from './Login/Login';
 import Main from './Main/Main';
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import UserContext from './UserContext'
 
 

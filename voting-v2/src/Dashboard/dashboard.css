@@ -1,16 +1,16 @@
 .status {
-    font-size: 5vw;
+    font-size: 5vh;
 }
-.today {
-    font-size: 2.5vw;
+.dashSub {
+    font-size: 3.5vh;
     margin: 2vh 1vh;
     font-family: inherit;
     color: inherit;
 }
 .tableHead {
-    font-size: 2vw;
+    font-size: 2.5vh;
     background: transparent;
-    padding: 1vw;
+    padding: 1.5vh;
     text-align: left;
     color: #00217a;
     font-weight: inherit;
@@ -21,7 +21,7 @@
 .right {
     border-radius: 0vw 1vw 1vw 0vw;
 }
-.docLinks {
+.dashttLinks {
     width: 100%;
     display: table;
 }
@@ -35,51 +35,105 @@
 }
 .theadtime {
     margin: 0.5vw 0 0 0;
-    font-size: 1.5vw;
+    font-size: 1.9vh;
     color: inherit;
     font-family: inherit;
 }
 .class {
-    font-size: 1.321vw;
+    font-size: 2.5vh;
     margin: 0;
     font-weight: inherit;
 }
 .tableClass {
     font-weight: inherit;
     background: white;
-    padding: 1vw;
+    padding: 1vh;
     text-align: left;
     color: #000000;
     max-width: 14.285%;
     border-radius: 1vw;
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
 }
 .ttsub {
-    font-size: 1vw;
+    font-size: 1.5vh;
     margin: 0;
     font-family: inherit;
     color: inherit;
 }
+.dashLowerArea {
+    margin-top: 5vw;
+    margin-bottom: 10vh;
+}
+.UsefulLink {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0px;
+    border: none;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-family: inherit;
+    text-align: left;
+    font-size: 20px;
+}
+.UsefulLinks {
+    width: 350px;
+}
+.UsefulLinkIcon {
+    height: 50px;
+    float: right;
+    vertical-align: middle;
+}
+.UsefulSub {
+    font-family: inherit;
+    font-size: 15px;
+    margin: 5px 0px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.weekbutton {
+    background: transparent;
+    font-family: inherit;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+}
 
+/* mobile interface */
+@media screen and (max-width: 1000px) {
+    .UsefulLinks {
+        width: 96%;
+        text-align: center;
+    }
+    .UsefulLink {
+        font-size: 3vh;
+        width: 90%;
+    }
+}
+
+/* Desktop Interface */
 @media screen and (min-width: 1400px) {
     .ttsub {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .class {
-        font-size: 18.5px;
+        font-size: 18.5px !important;
     }
 }
 
 @media screen and (min-width: 1000px) {
-    /* .ttsub {
-        font-size: 14px;
-    } */
+    .ttsub {
+        font-size: 1vw;
+    }
     .tableClass {
         padding: 10px;
         border-radius: 10px;
     }
-    /* .class {
-        font-size: 18.5px;
-    } */
+    .dashLowerArea {
+        margin-top: 50px;
+    }
+    .class {
+        font-size: 1.321vw;
+    }
     .theadtime {
         margin: 5px 0 0 0;
         font-size: 15px;
@@ -87,8 +141,9 @@
     .tableLinks {
         border-radius: 10px;
     }
-    .today {
+    .dashSub {
         font-size: 25px;
+        margin: 20px 10px;
     }
     .status {
         font-size: 50px;

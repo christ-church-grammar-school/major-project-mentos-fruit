@@ -1,0 +1,39 @@
+.profileImage {
+    height: 50%;
+    max-height: 300px;
+    border-radius: 20px;
+}
+.profile {
+    display: inline;
+}
+.profileInfo {
+    padding: 2.5vh;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    margin: 2vh 3vw 0 0;
+    border-radius: 15px;
+}
+.profileInfoText {
+    font-family: inherit;
+    font-weight: 400;
+    margin: 0;
+}
+.profile {
+    width: auto;
+}
+strong {
+    font-weight: 500;
+}
+
+/* desktop handly */
+@media screen and (min-width: 1000px) {
+    .profile {
+        display: inline-flex;
+        width: 100%;
+    }
+    .profileInfo {
+        padding: 20px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        margin: 0px 40px;
+        width: 100%;
+    }
+}

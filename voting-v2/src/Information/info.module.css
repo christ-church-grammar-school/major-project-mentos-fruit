@@ -1,0 +1,106 @@
+.heading {
+    font-size: 5vw;
+    margin-bottom: 15px;
+}
+
+.docLinks {
+    width: 100%;
+    display: table;
+    margin: 0px 0px 50px;
+}
+
+.docLink {
+    width: 95%;
+    margin: 0.8vw 0px;
+    text-align: left;
+    padding: 1.5vw;
+    font-family: inherit;
+    font-weight: 500;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), 1px 1px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    border: none;
+    font-size: 1.5vw;
+    border-radius: 1vw;
+}
+
+.docLink:focus {
+    outline: none;
+}
+
+.text {
+    margin-top: 0px;
+    font-size: 2.5vw;
+    width: 95%;
+    font-family: inherit;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.row {
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), 1px 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5vw;
+}
+
+.tableLinks {
+    width: 95%;
+    display: inline-table;
+    max-width: 1500px;
+}
+
+.tableHead {
+    font-size: 2vw;
+    font-weight: normal;
+    background: #f3f6ff;
+    padding: 1vw;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+}
+
+.left {
+    border-radius: 1vw 0vw 0vw 1vw;
+}
+
+.right {
+    border-radius: 0vw 1vw 1vw 0vw;
+}
+
+.type {
+    font-size: 1.5vw;
+    padding: 1vw;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 1000px) {
+    .type {
+        font-size: 15px;
+        padding: 10px;
+    }
+    .tableHead {
+        font-size: 15px;
+        padding: 10px;
+    }
+    .heading {
+        font-size: 50px;
+    }
+    .text {
+        font-size: 25px;
+    }
+    .docLink {
+        padding: 10px;
+        font-size: 15px;
+        border-radius: 10px;
+        margin: 8px 0px;
+    }
+    .left {
+        border-radius: 10px 0px 0px 10px;
+    }
+    .right {
+        border-radius: 0px 10px 10px 0px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .heading {
+        font-size: 25px;
+    }
+}

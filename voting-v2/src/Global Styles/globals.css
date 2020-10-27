@@ -31,7 +31,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 30px;
   font-weight: 500;
-  overflow-x: visible;
+  overflow: visible;
 }
 
 p {
@@ -55,6 +55,8 @@ h1 {
   z-index: 0 !important;
   position: absolute;
   padding-left: 3vw;
+  width: 100%;
+  /* width: calc(var(--vw, 1vw) * 100); */
 }
 
 .placeholder {
@@ -64,6 +66,11 @@ h1 {
 
 button {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+  outline: none;
 }
 
 @media screen and (min-width: 1000px) {

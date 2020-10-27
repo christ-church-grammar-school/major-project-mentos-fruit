@@ -5,32 +5,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* overflow: hidden; */
+    /* overflow: visible; */
     min-width: 290px;
     max-width: 340px;
     position: fixed;
     z-index: 10 !important;
-    position: absolute;
     background-color: white;
     font-weight: 500;
+    top: 0;
 }
 
 .extra {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .toggle {
     z-index: 100 !important;
-    position: absolute;
+    position: fixed;
     font-size: 40px;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     background-color: white;
     border: none;
     border-radius: 50%;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    bottom: 3vw;
-    right: 3vw;
+    bottom: 5vw;
+    right: 5vw;
+    padding: unset;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .mainC {
@@ -85,6 +89,7 @@
     margin: 10px 0px 10px 10px;
     font-size: 2.5vw;
     color: white;
+    font-family: inherit;
 }
 
 .select {
@@ -131,6 +136,10 @@
 .profileTextArea {
     width: 100%;
     text-align: left;
+}
+
+.MobileNav {
+    position: relative;
 }
 
 @media screen and (min-width: 1000px) {

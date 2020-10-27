@@ -1,9 +1,10 @@
 import React from 'react';
 import './Login.css';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import waveTop from './images/wave-top.png';
 import waveMid from './images/wave-mid.png';
 import waveBot from './images/wave-bot.png';
+import { NavLink } from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props){
@@ -117,10 +118,13 @@ class Login extends React.Component {
                     onChange={this.handleChange} required/>
 
                     <br/>
-                    <motion.button disabled={!this.state.isEnabled} whileHover={this.state.isEnabled ? { scale: 1.08 } : { scale: 1 }} whileTap={this.state.isEnabled && { scale: 0.93 }}
-                    id="login" onClick={this.login}>
-                        {this.state.message}
-                    </motion.button>
+                    <NavLink to="/">
+                        <motion.button disabled={!this.state.isEnabled} whileHover={this.state.isEnabled ? { scale: 1.08 } : { scale: 1 }} whileTap={this.state.isEnabled && { scale: 0.93 }}
+                        id="login" onClick={this.login}>
+                            {this.state.message}
+                        </motion.button>
+                    </NavLink>
+                    
 
                     <motion.div className="loader" animate={{opacity: !this.state.isEnabled ? 1 : 0}}>
                         <svg className="circular" viewBox="25 25 50 50">
