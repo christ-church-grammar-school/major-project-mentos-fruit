@@ -131,29 +131,31 @@ function Home() {
       : <MobileTimetable timetable={mobTodayB} colour={weekBColour} />) : 
       <table className="dashttLinks">
         <thead className="tableLinks">
-            <tr>
-              {periods.map((el, index, arr) => 
-              <th key={el.label} className="tableHead">{el.label}<br/><p className="theadtime">{el.time}</p></th>
-              )}
-            </tr>
-            <tr>
-              {weekA ? 
-              userTodayA.map((el) => 
-                <td style={{backgroundColor: weekAColour}} key={el.class} className="tableClass">
-                  <h1 className="class">{el.class}</h1>
-                  <p className="ttsub">{el.code}</p>
-                  <p className="ttsub">{el.info}</p>
-                </td>
-              ) :
-              userTodayB.map((el) => 
-                <td style={{backgroundColor: weekBColour}} key={el.class} className="tableClass">
-                  <h1 className="class">{el.class}</h1>
-                  <p className="ttsub">{el.code}</p>
-                  <p className="ttsub">{el.info}</p>
-                </td>
-              )}
-            </tr>
+          <tr>
+            {periods.map((el, index, arr) => 
+            <th key={el.label} className="tableHead">{el.label}<br/><p className="theadtime">{el.time}</p></th>
+            )}
+          </tr>
         </thead>
+        <tbody className="tableLinks ttbody">
+          <tr>
+            {weekA ? 
+            userTodayA.map((el) => 
+              <td style={{backgroundColor: weekAColour}} key={el.class} className="tableClass">
+                <h1 className="class">{el.class}</h1>
+                <p className="ttsub">{el.code}</p>
+                <p className="ttsub">{el.info}</p>
+              </td>
+            ) :
+            userTodayB.map((el) => 
+              <td style={{backgroundColor: weekBColour}} key={el.class} className="tableClass">
+                <h1 className="class">{el.class}</h1>
+                <p className="ttsub">{el.code}</p>
+                <p className="ttsub">{el.info}</p>
+              </td>
+            )}
+          </tr>
+        </tbody>
       </table>
       }
       </>

@@ -1,4 +1,4 @@
-.timetableHead {
+.timetablePageHead {
     font-size: 5vh;
 }
 strong {
@@ -24,11 +24,44 @@ strong {
 }
 
 @media screen and (min-width: 1000px) {
-    .timetableHead {
+    .timetablePageHead {
         font-size: 50px;
     }
     .timetableWeek {
         font-size: 25px;
-        margin: 20px 10px;
+        margin: 0px;
+        text-align: left;
+    }
+    .timetable {
+        width: 100%;
+        display: table;
+        margin-top: 30px;
+    }
+    .timetableHead {
+        width: 95%;
+        display: inline-table;
+        max-width: 1500px;
+        border-radius: 15px;
+        table-layout: fixed !important;
+        background: #f3f6ff;
+    }
+    .timetableHeadTime {
+        background: transparent;
+        text-align: center;
+        color: #00217a;
+        font-weight: inherit;
+        font-size: 20px;
+        padding: 15px;
+    }
+    .time {
+        margin: 5px 0 0 0;
+        font-size: 15px;
+        font-family: inherit;
+        color: inherit;
+    }
+    .thing {
+        text-align: left !important;
+        background: #f3f6ff;
+        border-radius: 15px;
     }
 }

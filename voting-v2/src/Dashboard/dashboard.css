@@ -29,9 +29,12 @@
     width: 95%;
     display: inline-table;
     max-width: 1500px;
-    background: #f3f6ff;
-    border-radius: 1vw;
+    border-radius: 1.5vw;
     table-layout: fixed !important;
+    background: #f3f6ff;
+}
+.ttbody {
+    background: transparent !important;
 }
 .theadtime {
     margin: 0.5vw 0 0 0;
@@ -51,7 +54,7 @@
     text-align: left;
     color: #000000;
     max-width: 14.285%;
-    border-radius: 1vw;
+    border-radius: 1.5vw;
     /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
 }
 .ttsub {
@@ -127,7 +130,8 @@
     }
     .tableClass {
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 15px;
+        margin: 10px;
     }
     .dashLowerArea {
         margin-top: 50px;
@@ -140,7 +144,9 @@
         font-size: 15px;
     }
     .tableLinks {
-        border-radius: 10px;
+        border-radius: 15px;
+        margin-bottom: 2px;
+        background: #f3f6ff;
     }
     .dashSub {
         font-size: 25px;

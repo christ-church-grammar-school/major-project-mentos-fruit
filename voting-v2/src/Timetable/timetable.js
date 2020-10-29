@@ -19,6 +19,14 @@ function Timetable(props) {
         {label: "Period 6", time: "2.20pm-3.05pm"}
     ]
 
+    const days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+    ]
+
     console.log(user.timetable)
     
     var mobileTimetableFormat = {
@@ -26,6 +34,34 @@ function Timetable(props) {
         B: []
     }
 
+    var desktopTimetableFormat = {
+        A: [],
+        B: []
+    }
+
+    // desktop timetable formatting
+    if(user.timetable !== undefined) {
+        for(var a=0; a<7; a++) {
+            desktopTimetableFormat.A[a] = []
+            desktopTimetableFormat.B[a] = []
+            for(var l=0; l<5; l++) {
+                desktopTimetableFormat.A[a][l] = {
+                    class: user.timetable[a][l][0],
+                    code: user.timetable[a][l][1],
+                    info: user.timetable[a][l][2]
+                }
+                desktopTimetableFormat.B[a][l] = {
+                    class: user.timetable[a][l+5][0],
+                    code: user.timetable[a][l+5][1],
+                    info: user.timetable[a][l+5][2]
+                }
+            }
+        }
+    }
+
+    console.log(desktopTimetableFormat)
+
+    //mobile timetable formatting
     if(user.timetable !== undefined) {
         for(var i = 0; i < 5; i++) {
             mobileTimetableFormat.A[i] = []
@@ -58,9 +94,9 @@ function Timetable(props) {
 
     return (
         <div>
-            <h1 className="timetableHead">Timetable for <strong>{user.name}</strong> (Year {user.year}).</h1>
+            <h1 className="timetablePageHead">Timetable for <strong>{user.name}</strong> (Year {user.year}).</h1>
             
-            {(props.windowWidth < 1000) ? 
+            {(props.windowWidth < 1000) ? //mobile
             <div style={{textAlign: "center", marginBottom: "100px"}}>
                 <p className="timetableWeek">[
                     <motion.button
@@ -95,13 +131,59 @@ function Timetable(props) {
                 </div>
                 )
                 }
-                <table>
-
+            </div> : //desktop
+            <div>
+                <p className="timetableWeek">[
+                    <motion.button
+                    whileHover={{scale: 1.2}} 
+                    whileTap={{scale: 0.9}} 
+                    className="timetableWeek"
+                    onClick={() => setWeekA(true)}
+                    style={weekA ? {color: "rgb(112, 255, 112)"} : {}}>
+                        Week A
+                    </motion.button>|
+                    <motion.button
+                    whileHover={{scale: 1.2}} 
+                    whileTap={{scale: 0.9}} 
+                    className="timetableWeek"
+                    onClick={() => setWeekA(false)}
+                    style={!weekA ? {color: "rgb(255, 148, 190)"} : {}}>
+                        Week B
+                    </motion.button>
+                ]</p>
+                <table className="timetable">
+                    <thead className="timetableHead">
+                        <tr>
+                            <th className="timetableHeadTime">Time</th>
+                            {days.map((el) => 
+                            <th className="timetableHeadTime" key={el}>{el}</th>
+                            )}
+                        </tr>
+                    </thead>
+                    <tbody style={{backgroundColor: "transparent"}} className="timetableHead">
+                        {periods.map((el, index) => 
+                            <tr key={el.label}>
+                                <td className="timetableHeadTime thing">{el.label}
+                                <p className="time">{el.time}</p>
+                                </td>
+                                {(desktopTimetableFormat.A[index] !== undefined) ? 
+                                (weekA ? desktopTimetableFormat.A[index].map((el, index) => 
+                                <td style={{backgroundColor: weekAColour}} key={index} className="tableClass">
+                                    <h1 className="class">{el.class}</h1>
+                                    <p className="ttsub">{el.code}</p>
+                                    <p className="ttsub">{el.info}</p>
+                                </td>
+                                ) : desktopTimetableFormat.B[index].map((el, index) => 
+                                <td style={{backgroundColor: weekBColour}} key={index} className="tableClass">
+                                    <h1 className="class">{el.class}</h1>
+                                    <p className="ttsub">{el.code}</p>
+                                    <p className="ttsub">{el.info}</p>
+                                </td>)) : <></>}
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
-            </div> :
-            <>
-
-            </>
+            </div>
             }
         </div>
     )
