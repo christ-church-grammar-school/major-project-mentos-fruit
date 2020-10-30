@@ -3,9 +3,11 @@ import "./dashboard.css"
 import { UserData } from '../Profile/profile'
 import { motion } from 'framer-motion'
 import { MobileTimetable } from "../Timetable/timetable.js"
+import { useLocation } from 'react-router-dom';
 
 function Home() {
   const [weekA, setWeekA] = useState(true)
+  console.log(useLocation().pathname)
 
   const user = UserData()
   const periods = [
@@ -18,11 +20,12 @@ function Home() {
     {label: "Period 6", time: "2.20pm-3.05pm"}
   ]
 
-  var colours = [];
+  // TESTING ONLY LA
+  // var colours = [];
 
-  for (var k = 0; k < 20; k++) {
-    colours[k] = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.2)`
-  }
+  // for (var k = 0; k < 20; k++) {
+  //   colours[k] = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.2)`
+  // }
 
   const extLinks = [
     {label: "Nexus", subtitle: "CCGS Online Resources", icon: "usefulLink/nexus.png", url: "https://nexus.ccgs.wa.edu.au"},
@@ -30,18 +33,19 @@ function Home() {
     {label: "CCGS News", subtitle: "See your nexus feed", icon: "usefulLink/news.png", url: "https://nexus.ccgs.wa.edu.au/news?topic=all"}
   ]
   
+  // TESTING ONLY LA
   //userTimetableToday for CURRENT DAY ONLY
-  var userTimetableToday = [
-    {class: "Tutorial", teacher: "Mr Nederpelt", room: "LibPrior"},
-    {class: "English 1", teacher: "Mr Yeates", room: "M5"},
-    {class: "Japanese 1", teacher: "Mr Shain", room: "R5"},
-    {class: "Civics and Citienship 1", teacher: "Mr Phillips", room: "M8"},
-    {class: "Maths 1", teacher: "Dr Sisson", room: "S15"},
-    {class: "Advanced Software Development 1", teacher: "Mr Nolan", room: "L16"},
-    {class: "Physics 1", teacher: "Ms Owen", room: "NP3"} 
-  ]
+  // var userTimetableToday = [
+  //   {class: "Tutorial", teacher: "Mr Nederpelt", room: "LibPrior"},
+  //   {class: "English 1", teacher: "Mr Yeates", room: "M5"},
+  //   {class: "Japanese 1", teacher: "Mr Shain", room: "R5"},
+  //   {class: "Civics and Citienship 1", teacher: "Mr Phillips", room: "M8"},
+  //   {class: "Maths 1", teacher: "Dr Sisson", room: "S15"},
+  //   {class: "Advanced Software Development 1", teacher: "Mr Nolan", room: "L16"},
+  //   {class: "Physics 1", teacher: "Ms Owen", room: "NP3"} 
+  // ]
 
-  console.log(user.timetable)
+  //we want to be commented out of life
 
   var userTodayA = []
   var userTodayB = []
@@ -49,9 +53,12 @@ function Home() {
   const d = new Date()
   const day = d.getDay()
 
+  var mobTodayA = [];
+  var mobTodayB = [];
+
   if(day > 0 && day < 6) {
     if(user.timetable !== undefined) {
-      for(var i=0; i<7; i++) {
+      for(var i=0; i<periods.length; i++) {
         userTodayA[i] = {
           class: user.timetable[i][day-1][0],
           code: user.timetable[i][day-1][1],
@@ -62,14 +69,10 @@ function Home() {
           code: user.timetable[i][day+4][1],
           info: user.timetable[i][day+4][2]
         }
+        mobTodayA[i] = {period: periods[i], class: userTodayA[i]}
+        mobTodayB[i] = {period: periods[i], class: userTodayB[i]}
       }
     }
-  }
-
-  var mobTodayTimetable = [];
-
-  for(var i = 0; i < periods.length; i++) {
-    mobTodayTimetable[i] = {period: periods[i], class: userTimetableToday[i]}
   }
 
   const state = () => {
@@ -105,47 +108,54 @@ function Home() {
     else return ""
   }
 
+  const weekAColour = "rgba(204, 255, 204, 0.8)"
+  const weekBColour = "rgba(255, 204, 224, 0.8)"
+
   function todayTimetable() {
     if (day === 0 || day === 6) {
       return <p className="dashSub">No classes today.</p>
     } else {
       return <>
-      <p className="dashSub">Today - {getDay()} [ Week: <motion.button className="weekbutton" 
+      <p className="dashSub">Today - {getDay()} <br/> [ Week: <motion.button className="weekbutton" 
       whileHover={{scale: 1.2}} 
       whileTap={{scale: 0.9}} 
       onClick={() => setWeekA(true)}
-      style={weekA ? {color: "#98fb98"} : {}}>A</motion.button> 
+      style={weekA ? {color: "rgb(112, 255, 112)"} : {}}>A</motion.button> 
       |<motion.button className="weekbutton" 
       whileHover={{scale: 1.2}} 
       whileTap={{scale: 0.9}} 
       onClick={() => setWeekA(false)}
-      style={!weekA ? {color: "#98fb98"} : {}}>B</motion.button>]</p>
-      {(size < 1000) ? <MobileTimetable timetable={mobTodayTimetable} /> : 
+      style={!weekA ? {color: "rgb(255, 148, 190)"} : {}}>B</motion.button>]</p>
+      {(size < 1000) ? (weekA ? 
+      <MobileTimetable timetable={mobTodayA} colour={weekAColour} /> 
+      : <MobileTimetable timetable={mobTodayB} colour={weekBColour} />) : 
       <table className="dashttLinks">
         <thead className="tableLinks">
-            <tr>
-              {periods.map((el, index, arr) => 
-              <th key={el.label} className="tableHead">{el.label}<br/><p className="theadtime">{el.time}</p></th>
-              )}
-            </tr>
-            <tr>
-              {weekA ? 
-              userTodayA.map((el) => 
-                <td key={el.class} className="tableClass">
-                  <h1 className="class">{el.class}</h1>
-                  <p className="ttsub">{el.code}</p>
-                  <p className="ttsub">{el.info}</p>
-                </td>
-              ) :
-              userTodayB.map((el) => 
-                <td key={el.class} className="tableClass">
-                  <h1 className="class">{el.class}</h1>
-                  <p className="ttsub">{el.code}</p>
-                  <p className="ttsub">{el.info}</p>
-                </td>
-              )}
-            </tr>
+          <tr>
+            {periods.map((el, index, arr) => 
+            <th key={el.label} className="tableHead">{el.label}<br/><p className="theadtime">{el.time}</p></th>
+            )}
+          </tr>
         </thead>
+        <tbody className="tableLinks ttbody">
+          <tr>
+            {weekA ? 
+            userTodayA.map((el) => 
+              <td style={{backgroundColor: weekAColour}} key={el.class} className="tableClass">
+                <h1 className="class">{el.class}</h1>
+                <p className="ttsub">{el.code}</p>
+                <p className="ttsub">{el.info}</p>
+              </td>
+            ) :
+            userTodayB.map((el) => 
+              <td style={{backgroundColor: weekBColour}} key={el.class} className="tableClass">
+                <h1 className="class">{el.class}</h1>
+                <p className="ttsub">{el.code}</p>
+                <p className="ttsub">{el.info}</p>
+              </td>
+            )}
+          </tr>
+        </tbody>
       </table>
       }
       </>
