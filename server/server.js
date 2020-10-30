@@ -40,6 +40,7 @@ app.post('/api/authenticate', async function(req, res) {
                 const payload = { user: user };
                 var token = jwt.sign(payload, process.env.SECRET, {expiresIn: process.env.TOKENEXPIRY});
                 res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+                console.log("Confirmed")
                 return;
             }
         });        
@@ -65,6 +66,7 @@ app.post('/api/authenticate', async function(req, res) {
                 var result = true;
             }
         } catch {
+            console.log("Webscrape Failed")
             var result = false;
         } 
         if (!result) {
