@@ -5,18 +5,42 @@
       "name": "Fname Lname",
       "year": 2020,
       "bio": "I am dumb"
+    },
+    {
+      "studentid": "test2@student.ccgs.wa.edu.au",
+      "name": "Fname2 Lname2",
+      "year": 2020,
+      "bio": "I am dumber"
+    },
+    {
+      "studentid": "test3@student.ccgs.wa.edu.au",
+      "name": "Fname3 Lname3",
+      "year": 2019,
+      "bio": "I am dumbest"
+    }
+  ],
+  "groupcandidate": [
+    {
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "group": "Wolsey"
+    },
+    {
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "group": "School"
+    },
+    {
+      "studentid": "test2@student.ccgs.wa.edu.au",
+      "group": "Romsey"
+    },
+    {
+      "studentid": "test3@student.ccgs.wa.edu.au",
+      "group": "Wolsey"
     }
   ],
   "vote": [
     {
       "voterid": "1015634@student.ccgs.wa.edu.au",
       "group": "Wolsey",
-      "cand": "test@student.ccgs.wa.edu.au",
-      "pref": 1
-    },
-    {
-      "voterid": "1015634@student.ccgs.wa.edu.au",
-      "group": "Wolsey2",
       "cand": "test@student.ccgs.wa.edu.au",
       "pref": 1
     }
