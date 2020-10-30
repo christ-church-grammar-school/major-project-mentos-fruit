@@ -1,11 +1,24 @@
 {
-  "candidate": {},
-  "voter": [
+  "candidate": [
     {
-      "voterid": "test"
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "name": "Fname Lname",
+      "year": 2020,
+      "bio": "I am dumb"
     }
   ],
-  "groupcandidate": {},
-  "group": {},
-  "vote": {}
+  "vote": [
+    {
+      "voterid": "1015634@student.ccgs.wa.edu.au",
+      "group": "Wolsey",
+      "cand": "test@student.ccgs.wa.edu.au",
+      "pref": 1
+    },
+    {
+      "voterid": "1015634@student.ccgs.wa.edu.au",
+      "group": "Wolsey2",
+      "cand": "test@student.ccgs.wa.edu.au",
+      "pref": 1
+    }
+  ]
 }

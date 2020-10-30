@@ -15,28 +15,45 @@
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
- 
+
 const adapter = new FileSync('votes.json')
 const db = low(adapter)
 
 function initdb() {
-	db.defaults({ candidate: [], voter: [], groupcandidate: [], group: [], vote: []})
+	db.defaults({ candidate: [], vote: []})
 	.write()
 }
 
-function write(id) {
-	if (db.get('voter').find({ voterid: id }).value()) {
-		// Already exists
-		db.get('voter')
-		.find( { voterid: id })
-		.assign({ voterid:'test'})
+function addCandidate(candid, sname, syear, sbio) {
+	if (db.get('candidate').find({ studentid: candid}).value() == undefined) {
+		// Create new user
+		console.log('test1')
+		db.get('candidate')
+		.push({ studentid: candid, name: sname, year: syear, bio: sbio })
 		.write()
 	} else {
-		// Create new row
-		db.set('voter', [{ voterid:id}])
+		// Update user's information
+		db.get('candidate')
+		.find({ studentid: candid })
+		.assign( { name: sname, year: syear, bio: sbio } )
 		.write()
 	}
 }
 
+function addVote(id, grouptype, candidateid, preference) {
+	// Add vote
+	if (db.get('vote').find({ voterid: id, group:grouptype, cand:candidateid }).value() != undefined) {
+		// Error: voter has already voted before in this election
+		return
+	}
+	// Add vote
+	db.get('vote')
+	.push({ voterid: id, group:grouptype, cand:candidateid, pref:preference }) 
+	.write()
+}
+
 initdb()
-write('1015634S')
+
+// test database
+addCandidate('test@student.ccgs.wa.edu.au', 'Fname Lname', 2020, 'I am dumb')
+addVote('1015634@student.ccgs.wa.edu.au', 'Wolsey', 'test@student.ccgs.wa.edu.au', 1);
