@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 function Home() {
   const [weekA, setWeekA] = useState(true)
-  console.log(useLocation().pathname)
+  // console.log(useLocation().pathname)
 
   const user = UserData()
   const periods = [
@@ -132,7 +132,7 @@ function Home() {
       <table className="dashttLinks">
         <thead className="tableLinks">
           <tr>
-            {periods.map((el, index, arr) => 
+            {periods.map((el) => 
             <th key={el.label} className="tableHead">{el.label}<br/><p className="theadtime">{el.time}</p></th>
             )}
           </tr>
@@ -140,15 +140,15 @@ function Home() {
         <tbody className="tableLinks ttbody">
           <tr>
             {weekA ? 
-            userTodayA.map((el) => 
-              <td style={{backgroundColor: weekAColour}} key={el.class} className="tableClass">
+            userTodayA.map((el, index) => 
+              <td style={{backgroundColor: weekAColour}} key={index} className="tableClass">
                 <h1 className="class">{el.class}</h1>
                 <p className="ttsub">{el.code}</p>
                 <p className="ttsub">{el.info}</p>
               </td>
             ) :
-            userTodayB.map((el) => 
-              <td style={{backgroundColor: weekBColour}} key={el.class} className="tableClass">
+            userTodayB.map((el, index) => 
+              <td style={{backgroundColor: weekBColour}} key={index} className="tableClass">
                 <h1 className="class">{el.class}</h1>
                 <p className="ttsub">{el.code}</p>
                 <p className="ttsub">{el.info}</p>

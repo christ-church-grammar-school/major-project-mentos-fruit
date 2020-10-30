@@ -27,7 +27,7 @@ function Timetable(props) {
         "Friday"
     ]
 
-    console.log(user.timetable)
+    // console.log(user.timetable)
     
     var mobileTimetableFormat = {
         A: [],
