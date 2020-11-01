@@ -53,28 +53,32 @@
       "group": "Wolsey",
       "cand": "test@student.ccgs.wa.edu.au",
       "pref": 2,
-      "year": 2020
+      "year": 2020,
+      "yeargroup": "10"
     },
     {
       "voterid": "1015634@student.ccgs.wa.edu.au",
       "group": "Wolsey",
       "cand": "test4@student.ccgs.wa.edu.au",
       "pref": 1,
-      "year": 2020
+      "year": 2020,
+      "yeargroup": "10"
     },
     {
       "voterid": "testvoter@student.ccgs.wa.edu.au",
       "group": "Wolsey",
       "cand": "test@student.ccgs.wa.edu.au",
-      "pref": 2,
-      "year": 2020
+      "pref": 1,
+      "year": 2020,
+      "yeargroup": "11"
     },
     {
       "voterid": "testvoter@student.ccgs.wa.edu.au",
       "group": "Wolsey",
       "cand": "test4@student.ccgs.wa.edu.au",
-      "pref": 1,
-      "year": 2020
+      "pref": 2,
+      "year": 2020,
+      "yeargroup": "11"
     }
   ]
 }

@@ -34,7 +34,7 @@ function addCandGroup(candidateid, grouptype) {
 		.write()
 	}
 }
-function addVote(id, grouptype, candidateid, preference, syear) {
+function addVote(id, grouptype, candidateid, preference, syear, yearlevel) {
 	// Add vote
 	if (db.get('vote').find({ voterid: id, group: grouptype, cand: candidateid }).value() != undefined) {
 		// Error: voter has already voted before in this election
@@ -42,7 +42,7 @@ function addVote(id, grouptype, candidateid, preference, syear) {
 	}
 	// Add vote
 	db.get('vote')
-	.push({ voterid: id, group: grouptype, cand: candidateid, pref: preference, year: syear }) 
+	.push({ voterid: id, group: grouptype, cand: candidateid, pref: preference, year: syear, yeargroup: yearlevel }) 
 	.write() 
 }
 
@@ -52,14 +52,31 @@ function worse(a, b) {
 	
 	// Test if both numbers of votes are equal
 	if (a[0] == b[0] && a[1] == b[1]) {
-		return 0;
+		return 0
 	}
 	// Consider current votes
 	if (a[0] != b[0]) {
-		return (a[0] < b[0]) ? 1 : -1;
+		return (a[0] < b[0]) ? 1 : -1
 	}
 	// Break ties by initial votes
-	return (a[1] < b[1]) ? 1 : -1;
+	return (a[1] < b[1]) ? 1 : -1
+}
+
+function getCandidates(curyear, grouptype) {
+	// Return all candidates for current election
+
+	// allcandidates contains all candidates in correct year
+	allcandidates = db.get('candidate')
+	.filter({ year: curyear })
+	.map('studentid')
+	.value()
+	candidates = [] // Candidates for this particular group
+	for (var i=0; i<allcandidates.length; i++) {
+		if (db.get('groupcandidate').find({ studentid: allcandidates[i], group: grouptype }).value()) {
+			candidates.push(allcandidates[i]) // Add candidate
+		}
+	}
+	return candidates
 }
 
 function calcResults(curyear, grouptype) {
@@ -71,17 +88,7 @@ function calcResults(curyear, grouptype) {
 	 If there is a further tie, all tied candidates are removed.
 	*/
 
-	// allcandidates contains all candidates in correct year
-	allcandidates = db.get('candidate')
-	.filter({ year: curyear })
-	.map('studentid')
-	.value()
-	candidates = []; // Candidates for this particular group
-	for (var i=0; i<allcandidates.length; i++) {
-		if (db.get('groupcandidate').find({ studentid: allcandidates[i], group: grouptype }).value()) {
-			candidates.push(allcandidates[i]) // Add candidate
-		}
-	}
+	candidates = getCandidates(curyear, grouptype)
 
 	// Get all votes for this election
 	allvotes = db.get('vote')
@@ -102,7 +109,7 @@ function calcResults(curyear, grouptype) {
 
 	initial = {} // Stores number of initial, first-place votes 
 	for (var i=0; i<candidates.length; i++) {
-		initial[candidates[i]] = 0;
+		initial[candidates[i]] = 0
 	}
 
 	for (var voter in voterchoice) {
@@ -122,20 +129,20 @@ function calcResults(curyear, grouptype) {
 	while (candidates.length > 0) {
 		current = {} // Stores current votes for this round
 		for (var i=0; i<candidates.length; i++) {
-			current[candidates[i]] = 0;
+			current[candidates[i]] = 0
 		}
 
 		for (var voter in voterchoice) {
 			if (voterchoice[voter].length == 0) {
 				// All preferences have been eliminated
-				continue;
+				continue
 			}
 			current[voterchoice[voter][voterchoice[voter].length-1]]++
 		}
 
 		eliminate = [candidates[0]]
 		for (var i=1; i<candidates.length; i++) {
-			var candidate = candidates[i];
+			var candidate = candidates[i]
 			var query = worse([current[candidate], initial[candidate]], [current[eliminate[0]], initial[eliminate[0]]])
 			if (query == 1) {
 				// New worse candidate
@@ -170,6 +177,56 @@ function calcResults(curyear, grouptype) {
 	return order
 }
 
+function displayRankings(order) {
+	// Prints the list of candidates in ranker order, to the console
+	var ranking = 1;
+	for (var i=0; i<order.length; i++) {
+		console.log(`Rank #${ranking}: ${order[i].join(', ')}`)
+		ranking += order[i].length
+	} 
+}
+
+function calcTally(curyear, grouptype, yearlevel) {
+	// Returns a tally of the first-preference votes for each year level
+	// If yeargroup == '', then this returns the tally for all year groups
+	var allvotes
+	if (yearlevel == '') {
+		allvotes = db.get('vote')
+		.filter({ group: grouptype, year: curyear, pref: 1 })
+		.cloneDeep()
+		.value()
+	} else {
+		allvotes = db.get('vote')
+		.filter({ group: grouptype, year: curyear, pref: 1, yeargroup: yearlevel})
+		.cloneDeep()
+		.value()
+	}
+
+	candidates = getCandidates(curyear, grouptype)
+	tally = {} // Stores number of votes
+	for (var i=0; i<candidates.length; i++) {
+		tally[candidates[i]] = 0;
+	}
+	for (var i=0; i<allvotes.length; i++) {
+		tally[allvotes[i].cand]++;
+	}
+	return tally;
+}
+
+function displayTally(tally) {
+	// Prints the tally of candidates in sorted order, to the console
+	var output = []
+	for (var candidate in tally) {
+		output.push([tally[candidate], candidate])
+	}
+	output.sort(function(a, b) {
+		return b[0]-a[0]
+	})
+	for (var i=0; i<output.length; i++) {
+		console.log(`${output[i][1]}: ${output[i][0]} vote` + ((output[i][0] == 1) ? '' : 's'))
+	}
+}
+
 // test database
 initdb()
 addCandidate('test@student.ccgs.wa.edu.au', 'Fname Lname', 2020, 'I am dumb')
@@ -181,9 +238,10 @@ addCandGroup('test@student.ccgs.wa.edu.au', 'School')
 addCandGroup('test2@student.ccgs.wa.edu.au', 'Romsey')
 addCandGroup('test3@student.ccgs.wa.edu.au', 'Wolsey')
 addCandGroup('test4@student.ccgs.wa.edu.au', 'Wolsey')
-addVote('1015634@student.ccgs.wa.edu.au', 'Wolsey', 'test@student.ccgs.wa.edu.au', 2, 2020);
-addVote('1015634@student.ccgs.wa.edu.au', 'Wolsey', 'test4@student.ccgs.wa.edu.au', 1, 2020);
-addVote('testvoter@student.ccgs.wa.edu.au', 'Wolsey', 'test@student.ccgs.wa.edu.au', 2, 2020);
-addVote('testvoter@student.ccgs.wa.edu.au', 'Wolsey', 'test4@student.ccgs.wa.edu.au', 1, 2020);
+addVote('1015634@student.ccgs.wa.edu.au', 'Wolsey', 'test@student.ccgs.wa.edu.au', 2, 2020, '10')
+addVote('1015634@student.ccgs.wa.edu.au', 'Wolsey', 'test4@student.ccgs.wa.edu.au', 1, 2020, '10')
+addVote('testvoter@student.ccgs.wa.edu.au', 'Wolsey', 'test@student.ccgs.wa.edu.au', 1, 2020, '11')
+addVote('testvoter@student.ccgs.wa.edu.au', 'Wolsey', 'test4@student.ccgs.wa.edu.au', 2, 2020, '11')
 
-console.log(calcResults(2020, 'Wolsey'))
+displayRankings(calcResults(2020, 'Wolsey'))
+displayTally(calcTally(2020, 'Wolsey', ''))
