@@ -131,41 +131,57 @@ app.post('/api/authenticate', async function(req, res) {
 
             await page.goto(link, { waitUntil: 'networkidle0' });
 
-            output.image = await page.evaluate( async () => {
-                loadImage = async img => {
-                    return new Promise((resolve, reject) => {
-                        img.onload = async () => {
-                            resolve(true);
-                        };
-                    });
-                };
-                
-                  var img = new Image();
-                  img.crossOrigin = 'Anonymous';
-                    img.src = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-2.columns.no-pad > img").src;
-                    await loadImage(img)
-                  
-                    var canvas = document.createElement('CANVAS');
-                    var ctx = canvas.getContext('2d');
-                    var dataURL;
-                    canvas.height = img.naturalHeight;
-                    canvas.width = img.naturalWidth;
-                    ctx.drawImage(img, 0, 0);
-                    dataURL = canvas.toDataURL();
-                    return dataURL
-            });
+            try {
+                output.image = await page.evaluate( async () => {
+                    loadImage = async img => {
+                        return new Promise((resolve, reject) => {
+                            img.onload = async () => {
+                                resolve(true);
+                            };
+                        });
+                    };
+                    
+                      var img = new Image();
+                      img.crossOrigin = 'Anonymous';
+                        img.src = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-2.columns.no-pad > img").src;
+                        await loadImage(img)
+                      
+                        var canvas = document.createElement('CANVAS');
+                        var ctx = canvas.getContext('2d');
+                        var dataURL;
+                        canvas.height = img.naturalHeight;
+                        canvas.width = img.naturalWidth;
+                        ctx.drawImage(img, 0, 0);
+                        dataURL = canvas.toDataURL();
+                        return dataURL
+                });
+            } catch {
+                console.log("PROFILE IMAGE FAILED")
+                output.image = "Does not have one";
+            }
 
-            output.data = await page.evaluate(() => {
-                var data = {};
-                data.studentID = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(4)").innerText;
-                data.dateOfBirth = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(6)").innerText;
-                data.yearLevel = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(8)").innerText;
-                data.tutor = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(10) > a").innerText;
-                data.house = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(12)").innerText;
-                data.tutorGroup = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(14)").innerText;
-                data.studentType = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(18)").innerText;
-                return data;
-            });
+            try {
+                output.data = await page.evaluate(() => {
+                    var data = {};
+                    data.studentID = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(4)").innerText;
+                    data.dateOfBirth = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(6)").innerText;
+                    data.yearLevel = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(8)").innerText;
+                    data.tutor = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(10) > a").innerText;
+                    data.house = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(12)").innerText;
+                    data.tutorGroup = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(14)").innerText;
+                    data.studentType = document.querySelector("#content > div:nth-child(3) > div > section > div > div > div.small-12.medium-10.columns.no-pad > dl > dd:nth-child(18)").innerText;
+                    return data;
+                });
+            } catch {
+                console.log("PROFILE IMAGE FAILED")
+                output.data.studentID = "Javascript is amazing";
+                output.data.dateOfBirth = "Javascript is amazing";
+                output.data.yearLevel = "Javascript is amazing";
+                output.data.tutor = "Javascript is amazing";
+                output.data.house = "Javascript is amazing";
+                output.data.tutorGroup = "Javascript is amazing";
+                output.data.studentType = "Javascript is amazing";
+            }
 
             userDB.get('users').find({id: user}).assign({name: output.name,timetable: output.timetable, data: output.data}).write(); // UPDATE TIMETABLE
             imageDB.get('users').find({id: user}).assign({image: output.image}).write(); 
