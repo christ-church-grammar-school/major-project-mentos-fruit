@@ -159,7 +159,6 @@ app.post('/api/authenticate', async function(req, res) {
                 console.log("PROFILE IMAGE FAILED")
                 output.image = "Does not have one";
             }
-
             try {
                 output.data = await page.evaluate(() => {
                     var data = {};
@@ -174,13 +173,15 @@ app.post('/api/authenticate', async function(req, res) {
                 });
             } catch {
                 console.log("PROFILE IMAGE FAILED")
-                output.data.studentID = "Javascript is amazing";
-                output.data.dateOfBirth = "Javascript is amazing";
-                output.data.yearLevel = "Javascript is amazing";
-                output.data.tutor = "Javascript is amazing";
-                output.data.house = "Javascript is amazing";
-                output.data.tutorGroup = "Javascript is amazing";
-                output.data.studentType = "Javascript is amazing";
+                var data = {};
+                data.studentID = "Javascript is amazing";
+                data.dateOfBirth = "Javascript is amazing";
+                data.yearLevel = "Javascript is amazing";
+                data.tutor = "Javascript is amazing";
+                data.house = "Javascript is amazing";
+                data.tutorGroup = "Javascript is amazing";
+                data.studentType = "Javascript is amazing";
+                output.data = data;
             }
 
             userDB.get('users').find({id: user}).assign({name: output.name,timetable: output.timetable, data: output.data}).write(); // UPDATE TIMETABLE
