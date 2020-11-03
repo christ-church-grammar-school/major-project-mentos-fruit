@@ -3,6 +3,16 @@ import { motion } from "framer-motion"
 import "./VotingHome.css"
 
 function VotingHome() {
+    var test = ["Brad", "Connor", "Graham", "Angela"]
+    
+    function getCand() {
+        if (test !== undefined) {
+            test.forEach((el) => {
+                if (document.getElementById('person') !== null) document.getElementById('person').add(el)
+            });
+        }
+    }
+    
     return (
         <div className="mainV">
             <h1 className="heading">Voting</h1>
@@ -24,12 +34,6 @@ function VotingHome() {
                     This means that you will be required to indicate your first, second, third, etc. preference for which candidate should be prefect. 
                     Please follow the steps below.
                     </p>
-                    {/* <div className="lower">
-                        <img src="/Voting/VotingCardTemp.jpg" className="egImg"/>
-                    </div>
-                    <p className="text">
-                        As you can see in this example, the voter has placed Candidate 3 as their first preference, and Candidate 1 as their last preference. 
-                    </p> */}
                 </div>
             </div>
             <div>
@@ -47,11 +51,6 @@ function VotingHome() {
                     For each preference, click the drop down menu in order to select a candidate. Alternatively, type in the field to search for them. Click submit in order save your preferences. 
                     </p>
                 </div>
-            </div>
-            <div className="buttonArea">
-                {/* <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Call API</motion.button> */}
-                <h1 className="subH">Vote for:</h1>
-                <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">House Prefect</motion.button>
             </div>
         </div>
     )
