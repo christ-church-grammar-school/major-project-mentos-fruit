@@ -34,10 +34,15 @@ function addCandGroup(candidateid, grouptype) {
 		.write()
 	}
 }
+
 function addVote(id, grouptype, candidateid, preference, syear, yearlevel) {
 	// Add vote
 	if (db.get('vote').find({ voterid: id, group: grouptype, cand: candidateid }).value() != undefined) {
-		// Error: voter has already voted before in this election
+		// Error: voter has already voted for this candidate in this election
+		return
+    }
+    if (db.get('vote').find({ voterid: id, group: grouptype, pref: preference }).value() != undefined) {
+		// Error: voter has already voted for this position in this election
 		return
 	}
 	// Add vote

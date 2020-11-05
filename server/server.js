@@ -219,7 +219,8 @@ app.get('/api/logout', function(req, res){
 /////////////////////////// Voting //////////////////////////////////////////////////////
 
 function initdb() {
-	
+	db.defaults({ candidate: [], groupcandidate: [], vote: []})
+	.write()
 }
 
 function addCandidate(candid, sname, syear, sbio) {
@@ -438,6 +439,18 @@ app.get('/api/addcandgroup', function(req, res) {
     try {
         var userObj = userDB.get('users').find({id: req.user}).value()
         addCandidate(userObj.id, req.body.group);
+        res.sendStatus(200)
+    } catch {
+        res.sendStatus(400)
+    } finally {
+        return
+    }
+})
+
+app.get('/api/addvote', function(req, res) {
+    try {
+        var userObj = userDB.get('users').find({id: req.user}).value()
+        addVote(userObj.id, req.body.group, req.body.candid, req.body.pref, new Date().getFullYear(), userOBj.data.yearLevel)
         res.sendStatus(200)
     } catch {
         res.sendStatus(400)
