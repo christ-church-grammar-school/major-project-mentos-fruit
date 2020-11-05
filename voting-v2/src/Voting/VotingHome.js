@@ -1,18 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { motion } from "framer-motion"
 import "./VotingHome.css"
 
-function VotingHome() {
-    var test = ["Brad", "Connor", "Graham", "Angela"]
-    
-    function getCand() {
-        if (test !== undefined) {
-            test.forEach((el) => {
-                if (document.getElementById('person') !== null) document.getElementById('person').add(el)
-            });
-        }
-    }
-    
+function VotingHome() {    
     return (
         <div className="mainV">
             <h1 className="heading">Voting</h1>
@@ -52,6 +43,10 @@ function VotingHome() {
                     </p>
                 </div>
             </div>
+
+            <NavLink to='/vote/page'>
+                <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Voting Stuff</motion.button>
+            </NavLink>
         </div>
     )
 }

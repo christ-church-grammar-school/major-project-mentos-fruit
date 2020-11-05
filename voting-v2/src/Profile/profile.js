@@ -66,7 +66,7 @@ function UserData() {
                 userEasy.timetable[i][j-1] = user.timetable[i][j].split("\n")
 
                 if(userEasy.timetable[i][j-1].length < 3) {
-                    userEasy.timetable[i][j-1][2] = ""
+                    userEasy.timetable[i][j-1][2] = "" 
                     userEasy.timetable[i][j-1][0] = "No Class"
                 }
             }

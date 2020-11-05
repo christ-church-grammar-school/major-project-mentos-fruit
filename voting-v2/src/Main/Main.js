@@ -12,6 +12,7 @@ import { Profile } from "../Profile/profile"
 import UserContext from '../UserContext'
 import { AnimatePresence, motion } from 'framer-motion';
 import VotingStepOne from "../Voting/VotingStep1"
+import VotingPage from "../Voting/VotingPage"
 
 class Main extends React.Component {
   constructor(props) {
@@ -50,12 +51,13 @@ class Main extends React.Component {
       {path: "/info", component: <Info />},
       {path: "/vote", component: <VotingHome />},
       {path: "/profile", component: <Profile />},
-      {path: "/vote/candidates", component: <VotingStepOne />}
+      {path: "/vote/candidates", component: <VotingStepOne />},
+      {path: "/vote/page", component: <VotingPage />}
     ]
 
     return (
     <>
-      <div className={(window.location.pathname !== "/vote/candidates") ? "main" : "mainVoting"}>
+      <div className={(window.location.pathname !== "/vote/candidates") ? ((window.location.pathname !== "/vote/page") ? "main" : "mainVoting") : "mainVoting"}>
         {user.loggedIn && 
           <>{/* <Route exact path="/">
             <Home />
@@ -93,7 +95,7 @@ class Main extends React.Component {
           </AnimatePresence>
         </>}
       </div>
-      {(window.location.pathname !== "/vote/candidates") ? ((this.state.windowWidth < 1000) ? <MobileNav /> : <Nav />) : <></>
+      {(window.location.pathname !== "/vote/candidates") ? ((window.location.pathname !== "/vote/page") ? ((this.state.windowWidth < 1000) ? <MobileNav /> : <Nav />) : <></>) : <></>
       }
       
     </>
