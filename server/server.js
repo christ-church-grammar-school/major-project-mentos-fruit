@@ -251,7 +251,11 @@ function addCandGroup(candidateid, grouptype) {
 function addVote(id, grouptype, candidateid, preference, syear, yearlevel) {
 	// Add vote
 	if (db.get('vote').find({ voterid: id, group: grouptype, cand: candidateid }).value() != undefined) {
-		// Error: voter has already voted before in this election
+		// Error: voter has already voted for this candidate in this election
+		return
+    }
+    if (db.get('vote').find({ voterid: id, group: grouptype, pref: preference }).value() != undefined) {
+		// Error: voter has already voted for this position in this election
 		return
 	}
 	// Add vote
@@ -421,7 +425,7 @@ function calcTally(curyear, grouptype, yearlevel) {
 app.get('/api/addcandidate', function(req, res) {
     try {
         var userObj = userDB.get('users').find({id: req.user}).value()
-        addCandidate(userObj.id, user.name.slice(14).split(',')[0], new Date().getFullYear(), '')
+        addCandidate(userObj.id, userObj.name.slice(14).split(',')[0], new Date().getFullYear(), '')
         res.sendStatus(200)
     } catch {
         res.sendStatus(400)

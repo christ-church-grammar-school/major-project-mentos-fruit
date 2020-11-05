@@ -2,13 +2,43 @@ import React from 'react'
 import "./VotingHome.css"
 import "./VotingPage.css"
 import { motion } from 'framer-motion'
+import { UserData } from '../Profile/profile'
 
 function VotingPage() {
     var test = ["Brad", "Connor", "Graham", "Angela"]
+    const user = UserData()
 
     function submitCand() {
         var x = document.getElementById("type")
-        console.log(x.value)
+        if (x.value === "house") {
+            addCand((user.house).toLowerCase())
+        } else {
+            addCand(x.value)
+        }
+    }
+
+    function addCand(candGroup){
+        fetch('/api/addcandidate', {
+            method: 'POST',
+            body: JSON.stringify({ group: candGroup }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }}).then(res => {
+            if (res.status === 200) {
+                console.log("I think it worked");
+            } else {
+              const error = [new Error(res.error),res.json()];
+              throw error;
+            }
+          }).catch((err) => {
+                console.log(err);
+                err[1].then((res) => {
+                    // this.setState({message: res.error})
+                    // this.setState({isEnabled: true});
+                    console.log("You broke it")
+                })
+          });
     }
 
     return (
