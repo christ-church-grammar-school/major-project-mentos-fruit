@@ -1,24 +1,25 @@
-const express = require('express');
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const userDB = low(new FileSync('./db.json'));
-const imageDB = low(new FileSync('./imagedb.json'));
-const app = express();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const withAuth = require('./middleware');
-const puppeteer = require('puppeteer');
-const URL = "https://nexus.ccgs.wa.edu.au";
-const TIMETABLE = "https://nexus.ccgs.wa.edu.au/timetable";
+const express = require('express')
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const userDB = low(new FileSync('./db.json'))
+const imageDB = low(new FileSync('./imagedb.json'))
+const db = low(new FileSync('votes.json'))
+const app = express()
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const withAuth = require('./middleware')
+const puppeteer = require('puppeteer')
+const URL = "https://nexus.ccgs.wa.edu.au"
+const TIMETABLE = "https://nexus.ccgs.wa.edu.au/timetable"
 const path = require('path')
 
-userDB.defaults({users: []}).write();
-imageDB.defaults({users: []}).write();
-
-app.use(bodyParser());
-app.use(cookieParser());
+userDB.defaults({users: []}).write()
+imageDB.defaults({users: []}).write()
+db.defaults({ candidate: [], groupcandidate: [], vote: []}).write()
+app.use(bodyParser())
+app.use(cookieParser())
 
 process.env.SECRET = "IVomitWordsOntoPageToMakeFakeSecurityKey";
 process.env.TOKENEXPIRY = "2h";
