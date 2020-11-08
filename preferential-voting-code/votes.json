@@ -1,0 +1,84 @@
+{
+  "candidate": [
+    {
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "name": "Fname Lname",
+      "year": 2020,
+      "bio": "I am dumb"
+    },
+    {
+      "studentid": "test2@student.ccgs.wa.edu.au",
+      "name": "Fname2 Lname2",
+      "year": 2020,
+      "bio": "I am dumber"
+    },
+    {
+      "studentid": "test3@student.ccgs.wa.edu.au",
+      "name": "Fname3 Lname3",
+      "year": 2019,
+      "bio": "I am dumbest"
+    },
+    {
+      "studentid": "test4@student.ccgs.wa.edu.au",
+      "name": "Fname4 Lname4",
+      "year": 2020,
+      "bio": "I am even dumber"
+    }
+  ],
+  "groupcandidate": [
+    {
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "group": "Wolsey"
+    },
+    {
+      "studentid": "test@student.ccgs.wa.edu.au",
+      "group": "School"
+    },
+    {
+      "studentid": "test2@student.ccgs.wa.edu.au",
+      "group": "Romsey"
+    },
+    {
+      "studentid": "test3@student.ccgs.wa.edu.au",
+      "group": "Wolsey"
+    },
+    {
+      "studentid": "test4@student.ccgs.wa.edu.au",
+      "group": "Wolsey"
+    }
+  ],
+  "vote": [
+    {
+      "voterid": "1015634@student.ccgs.wa.edu.au",
+      "group": "Wolsey",
+      "cand": "test@student.ccgs.wa.edu.au",
+      "pref": 2,
+      "year": 2020,
+      "yeargroup": "10"
+    },
+    {
+      "voterid": "1015634@student.ccgs.wa.edu.au",
+      "group": "Wolsey",
+      "cand": "test4@student.ccgs.wa.edu.au",
+      "pref": 1,
+      "year": 2020,
+      "yeargroup": "10"
+    },
+    {
+      "voterid": "testvoter@student.ccgs.wa.edu.au",
+      "group": "Wolsey",
+      "cand": "test@student.ccgs.wa.edu.au",
+      "pref": 1,
+      "year": 2020,
+      "yeargroup": "11"
+    },
+    {
+      "voterid": "testvoter@student.ccgs.wa.edu.au",
+      "group": "Wolsey",
+      "cand": "test4@student.ccgs.wa.edu.au",
+      "pref": 2,
+      "year": 2020,
+      "yeargroup": "11"
+    }
+  ]
+}

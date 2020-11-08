@@ -1,8 +1,9 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { motion } from "framer-motion"
 import "./VotingHome.css"
 
-function VotingHome() {
+function VotingHome() {    
     return (
         <div className="mainV">
             <h1 className="heading">Voting</h1>
@@ -24,12 +25,6 @@ function VotingHome() {
                     This means that you will be required to indicate your first, second, third, etc. preference for which candidate should be prefect. 
                     Please follow the steps below.
                     </p>
-                    {/* <div className="lower">
-                        <img src="/Voting/VotingCardTemp.jpg" className="egImg"/>
-                    </div>
-                    <p className="text">
-                        As you can see in this example, the voter has placed Candidate 3 as their first preference, and Candidate 1 as their last preference. 
-                    </p> */}
                 </div>
             </div>
             <div>
@@ -48,11 +43,10 @@ function VotingHome() {
                     </p>
                 </div>
             </div>
-            <div className="buttonArea">
-                {/* <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Call API</motion.button> */}
-                <h1 className="subH">Vote for:</h1>
-                <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">House Prefect</motion.button>
-            </div>
+
+            <NavLink target="blank" to='/vote/page'>
+                <motion.button style={{marginTop: "50px"}} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Voting Stuff</motion.button>
+            </NavLink>
         </div>
     )
 }

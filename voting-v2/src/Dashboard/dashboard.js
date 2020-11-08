@@ -182,6 +182,14 @@ function Home() {
               </a>
               )}
             </div>
+            <p style={{marginTop: "50px"}} className="dashSub">Weather forecast - Claremont Area (CCGS Locality): </p>
+            <div style={{maxWidth:"95%", borderRadius: "15px", boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)"}}>
+              {/* Weather is from https://weatherwidget.io/ and is powered by darksky */}
+              <a style={{ borderRadius: "15px", boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)"}} class="weatherwidget-io" href="https://forecast7.com/en/n31d98115d78/claremont/" data-label_1="CLAREMONT" data-label_2="WEATHER" font="Ubuntu" data-icons="Climacons Animated" data-theme="weather_one" >CLAREMONT WEATHER</a>
+              {
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js')
+              }
+            </div>
           </div>
         </div>
       </div>

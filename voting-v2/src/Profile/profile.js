@@ -48,6 +48,7 @@ function UserData() {
 
     if (user.name !== undefined) {
         userEasy = {
+            email: user.id,
             name: NameYear[0],
             year: user.data.yearLevel,
             studentID: user.data.studentID,
@@ -66,7 +67,7 @@ function UserData() {
                 userEasy.timetable[i][j-1] = user.timetable[i][j].split("\n")
 
                 if(userEasy.timetable[i][j-1].length < 3) {
-                    userEasy.timetable[i][j-1][2] = ""
+                    userEasy.timetable[i][j-1][2] = "" 
                     userEasy.timetable[i][j-1][0] = "No Class"
                 }
             }

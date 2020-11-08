@@ -98,7 +98,7 @@ function Timetable(props) {
             
             {(props.windowWidth < 1000) ? //mobile
             <div style={{textAlign: "center", marginBottom: "100px"}}>
-                <p className="timetableWeek">[
+                <p className="timetableWeek">
                     <motion.button
                     whileHover={{scale: 1.2}} 
                     whileTap={{scale: 0.9}} 
@@ -106,7 +106,7 @@ function Timetable(props) {
                     onClick={() => setWeekA(true)}
                     style={weekA ? {color: "rgb(112, 255, 112)"} : {}}>
                         Week A
-                    </motion.button>|
+                    </motion.button>
                     <motion.button
                     whileHover={{scale: 1.2}} 
                     whileTap={{scale: 0.9}} 
@@ -115,25 +115,25 @@ function Timetable(props) {
                     style={!weekA ? {color: "rgb(255, 148, 190)"} : {}}>
                         Week B
                     </motion.button>
-                ]</p>
+                </p>
                 {weekA ? 
                 mobileTimetableFormat.A.map((el, index) => 
                 <div key={index}>
-                    <p className="timetableDay">Day {index+1}:</p>
+                    <p className="timetableDay">{days[index]} (Day {index+1}):</p>
                     <MobileTimetable colour={weekAColour} timetable={el}/>
                 </div>                
                 )
                 :
                 mobileTimetableFormat.B.map((el, index) => 
                 <div key={index}>
-                    <p className="timetableDay">Day {index+6}:</p>
+                    <p className="timetableDay">{days[index]} (Day {index+6}):</p>
                     <MobileTimetable colour={weekBColour} timetable={el}/>
                 </div>
                 )
                 }
             </div> : //desktop
             <div>
-                <p className="timetableWeek">[
+                <p className="timetableWeek">
                     <motion.button
                     whileHover={{scale: 1.2}} 
                     whileTap={{scale: 0.9}} 
@@ -141,7 +141,7 @@ function Timetable(props) {
                     onClick={() => setWeekA(true)}
                     style={weekA ? {color: "rgb(112, 255, 112)"} : {}}>
                         Week A
-                    </motion.button>|
+                    </motion.button>
                     <motion.button
                     whileHover={{scale: 1.2}} 
                     whileTap={{scale: 0.9}} 
@@ -150,13 +150,16 @@ function Timetable(props) {
                     style={!weekA ? {color: "rgb(255, 148, 190)"} : {}}>
                         Week B
                     </motion.button>
-                ]</p>
+                </p>
                 <table className="timetable">
                     <thead className="timetableHead">
                         <tr>
                             <th className="timetableHeadTime">Time</th>
-                            {days.map((el) => 
-                            <th className="timetableHeadTime" key={el}>{el}</th>
+                            {days.map((el, index) => 
+                            <th className="timetableHeadTime" key={el}>{el}
+                            {weekA ? <p className="time">Day {index+1}</p> : <p className="time">Day {index+6}</p>}
+                            
+                            </th>
                             )}
                         </tr>
                     </thead>
