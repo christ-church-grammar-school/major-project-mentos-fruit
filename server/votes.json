@@ -1,1 +1,25 @@
-{}
+{
+  "candidate": [
+    {
+      "studentid": "1014860@student.ccgs.wa.edu.au",
+      "name": "Mr Kenneth Lo",
+      "year": 2020,
+      "bio": ""
+    }
+  ],
+  "groupcandidate": [
+    {
+      "studentid": "1014860@student.ccgs.wa.edu.au",
+      "group": "req.body.group"
+    },
+    {
+      "studentid": "1014860@student.ccgs.wa.edu.au",
+      "group": "hill"
+    },
+    {
+      "studentid": "1014860@student.ccgs.wa.edu.au",
+      "group": "boarding"
+    }
+  ],
+  "vote": []
+}

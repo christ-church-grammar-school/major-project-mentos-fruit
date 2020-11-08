@@ -44,8 +44,8 @@ function VotingHome() {
                 </div>
             </div>
 
-            <NavLink to='/vote/page'>
-                <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Voting Stuff</motion.button>
+            <NavLink target="blank" to='/vote/page'>
+                <motion.button style={{marginTop: "50px"}} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="optionToPage">Voting Stuff</motion.button>
             </NavLink>
         </div>
     )

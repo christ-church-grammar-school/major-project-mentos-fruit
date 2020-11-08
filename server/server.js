@@ -423,9 +423,10 @@ function calcTally(curyear, grouptype, yearlevel) {
 	return tally;
 }
 
-app.get('/api/addcandidate', function(req, res) {
+app.post('/api/addcandidate', function(req, res) {
     try {
-        var userObj = userDB.get('users').find({id: req.user}).value()
+        var userObj = userDB.get('users').find({id: req.body.user}).value()
+        // console.log(userObj)
         addCandidate(userObj.id, userObj.name.slice(14).split(',')[0], new Date().getFullYear(), '')
         res.sendStatus(200)
     } catch {
@@ -435,10 +436,11 @@ app.get('/api/addcandidate', function(req, res) {
     }
 })
 
-app.get('/api/addcandgroup', function(req, res) {
+app.post('/api/addcandgroup', function(req, res) {
     try {
-        var userObj = userDB.get('users').find({id: req.user}).value()
-        addCandidate(userObj.id, req.body.group);
+        var userObj = userDB.get('users').find({id: req.body.user}).value()
+        // console.log(userObj)
+        addCandGroup(userObj.id, req.body.group);
         res.sendStatus(200)
     } catch {
         res.sendStatus(400)
@@ -447,7 +449,18 @@ app.get('/api/addcandgroup', function(req, res) {
     }
 })
 
-app.get('/api/addvote', function(req, res) {
+app.post('/api/getcands', function(req, res) {
+    try {
+        res.sendStatus(200)
+        return getCandidates(new Date().getFullYear(), req.body.type)
+    } catch {
+        res.sendStatus(400)
+    } finally {
+        return 
+    }
+})
+
+app.post('/api/addvote', function(req, res) {
     try {
         var userObj = userDB.get('users').find({id: req.user}).value()
         addVote(userObj.id, req.body.group, req.body.candid, req.body.pref, new Date().getFullYear(), userOBj.data.yearLevel)
@@ -459,7 +472,7 @@ app.get('/api/addvote', function(req, res) {
     }
 })
 
-app.get('/api/calcresults', function(req, res) {
+app.post('/api/calcresults', function(req, res) {
     try {
         res.json(calcResults(new Date().getFullYear(), res.body.group))
     } catch {
@@ -469,7 +482,7 @@ app.get('/api/calcresults', function(req, res) {
     }
 })
 
-app.get('/api/calctally', function(req, res) {
+app.post('/api/calctally', function(req, res) {
     try {
         res.json(calcTally(new Date().getFullYear(), res.body.group, req.body.yearlevel))
     } catch {

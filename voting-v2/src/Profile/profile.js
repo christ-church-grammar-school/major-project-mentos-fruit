@@ -48,6 +48,7 @@ function UserData() {
 
     if (user.name !== undefined) {
         userEasy = {
+            email: user.id,
             name: NameYear[0],
             year: user.data.yearLevel,
             studentID: user.data.studentID,

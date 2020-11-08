@@ -23,6 +23,7 @@ class Login extends React.Component {
 
     login(){
         this.setState({isEnabled: false, message: 'Authenticating'});
+        // console.log(this.state.user)
         fetch('/api/authenticate', {
             method: 'POST',
             body: JSON.stringify({user: this.state.user, password: this.state.password}),
@@ -107,7 +108,7 @@ class Login extends React.Component {
                     <div className="mobileSupport">
                     <p id="title">CCGS Assistant</p>
 
-                    <p className="up">Username</p>
+                    <p className="up">Email</p>
                     <input className={`${this.state.message === "Incorrect username or password" ? "redOutline" : ""}`} ref={(input) => { this.nameInput = input; }} onKeyPress={this.checkName} autoComplete="off" type="text" placeholder="Enter Username" id="user" value={this.state.username} onChange={this.handleChange} required/>
 
 
