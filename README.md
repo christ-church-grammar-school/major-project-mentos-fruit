@@ -7,11 +7,21 @@ Consider the project dead.
 To run it:
 
 Open cmd in /server
+To Install node modules:
+```
+yarn
+```
+Then to start it:
 ```
 yarn start
 ```
 
 Open cmd in /voting-v2
+To Install node modules:
+```
+yarn
+```
+Then to start it:
 ```
 yarn start
 ```
