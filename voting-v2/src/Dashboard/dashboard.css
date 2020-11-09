@@ -135,6 +135,7 @@
     }
     .dashLowerArea {
         margin-top: 50px;
+        /* display: inline-flex; */
     }
     .class {
         font-size: 1.321vw;
